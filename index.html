@@ -54,7 +54,7 @@
         <button id="searchButton">Search</button>
         <div id="resultContainer">
             <p id="resultText"></p>
-            <p>You can copy this result:</p>
+          
             <button id="copyButton">Copy Result</button>
         </div>
     </div>
@@ -66,7 +66,7 @@
             if (inputText.includes('ALCL')) {
                 resultText = inputText.replace(/ALCL/g, '414C434C');
             } else {
-                resultText = '(414C434C) ' + inputText;
+                resultText = '414C434C' + inputText;
             }
 
             document.getElementById('resultText').textContent = resultText;
