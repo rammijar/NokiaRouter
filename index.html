@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nokia Router</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        input, button {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #resultContainer {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #copyButton {
+            margin-top: 10px;
+            background-color: #2196F3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Nokia Router</h1>
+        <input type="text" id="searchInput" placeholder="Type something here...">
+        <button id="searchButton">Search</button>
+        <div id="resultContainer">
+            <p id="resultText"></p>
+            <p>You can copy this result:</p>
+            <button id="copyButton">Copy Result</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById('searchButton').addEventListener('click', function() {
+            let inputText = document.getElementById('searchInput').value;
+            let resultText;
+
+            if (inputText.includes('ALCL')) {
+                resultText = inputText.replace(/ALCL/g, '414C434C');
+            } else {
+                resultText = '(414C434C) ' + inputText;
+            }
+
+            document.getElementById('resultText').textContent = resultText;
+            document.getElementById('resultContainer').style.display = 'block';
+        });
+
+        document.getElementById('copyButton').addEventListener('click', function() {
+            let resultText = document.getElementById('resultText').textContent;
+            navigator.clipboard.writeText(resultText).then(function() {
+                alert('Result copied to clipboard!');
+            }, function() {
+                alert('Failed to copy the result.');
+            });
+        });
+    </script>
+</body>
+</html>
