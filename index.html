@@ -5,74 +5,184 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nokia Router</title>
     <style>
+        /* Dark mode variables */
+        :root {
+            --bg-color: #181818;
+            --text-color: #fff;
+            --container-bg-color: #282828;
+            --border-color: #555;
+            --button-bg-color: #3A3A3A;
+            --button-text-color: #fff;
+        }
+
+        /* Apply the theme */
+        body, .container, .text-block p {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        /* Basic styling and animations */
         body {
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f0f0;
             margin: 0;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .container {
-            background: #fff;
+            background-color: var(--container-bg-color);
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
+            transition: background-color 0.3s, color 0.3s;
+            animation: fadeIn 1s ease;
+            max-width: 600px;
+            width: 100%;
         }
 
-        input, button {
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        input {
             margin: 10px 0;
             padding: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid var(--border-color);
             border-radius: 4px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            width: 90%;
+            font-size: 14px;
+            background-color: var(--container-bg-color);
+            color: var(--text-color);
         }
 
-        button {
-            cursor: pointer;
-            background-color: #4CAF50;
-            color: white;
+        input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            outline: none;
         }
 
         #resultContainer {
             display: none;
             margin-top: 20px;
+            animation: fadeIn 0.5s ease;
         }
 
-        #copyButton {
-            margin-top: 10px;
-            background-color: #2196F3;
+        .text-block {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .text-block p {
+            margin: 0;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            background-color: var(--container-bg-color);
+            flex-grow: 1;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .icon-button {
+            margin-left: 10px;
+            padding: 5px; /* Smaller button */
+            border: none;
+            border-radius: 5px;
+            background-color: transparent;
+            color: var(--button-text-color);
+            font-size: 12px; /* Smaller font */
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .icon-button:hover {
+            background-color: #555;
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Nokia Router</h1>
+        <h3>Nokia Router</h3>
+        <!-- Input field for serial number -->
         <input type="text" id="searchInput" placeholder="Type Serial Number here...">
-        <button id="searchButton">Search</button>
+        <!-- Result container to display the processed serial number -->
         <div id="resultContainer">
-            <p id="resultText"></p>
-          
-            <button id="copyButton">Copy Result</button>
+            <div class="text-block">
+                <p id="resultText"></p>
+                <!-- Copy button with SVG icon to copy the result to clipboard -->
+                <button class="icon-button" id="copyButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 32 32" style="enable-background:new 0 0 512 512" xml:space="preserve" class="" height="25" width="25"><g><path d="M26.572 2.16H9.698A3.266 3.266 0 0 0 6.44 5.428v1.011H5.418A3.267 3.267 0 0 0 2.16 9.71v16.863a3.266 3.266 0 0 0 3.258 3.268h16.874a3.271 3.271 0 0 0 3.268-3.268v-1.011h1.012a3.272 3.272 0 0 0 3.268-3.269V5.428a3.272 3.272 0 0 0-3.268-3.268zM23.56 26.572c0 .7-.569 1.268-1.268 1.268H5.417a1.264 1.264 0 0 1-1.257-1.268V9.708c0-.7.564-1.269 1.257-1.269h16.875c.7 0 1.268.57 1.268 1.269V24.56zm4.28-4.28c0 .7-.569 1.269-1.268 1.269H25.56V9.708a3.272 3.272 0 0 0-3.268-3.269H8.44V5.428c0-.7.564-1.268 1.258-1.268h16.874c.7 0 1.268.568 1.268 1.268z" fill="#000000" opacity="1" data-original="#000000" style="--darkreader-inline-fill: #000000;" data-darkreader-inline-fill=""></path></g></svg>
+                </button>
+            </div>
+        </div>
+
+        <h3>copy now</h3>
+        <!-- Text blocks with copy buttons -->
+        <div class="text-block">
+            <p id="text1">no light on auth and link // please do need ful</p>
+            <button class="icon-button" onclick="copyText('text1')">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 32 32" style="enable-background:new 0 0 512 512" xml:space="preserve" class="" height="25" width="25"><g><path d="M26.572 2.16H9.698A3.266 3.266 0 0 0 6.44 5.428v1.011H5.418A3.267 3.267 0 0 0 2.16 9.71v16.863a3.266 3.266 0 0 0 3.258 3.268h16.874a3.271 3.271 0 0 0 3.268-3.268v-1.011h1.012a3.272 3.272 0 0 0 3.268-3.269V5.428a3.272 3.272 0 0 0-3.268-3.268zM23.56 26.572c0 .7-.569 1.268-1.268 1.268H5.417a1.264 1.264 0 0 1-1.257-1.268V9.708c0-.7.564-1.269 1.257-1.269h16.875c.7 0 1.268.57 1.268 1.269V24.56zm4.28-4.28c0 .7-.569 1.269-1.268 1.269H25.56V9.708a3.272 3.272 0 0 0-3.268-3.269H8.44V5.428c0-.7.564-1.268 1.258-1.268h16.874c.7 0 1.268.568 1.268 1.268z" fill="#000000" opacity="1" data-original="#000000" style="--darkreader-inline-fill: #000000;" data-darkreader-inline-fill=""></path></g></svg>
+               
+            </button>
+        </div>
+        <div class="text-block">
+            <p id="text3">light not verified // please do need ful </p>
+            <button class="icon-button" onclick="copyText('text3')">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 32 32" style="enable-background:new 0 0 512 512" xml:space="preserve" class="" height="25" width="25"><g><path d="M26.572 2.16H9.698A3.266 3.266 0 0 0 6.44 5.428v1.011H5.418A3.267 3.267 0 0 0 2.16 9.71v16.863a3.266 3.266 0 0 0 3.258 3.268h16.874a3.271 3.271 0 0 0 3.268-3.268v-1.011h1.012a3.272 3.272 0 0 0 3.268-3.269V5.428a3.272 3.272 0 0 0-3.268-3.268zM23.56 26.572c0 .7-.569 1.268-1.268 1.268H5.417a1.264 1.264 0 0 1-1.257-1.268V9.708c0-.7.564-1.269 1.257-1.269h16.875c.7 0 1.268.57 1.268 1.269V24.56zm4.28-4.28c0 .7-.569 1.269-1.268 1.269H25.56V9.708a3.272 3.272 0 0 0-3.268-3.269H8.44V5.428c0-.7.564-1.268 1.258-1.268h16.874c.7 0 1.268.568 1.268 1.268z" fill="#000000" opacity="1" data-original="#000000" style="--darkreader-inline-fill: #000000;" data-darkreader-inline-fill=""></path></g></svg>
+               
+            </button>
+        </div>
+        <div class="text-block">
+            <p id="text2">extended for 3 days</p>
+            <button class="icon-button" onclick="copyText('text2')">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 32 32" style="enable-background:new 0 0 512 512" xml:space="preserve" class="" height="25" width="25"><g><path d="M26.572 2.16H9.698A3.266 3.266 0 0 0 6.44 5.428v1.011H5.418A3.267 3.267 0 0 0 2.16 9.71v16.863a3.266 3.266 0 0 0 3.258 3.268h16.874a3.271 3.271 0 0 0 3.268-3.268v-1.011h1.012a3.272 3.272 0 0 0 3.268-3.269V5.428a3.272 3.272 0 0 0-3.268-3.268zM23.56 26.572c0 .7-.569 1.268-1.268 1.268H5.417a1.264 1.264 0 0 1-1.257-1.268V9.708c0-.7.564-1.269 1.257-1.269h16.875c.7 0 1.268.57 1.268 1.269V24.56zm4.28-4.28c0 .7-.569 1.269-1.268 1.269H25.56V9.708a3.272 3.272 0 0 0-3.268-3.269H8.44V5.428c0-.7.564-1.268 1.258-1.268h16.874c.7 0 1.268.568 1.268 1.268z" fill="#000000" opacity="1" data-original="#000000" style="--darkreader-inline-fill: #000000;" data-darkreader-inline-fill=""></path></g></svg>
+                   
+            </button>
         </div>
     </div>
+
     <script>
-        document.getElementById('searchButton').addEventListener('click', function() {
-            let inputText = document.getElementById('searchInput').value;
-            let resultText;
+        // Function to handle the search operation when Enter is pressed
+        document.getElementById('searchInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                let inputText = document.getElementById('searchInput').value;
+                let resultText;
 
-            if (inputText.includes('ALCL')) {
-                resultText = inputText.replace(/ALCL/g, '414C434C');
-            } else {
-                resultText = '414C434C' + inputText;
+                if (inputText.includes('ALCL')) {
+                    resultText = inputText.replace(/ALCL/g, '414C434C');
+                } else {
+                    resultText = '414C434C' + inputText;
+                }
+
+                document.getElementById('resultText').textContent = resultText;
+                document.getElementById('resultContainer').style.display = 'block';
             }
-
-            document.getElementById('resultText').textContent = resultText;
-            document.getElementById('resultContainer').style.display = 'block';
         });
 
+        // Function to copy result text to clipboard
         document.getElementById('copyButton').addEventListener('click', function() {
             let resultText = document.getElementById('resultText').textContent;
             navigator.clipboard.writeText(resultText).then(function() {
@@ -81,6 +191,16 @@
                 alert('Failed to copy the result.');
             });
         });
+
+        // Function to copy specific text block to clipboard
+        function copyText(elementId) {
+            let textToCopy = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(textToCopy).then(function() {
+                alert('Text copied to clipboard!');
+            }, function() {
+                alert('Failed to copy text.');
+            });
+        }
     </script>
 </body>
 </html>
