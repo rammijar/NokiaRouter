@@ -13,6 +13,8 @@
             --border-color: #555;
             --button-bg-color: #3A3A3A;
             --button-text-color: #fff;
+            --hover-bg-color: #383838;
+            --success-color: #28a745;
         }
 
         /* Apply the theme */
@@ -82,8 +84,15 @@
         .text-block {
             display: flex;
             align-items: center;
-            margin-bottom: 0px;
+            margin-bottom: 10px;
             font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .text-block:hover {
+            background-color: var(--hover-bg-color);
+            transform: translateY(-2px);
         }
 
         .text-block p {
@@ -91,31 +100,22 @@
             flex-grow: 1;
             text-align: left;
             font-size: 14px;
+            padding: 10px;
+            margin: 0;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        .icon-button {
-            margin-left: 10px;
-            padding: 5px; /* Smaller button */
-            border: none;
-            border-radius: 5px;
-            background-color: transparent;
-            color: var(--button-text-color);
-            font-size: 12px; /* Smaller font */
-            cursor: pointer;
-            transition: background-color 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
+        .copy-feedback {
+            display: none;
+            color: var(--success-color);
+            margin-top: 5px;
+            font-size: 12px;
+            animation: fadeOut 2s ease-out forwards;
         }
 
-        .icon-button:hover {
-            background-color: #555;
-        }
-
-        .icon {
-            width: 20px;
-            height: 20px;
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
         }
     </style>
 </head>
@@ -126,46 +126,41 @@
         <input type="text" id="searchInput" placeholder="Type Serial Number here...">
         <!-- Result container to display the processed serial number -->
         <div id="resultContainer">
-            <div class="text-block">
+            <div class="text-block" id="resultTextContainer">
                 <p id="resultText"></p>
-                <!-- Copy button with SVG icon to copy the result to clipboard -->
-                <button class="icon-button" id="copyButton">
-                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 32 32" style="enable-background:new 0 0 512 512" xml:space="preserve" class="" height="25" width="25"><g><path d="M26.572 2.16H9.698A3.266 3.266 0 0 0 6.44 5.428v1.011H5.418A3.267 3.267 0 0 0 2.16 9.71v16.863a3.266 3.266 0 0 0 3.258 3.268h16.874a3.271 3.271 0 0 0 3.268-3.268v-1.011h1.012a3.272 3.272 0 0 0 3.268-3.269V5.428a3.272 3.272 0 0 0-3.268-3.268zM23.56 26.572c0 .7-.569 1.268-1.268 1.268H5.417a1.264 1.264 0 0 1-1.257-1.268V9.708c0-.7.564-1.269 1.257-1.269h16.875c.7 0 1.268.57 1.268 1.269V24.56zm4.28-4.28c0 .7-.569 1.269-1.268 1.269H25.56V9.708a3.272 3.272 0 0 0-3.268-3.269H8.44V5.428c0-.7.564-1.268 1.258-1.268h16.874c.7 0 1.268.568 1.268 1.268z" fill="#000000" opacity="1" data-original="#000000" style="--darkreader-inline-fill: #000000;" data-darkreader-inline-fill=""></path></g></svg>
-                </button>
             </div>
+            <div class="copy-feedback" id="resultCopyFeedback">Copied!</div>
         </div>
 
-        <h3>onu status</h3>
-        <!-- Text blocks with copy buttons -->
-        <div class="text-block">
+        <h3>ONU Status</h3>
+        <!-- Text blocks with copy functionality -->
+        <!-- Example of a text block. Add more blocks by duplicating this block -->
+        <div class="text-block" onclick="copyText('text1')">
             <p id="text1">no light on auth and link // please do need ful</p>
-            <button class="icon-button" onclick="copyText('text1')">
-                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 32 32" style="enable-background:new 0 0 512 512" xml:space="preserve" class="" height="25" width="25"><g><path d="M26.572 2.16H9.698A3.266 3.266 0 0 0 6.44 5.428v1.011H5.418A3.267 3.267 0 0 0 2.16 9.71v16.863a3.266 3.266 0 0 0 3.258 3.268h16.874a3.271 3.271 0 0 0 3.268-3.268v-1.011h1.012a3.272 3.272 0 0 0 3.268-3.269V5.428a3.272 3.272 0 0 0-3.268-3.268zM23.56 26.572c0 .7-.569 1.268-1.268 1.268H5.417a1.264 1.264 0 0 1-1.257-1.268V9.708c0-.7.564-1.269 1.257-1.269h16.875c.7 0 1.268.57 1.268 1.269V24.56zm4.28-4.28c0 .7-.569 1.269-1.268 1.269H25.56V9.708a3.272 3.272 0 0 0-3.268-3.269H8.44V5.428c0-.7.564-1.268 1.258-1.268h16.874c.7 0 1.268.568 1.268 1.268z" fill="#000000" opacity="1" data-original="#000000" style="--darkreader-inline-fill: #000000;" data-darkreader-inline-fill=""></path></g></svg>
-               
-            </button>
         </div>
-        <div class="text-block">
-            <p id="text3">light not verified // please do need ful </p>
-            <button class="icon-button" onclick="copyText('text3')">
-                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 32 32" style="enable-background:new 0 0 512 512" xml:space="preserve" class="" height="25" width="25"><g><path d="M26.572 2.16H9.698A3.266 3.266 0 0 0 6.44 5.428v1.011H5.418A3.267 3.267 0 0 0 2.16 9.71v16.863a3.266 3.266 0 0 0 3.258 3.268h16.874a3.271 3.271 0 0 0 3.268-3.268v-1.011h1.012a3.272 3.272 0 0 0 3.268-3.269V5.428a3.272 3.272 0 0 0-3.268-3.268zM23.56 26.572c0 .7-.569 1.268-1.268 1.268H5.417a1.264 1.264 0 0 1-1.257-1.268V9.708c0-.7.564-1.269 1.257-1.269h16.875c.7 0 1.268.57 1.268 1.269V24.56zm4.28-4.28c0 .7-.569 1.269-1.268 1.269H25.56V9.708a3.272 3.272 0 0 0-3.268-3.269H8.44V5.428c0-.7.564-1.268 1.258-1.268h16.874c.7 0 1.268.568 1.268 1.268z" fill="#000000" opacity="1" data-original="#000000" style="--darkreader-inline-fill: #000000;" data-darkreader-inline-fill=""></path></g></svg>
-               
-            </button>
-        </div>
+        <div class="copy-feedback" id="text1Feedback">Copied!</div>
 
-        <div class="text-block">
-            <p id="text4">urgent//please do need ful </p>
-            <button class="icon-button" onclick="copyText('text4')">
-                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 32 32" style="enable-background:new 0 0 512 512" xml:space="preserve" class="" height="25" width="25"><g><path d="M26.572 2.16H9.698A3.266 3.266 0 0 0 6.44 5.428v1.011H5.418A3.267 3.267 0 0 0 2.16 9.71v16.863a3.266 3.266 0 0 0 3.258 3.268h16.874a3.271 3.271 0 0 0 3.268-3.268v-1.011h1.012a3.272 3.272 0 0 0 3.268-3.269V5.428a3.272 3.272 0 0 0-3.268-3.268zM23.56 26.572c0 .7-.569 1.268-1.268 1.268H5.417a1.264 1.264 0 0 1-1.257-1.268V9.708c0-.7.564-1.269 1.257-1.269h16.875c.7 0 1.268.57 1.268 1.269V24.56zm4.28-4.28c0 .7-.569 1.269-1.268 1.269H25.56V9.708a3.272 3.272 0 0 0-3.268-3.269H8.44V5.428c0-.7.564-1.268 1.258-1.268h16.874c.7 0 1.268.568 1.268 1.268z" fill="#000000" opacity="1" data-original="#000000" style="--darkreader-inline-fill: #000000;" data-darkreader-inline-fill=""></path></g></svg>
-               
-            </button>
+        <div class="text-block" onclick="copyText('text3')">
+            <p id="text3">light not verified // please do need ful</p>
         </div>
-        <div class="text-block">
+        <div class="copy-feedback" id="text3Feedback">Copied!</div>
+
+        <div class="text-block" onclick="copyText('text4')">
+            <p id="text4">urgent // please do need ful</p>
+        </div>
+        <div class="copy-feedback" id="text4Feedback">Copied!</div>
+
+        <div class="text-block" onclick="copyText('text2')">
             <p id="text2">extended for 3 days</p>
-            <button class="icon-button" onclick="copyText('text2')">
-                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 32 32" style="enable-background:new 0 0 512 512" xml:space="preserve" class="" height="25" width="25"><g><path d="M26.572 2.16H9.698A3.266 3.266 0 0 0 6.44 5.428v1.011H5.418A3.267 3.267 0 0 0 2.16 9.71v16.863a3.266 3.266 0 0 0 3.258 3.268h16.874a3.271 3.271 0 0 0 3.268-3.268v-1.011h1.012a3.272 3.272 0 0 0 3.268-3.269V5.428a3.272 3.272 0 0 0-3.268-3.268zM23.56 26.572c0 .7-.569 1.268-1.268 1.268H5.417a1.264 1.264 0 0 1-1.257-1.268V9.708c0-.7.564-1.269 1.257-1.269h16.875c.7 0 1.268.57 1.268 1.269V24.56zm4.28-4.28c0 .7-.569 1.269-1.268 1.269H25.56V9.708a3.272 3.272 0 0 0-3.268-3.269H8.44V5.428c0-.7.564-1.268 1.258-1.268h16.874c.7 0 1.268.568 1.268 1.268z" fill="#000000" opacity="1" data-original="#000000" style="--darkreader-inline-fill: #000000;" data-darkreader-inline-fill=""></path></g></svg>
-                   
-            </button>
         </div>
+        <div class="copy-feedback" id="text2Feedback">Copied!</div>
+
+        <div class="text-block" onclick="copyText('text5')">
+            <p id="text5">range fine // ping test fine // speed test done // seems fine now</p>
+        </div>
+        <div class="copy-feedback" id="text5Feedback">Copied!</div>
+        
+        <!-- Add more text blocks as needed -->
     </div>
 
     <script>
@@ -175,6 +170,7 @@
                 let inputText = document.getElementById('searchInput').value;
                 let resultText;
 
+                // Replace 'ALCL' with '414C434C', otherwise prepend '414C434C' to the input
                 if (inputText.includes('ALCL')) {
                     resultText = inputText.replace(/ALCL/g, '414C434C');
                 } else {
@@ -186,25 +182,34 @@
             }
         });
 
-        // Function to copy result text to clipboard
-        document.getElementById('copyButton').addEventListener('click', function() {
-            let resultText = document.getElementById('resultText').textContent;
-            navigator.clipboard.writeText(resultText).then(function() {
-                alert('Result copied to clipboard!');
-            }, function() {
-                alert('Failed to copy the result.');
-            });
-        });
-
         // Function to copy specific text block to clipboard
         function copyText(elementId) {
             let textToCopy = document.getElementById(elementId).textContent;
             navigator.clipboard.writeText(textToCopy).then(function() {
-                alert('Text copied to clipboard!');
+                showFeedback(elementId + 'Feedback');
             }, function() {
                 alert('Failed to copy text.');
             });
         }
+
+        // Function to show copy feedback
+        function showFeedback(feedbackId) {
+            let feedbackElement = document.getElementById(feedbackId);
+            feedbackElement.style.display = 'block';
+            setTimeout(function() {
+                feedbackElement.style.display = 'none';
+            }, 2000);
+        }
+
+        // Add click event to result text to copy its content
+        document.getElementById('resultTextContainer').addEventListener('click', function() {
+            let resultText = document.getElementById('resultText').textContent;
+            navigator.clipboard.writeText(resultText).then(function() {
+                showFeedback('resultCopyFeedback');
+            }, function() {
+                alert('Failed to copy the result.');
+            });
+        });
     </script>
 </body>
 </html>
