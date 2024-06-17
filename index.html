@@ -3,22 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nokia Router</title>
+    <title>Remark</title>
     <style>
         /* Dark mode variables */
         :root {
             --bg-color: #181818;
             --text-color: #fff;
             --container-bg-color: #282828;
-            --border-color: #555;
-            --button-bg-color: #3A3A3A;
-            --button-text-color: #fff;
             --hover-bg-color: #383838;
-            --success-color: #28a745;
+            --success-color: #53d639;
         }
 
         /* Apply the theme */
-        body, .container, .text-block p {
+        body, .container, .credentials-container, h1, h2, p {
             background-color: var(--bg-color);
             color: var(--text-color);
         }
@@ -28,13 +25,14 @@
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
+            align-items: flex-start;
             margin: 0;
+            padding: 20px;
+            height: 100vh;
             transition: background-color 0.3s, color 0.3s;
         }
 
-        .container {
+        .container, .credentials-container {
             background-color: var(--container-bg-color);
             padding: 20px;
             border-radius: 8px;
@@ -43,12 +41,39 @@
             transition: background-color 0.3s, color 0.3s;
             max-width: 600px;
             width: 100%;
+            margin: 10px;
+        }
+
+        .copy-button {
+            cursor: pointer;
+            color: var(--text-color);
+            text-decoration: underline;
+            position: relative;
+        }
+
+        .copy-button.copied::after {
+            content: 'Copied!';
+            position: absolute;
+            top: -25px;
+            right: 0;
+            background-color: var(--success-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            opacity: 0;
+            animation: fadeInOut 2s ease-in-out;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
         }
 
         input {
             margin: 10px 0;
             padding: 10px;
-            border: 1px solid var(--border-color);
+            border: none;
             border-radius: 4px;
             transition: border-color 0.3s, box-shadow 0.3s;
             width: 90%;
@@ -97,80 +122,104 @@
             margin-top: 5px;
             font-size: 12px;
         }
+
+        .main-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h3>Nokia Router</h3>
-        <!-- Input field for serial number -->
-        <input type="text" id="searchInput" placeholder="Type Serial Number here...">
-        <!-- Result container to display the processed serial number -->
-        <div id="resultContainer">
-            <div class="text-block" id="resultTextContainer">
-                <p id="resultText"></p>
+
+    <div class="main-container">
+        <div class="container">
+            <h3>Nokia Router</h3>
+            <input type="text" id="searchInput" placeholder="Type Serial Number here...">
+            <div id="resultContainer">
+                <div class="text-block" id="resultTextContainer">
+                    <p id="resultText"></p>
+                </div>
+                <div class="copy-feedback" id="resultCopyFeedback">Copied!</div>
             </div>
-            <div class="copy-feedback" id="resultCopyFeedback">Copied!</div>
-        </div>
 
-        <h3>ONU Status</h3>
-        <!-- Text blocks with copy functionality -->
-        <!-- Example of a text block. Add more blocks by duplicating this block -->
-        <div class="text-block" onclick="copyText('text1')">
-            <p id="text1">No light on auth and link. Please do the needful.</p>
-        </div>
-        <div class="copy-feedback" id="text1Feedback">Copied!</div>
+            <h3>ONU Status</h3>
+            <div class="text-block" onclick="copyText('text1')">
+                <p id="text1">No light on auth and link. Please do the needful.</p>
+            </div>
+            <div class="copy-feedback" id="text1Feedback">Copied!</div>
 
-        <div class="text-block" onclick="copyText('text3')">
-            <p id="text3">Light not verified. Please do the needful.</p>
-        </div>
-        <div class="copy-feedback" id="text3Feedback">Copied!</div>
+            <div class="text-block" onclick="copyText('text3')">
+                <p id="text3">Light not verified. Please do the needful.</p>
+            </div>
+            <div class="copy-feedback" id="text3Feedback">Copied!</div>
 
-        <div class="text-block" onclick="copyText('text4')">
-            <p id="text4">Urgent. Please do the needful.</p>
-        </div>
-        <div class="copy-feedback" id="text4Feedback">Copied!</div>
+            <div class="text-block" onclick="copyText('text4')">
+                <p id="text4">Urgent. Please do the needful.</p>
+            </div>
+            <div class="copy-feedback" id="text4Feedback">Copied!</div>
 
-        <div class="text-block" onclick="copyText('text2')">
-            <p id="text2">Account extended for 3 days. Suggested to use My WorldLink app.</p>
-        </div>
-        <div class="copy-feedback" id="text2Feedback">Copied!</div>
+            <div class="text-block" onclick="copyText('text2')">
+                <p id="text2">Account extended for 3 days. Suggested to use My WorldLink app.</p>
+            </div>
+            <div class="copy-feedback" id="text2Feedback">Copied!</div>
 
-        <div class="text-block" onclick="copyText('text5')">
-            <p id="text5">Range fine. Ping test fine. Speed test done. Seems fine now.</p>
-        </div>
-        <div class="copy-feedback" id="text5Feedback">Copied!</div>
+            <div class="text-block" onclick="copyText('text5')">
+                <p id="text5">Range fine. Ping test fine. Speed test done. Seems fine now.</p>
+            </div>
+            <div class="copy-feedback" id="text5Feedback">Copied!</div>
 
-        <div class="text-block" onclick="copyText('text6')">
-            <p id="text6">As per client, fiber cable has been damaged. Please do the needful.</p>
-        </div>
-        <div class="copy-feedback" id="text6Feedback">Copied!</div>
+            <div class="text-block" onclick="copyText('text6')">
+                <p id="text6">As per client, fiber cable has been damaged. Please do the needful.</p>
+            </div>
+            <div class="copy-feedback" id="text6Feedback">Copied!</div>
 
-        <div class="text-block" onclick="copyText('text7')">
-            <p id="text7">Call disconnected while verifying the issue.</p>
-        </div>
-        <div class="copy-feedback" id="text7Feedback">Copied!</div>
+            <div class="text-block" onclick="copyText('text7')">
+                <p id="text7">Call disconnected while verifying the issue.</p>
+            </div>
+            <div class="copy-feedback" id="text7Feedback">Copied!</div>
 
-        <div class="text-block" onclick="copyText('text8')">
-            <p id="text8">Frequent minor alarm seen. ONU rebooted many times, still not working. Please do the needful.</p>
-        </div>
-        <div class="copy-feedback" id="text8Feedback">Copied!</div>
+            <div class="text-block" onclick="copyText('text8')">
+                <p id="text8">Frequent minor alarm seen. ONU rebooted many times, still not working. Please do the needful.</p>
+            </div>
+            <div class="copy-feedback" id="text8Feedback">Copied!</div>
 
-        <div class="text-block" onclick="copyText('text9')">
-            <p id="text9">Password changed after client verification.</p>
+            <div class="text-block" onclick="copyText('text9')">
+                <p id="text9">Password changed after client verification.</p>
+            </div>
+            <div class="copy-feedback" id="text9Feedback">Copied!</div>
+
+            <div class="credential">
+                <h3>Nokia ONU:</h3>
+                <span class="copy-button" onclick="copyToClipboard('wlinkuser', this)">Username</span>
+                <span class="copy-button" onclick="copyToClipboard('35wl#Login465', this)">Password</span>
+                <span class="copy-button" onclick="copyToClipboard('AdminGPON', this)">Username</span>
+                <span class="copy-button" onclick="copyToClipboard('ALC#FGU', this)">Password</span>
+            </div>
+            <div class="credential">
+                <h3>Huawei ONU:</h3>
+                <span class="copy-button" onclick="copyToClipboard('wlinkuser', this)">Username</span>
+                <span class="copy-button" onclick="copyToClipboard('35wl%Login465', this)">Password</span>
+            </div>
         </div>
-        <div class="copy-feedback" id="text9Feedback">Copied!</div>
-        
-        <!-- Add more text blocks as needed -->
     </div>
 
     <script>
-        // Function to handle the search operation when Enter is pressed
+        function copyToClipboard(text, element) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showCopyAnimation(element);
+        }
+
         document.getElementById('searchInput').addEventListener('keypress', function(event) {
             if (event.key === 'Enter') {
                 let inputText = document.getElementById('searchInput').value;
                 let resultText;
 
-                // Replace 'ALCL' with '414C434C', otherwise prepend '414C434C' to the input
                 if (inputText.includes('ALCL')) {
                     resultText = inputText.replace(/ALCL/g, '414C434C');
                 } else {
@@ -182,7 +231,6 @@
             }
         });
 
-        // Function to copy specific text block to clipboard
         function copyText(elementId) {
             let textToCopy = document.getElementById(elementId).textContent;
             navigator.clipboard.writeText(textToCopy).then(function() {
@@ -192,7 +240,6 @@
             });
         }
 
-        // Function to show copy feedback
         function showFeedback(feedbackId) {
             let feedbackElement = document.getElementById(feedbackId);
             feedbackElement.style.display = 'block';
@@ -201,7 +248,13 @@
             }, 2000);
         }
 
-        // Add click event to result text to copy its content
+        function showCopyAnimation(element) {
+            element.classList.add('copied');
+            setTimeout(() => {
+                element.classList.remove('copied');
+            }, 2000);
+        }
+
         document.getElementById('resultTextContainer').addEventListener('click', function() {
             let resultText = document.getElementById('resultText').textContent;
             navigator.clipboard.writeText(resultText).then(function() {
