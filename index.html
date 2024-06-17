@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Remark</title>
+    <title>ONU Credentials & Nokia Router</title>
     <style>
         /* Dark mode variables */
         :root {
@@ -11,7 +11,8 @@
             --text-color: #fff;
             --container-bg-color: #282828;
             --hover-bg-color: #383838;
-            --success-color: #53d639;
+            --success-color: #28a745;
+            --highlight-color: #007bff;
         }
 
         /* Apply the theme */
@@ -46,28 +47,38 @@
 
         .copy-button {
             cursor: pointer;
-            color: var(--text-color);
+            color: var(--highlight-color);
             text-decoration: underline;
             position: relative;
+            margin: 5px;
         }
 
-        .copy-button.copied::after {
-            content: 'Copied!';
+        .copy-button::after, .text-block::after {
+            content: 'Copy';
             position: absolute;
-            top: -25px;
-            right: 0;
-            background-color: var(--success-color);
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 123, 255, 0.5); /* Lighter color for initial state */
             color: white;
-            padding: 2px 8px;
+            padding: 5px 10px;
             border-radius: 4px;
             font-size: 12px;
             opacity: 0;
-            animation: fadeInOut 2s ease-in-out;
+            transition: opacity 0.3s ease-in-out;
+            white-space: nowrap;
+            z-index: 1;
         }
 
-        @keyframes fadeInOut {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
+        .copy-button:hover::after, .text-block:hover::after {
+            opacity: 1;
+            background-color: var(--highlight-color); /* Darker color when hovered */
+        }
+
+        .copy-button.copied::after, .text-block.copied::after {
+            content: 'Copied!';
+            opacity: 1;
+            background-color: var(--success-color); /* Darker color when copied */
         }
 
         input {
@@ -83,7 +94,7 @@
         }
 
         input:focus {
-            border-color: #007bff;
+            border-color: var(--highlight-color);
             box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
             outline: none;
         }
@@ -100,6 +111,7 @@
             font-size: 14px;
             cursor: pointer;
             transition: background-color 0.3s;
+            position: relative;
         }
 
         .text-block:hover {
@@ -116,17 +128,20 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
-        .copy-feedback {
-            display: none;
-            color: var(--success-color);
-            margin-top: 5px;
-            font-size: 12px;
-        }
-
         .main-container {
             display: flex;
             justify-content: center;
             width: 100%;
+        }
+
+        .credential {
+            margin-top: 20px;
+        }
+
+        h3 {
+            margin: 20px 0 10px;
+            font-size: 18px;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -137,57 +152,47 @@
             <h3>Nokia Router</h3>
             <input type="text" id="searchInput" placeholder="Type Serial Number here...">
             <div id="resultContainer">
-                <div class="text-block" id="resultTextContainer">
+                <div class="text-block" id="resultTextContainer" onclick="copyText('resultText', this)">
                     <p id="resultText"></p>
                 </div>
-                <div class="copy-feedback" id="resultCopyFeedback">Copied!</div>
             </div>
 
             <h3>ONU Status</h3>
-            <div class="text-block" onclick="copyText('text1')">
+            <div class="text-block" onclick="copyText('text1', this)">
                 <p id="text1">No light on auth and link. Please do the needful.</p>
             </div>
-            <div class="copy-feedback" id="text1Feedback">Copied!</div>
 
-            <div class="text-block" onclick="copyText('text3')">
+            <div class="text-block" onclick="copyText('text3', this)">
                 <p id="text3">Light not verified. Please do the needful.</p>
             </div>
-            <div class="copy-feedback" id="text3Feedback">Copied!</div>
 
-            <div class="text-block" onclick="copyText('text4')">
+            <div class="text-block" onclick="copyText('text4', this)">
                 <p id="text4">Urgent. Please do the needful.</p>
             </div>
-            <div class="copy-feedback" id="text4Feedback">Copied!</div>
 
-            <div class="text-block" onclick="copyText('text2')">
+            <div class="text-block" onclick="copyText('text2', this)">
                 <p id="text2">Account extended for 3 days. Suggested to use My WorldLink app.</p>
             </div>
-            <div class="copy-feedback" id="text2Feedback">Copied!</div>
 
-            <div class="text-block" onclick="copyText('text5')">
+            <div class="text-block" onclick="copyText('text5', this)">
                 <p id="text5">Range fine. Ping test fine. Speed test done. Seems fine now.</p>
             </div>
-            <div class="copy-feedback" id="text5Feedback">Copied!</div>
 
-            <div class="text-block" onclick="copyText('text6')">
+            <div class="text-block" onclick="copyText('text6', this)">
                 <p id="text6">As per client, fiber cable has been damaged. Please do the needful.</p>
             </div>
-            <div class="copy-feedback" id="text6Feedback">Copied!</div>
 
-            <div class="text-block" onclick="copyText('text7')">
+            <div class="text-block" onclick="copyText('text7', this)">
                 <p id="text7">Call disconnected while verifying the issue.</p>
             </div>
-            <div class="copy-feedback" id="text7Feedback">Copied!</div>
 
-            <div class="text-block" onclick="copyText('text8')">
+            <div class="text-block" onclick="copyText('text8', this)">
                 <p id="text8">Frequent minor alarm seen. ONU rebooted many times, still not working. Please do the needful.</p>
             </div>
-            <div class="copy-feedback" id="text8Feedback">Copied!</div>
 
-            <div class="text-block" onclick="copyText('text9')">
+            <div class="text-block" onclick="copyText('text9', this)">
                 <p id="text9">Password changed after client verification.</p>
             </div>
-            <div class="copy-feedback" id="text9Feedback">Copied!</div>
 
             <div class="credential">
                 <h3>Nokia ONU:</h3>
@@ -231,21 +236,13 @@
             }
         });
 
-        function copyText(elementId) {
+        function copyText(elementId, element) {
             let textToCopy = document.getElementById(elementId).textContent;
             navigator.clipboard.writeText(textToCopy).then(function() {
-                showFeedback(elementId + 'Feedback');
+                showCopyAnimation(element);
             }, function() {
                 alert('Failed to copy text.');
             });
-        }
-
-        function showFeedback(feedbackId) {
-            let feedbackElement = document.getElementById(feedbackId);
-            feedbackElement.style.display = 'block';
-            setTimeout(function() {
-                feedbackElement.style.display = 'none';
-            }, 2000);
         }
 
         function showCopyAnimation(element) {
@@ -254,15 +251,6 @@
                 element.classList.remove('copied');
             }, 2000);
         }
-
-        document.getElementById('resultTextContainer').addEventListener('click', function() {
-            let resultText = document.getElementById('resultText').textContent;
-            navigator.clipboard.writeText(resultText).then(function() {
-                showFeedback('resultCopyFeedback');
-            }, function() {
-                alert('Failed to copy the result.');
-            });
-        });
     </script>
 </body>
 </html>
