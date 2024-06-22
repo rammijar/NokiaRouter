@@ -130,8 +130,12 @@
 
         .main-container {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             width: 100%;
+        }
+
+        .remark-container {
+            width: 45%;
         }
 
         .credential {
@@ -146,8 +150,93 @@
     </style>
 </head>
 <body>
-
     <div class="main-container">
+        <div class="remark-container">
+            <div class="container">
+                <h3>Net TV Cases</h3>
+
+                <h4>Authentication Issue</h4>
+                <div class="text-block" onclick="copyText('remark1', this)">
+                    <p id="remark1">Reset OSP password after client verification and re-entered it on the STB box; issue resolved.</p>
+                </div>
+
+                <h4>No Signal</h4>
+                <div class="text-block" onclick="copyText('remark2', this)">
+                    <p id="remark2">Verified and replugged HDMI/AV Jack connection, changed source; issue resolved.</p>
+                </div>
+
+                <h4>Error Code 1417: Could Not Fetch Data</h4>
+                <div class="text-block" onclick="copyText('remark3', this)">
+                    <p id="remark3">Updated launcher setting in My Apps section; issue resolved.</p>
+                </div>
+
+                <h4>Error Code 1503: No Internet Connection</h4>
+                <div class="text-block" onclick="copyText('remark4', this)">
+                    <p id="remark4">Checked LAN status, replugged LAN cable, and restarted system; issue resolved.</p>
+                </div>
+
+                <h4>Error Code 1598: No Internet Connection</h4>
+                <div class="text-block" onclick="copyText('remark5', this)">
+                    <p id="remark5">Verified LAN status, replugged LAN cable, checked byte received, device filtering, and date/time settings; restarted system; issue resolved.</p>
+                </div>
+
+                <h4>Error Code 1599: Could Not Connect to the Server</h4>
+                <div class="text-block" onclick="copyText('remark6', this)">
+                    <p id="remark6">Checked LAN status, replugged LAN cable, verified IP allocation, checked device filtering, and confirmed date/time settings; issue resolved.</p>
+                </div>
+
+                <h4>IP NULL/NA Issue</h4>
+                <div class="text-block" onclick="copyText('remark7', this)">
+                    <p id="remark7">Verified IP status in Home Networking. Suggested client to change IP setting from Static to DHCP through remote under network settings; issue resolved.</p>
+                </div>
+
+                <h4>Live TV Buffering</h4>
+                <div class="text-block" onclick="copyText('remark8', this)">
+                    <p id="remark8">Verified buffering across all channels. Confirmed WiFi was off on IPTV and performed launcher refresh; issue resolved.</p>
+                </div>
+
+                <h4>STB Relocation Request</h4>
+                <div class="text-block" onclick="copyText('remark9', this)">
+                    <p id="remark9">Client requested STB relocation (one floor/room to another). Informed client about LAN cable charge (Rs. 35 per meter).</p>
+                </div>
+                <div class="text-block" onclick="copyText('remark10', this)">
+                    <p id="remark10">Client requested STB relocation within the same location. Informed client about LAN cable charge (Rs. 35 per meter).</p>
+                </div>
+
+                <h4>NET TV Mobile App Inquiry</h4>
+                <div class="text-block" onclick="copyText('remark11', this)">
+                    <p id="remark11">Provided information to client about Net TV mobile app and its features.</p>
+                </div>
+
+                <h4>Live TV Stopped Working</h4>
+                <div class="text-block" onclick="copyText('remark12', this)">
+                    <p id="remark12">Resolved "Live TV has stopped" error by performing launcher refresh and STB reboot.</p>
+                </div>
+
+                <h4>Query About YouTube Services</h4>
+                <div class="text-block" onclick="copyText('remark13', this)">
+                    <p id="remark13">Suggested client change to new STB due to issues with YouTube section.</p>
+                </div>
+                <div class="text-block" onclick="copyText('remark14', this)">
+                    <p id="remark14">Performed launcher update and refresh to resolve issue with YouTube section.</p>
+                </div>
+
+                <h4>Client Request for NETTV Installation</h4>
+                <div class="text-block" onclick="copyText('remark15', this)">
+                    <p id="remark15">Informed client about NETTV installation pricing details and LAN cable charge (Rs. 35 per meter).</p>
+                </div>
+
+                <h4>Query About Netflix Services</h4>
+                <div class="text-block" onclick="copyText('remark16', this)">
+                    <p id="remark16">Checked if client has Stream Z+ STB box. Updated STB box to include Netflix feature. Informed client they need their own Netflix subscription.</p>
+                </div>
+
+                <h4>Primary Package Expired</h4>
+                <div class="text-block" onclick="copyText('remark17', this)">
+                    <p id="remark17">Performed launcher refresh and restarted STB box to resolve "Primary package has expired" error.</p>
+                </div>
+            </div>
+        </div>
         <div class="container">
             <h3>Nokia Router</h3>
             <input type="text" id="searchInput" placeholder="Type Serial Number here...">
@@ -206,79 +295,6 @@
                 <span class="copy-button" onclick="copyToClipboard('wlinkuser', this)">Username</span>
                 <span class="copy-button" onclick="copyToClipboard('35wl%Login465', this)">Password</span>
             </div>
-
-            <h3>NET TV Case Remarks</h3>
-
-            <!-- NET TV Case Remarks -->
-
-            <div class="text-block" onclick="copyText('remark1', this)">
-                <p id="remark1"><strong>Authentication Issue</strong><br><strong>Remark:</strong> Reset OSP password after client verification and re-entered it on the STB box; issue resolved.</p>
-            </div>
-
-            <div class="text-block" onclick="copyText('remark2', this)">
-                <p id="remark2"><strong>No Signal</strong><br><strong>Remark:</strong> Verified and replugged HDMI/AV Jack connection, changed source; issue resolved.</p>
-            </div>
-
-            <div class="text-block" onclick="copyText('remark3', this)">
-                <p id="remark3"><strong>Error Code 1417: Could Not Fetch Data</strong><br><strong>Remark:</strong> Updated launcher setting in My Apps section; issue resolved.</p>
-            </div>
-
-            <div class="text-block" onclick="copyText('remark4', this)">
-                <p id="remark4"><strong>Error Code 1503: No Internet Connection</strong><br><strong>Remark:</strong> Checked LAN status, replugged LAN cable, and restarted system; issue resolved.</p>
-            </div>
-
-            <div class="text-block" onclick="copyText('remark5', this)">
-                <p id="remark5"><strong>Error Code 1598: No Internet Connection</strong><br><strong>Remark:</strong> Verified LAN status, replugged LAN cable, checked byte received, device filtering, and date/time settings; restarted system; issue resolved.</p>
-            </div>
-
-            <div class="text-block" onclick="copyText('remark6', this)">
-                <p id="remark6"><strong>Error Code 1599: Could Not Connect to the Server</strong><br><strong>Remark:</strong> Checked LAN status, replugged LAN cable, verified IP allocation, checked device filtering, and confirmed date/time settings; issue resolved.</p>
-            </div>
-
-            <div class="text-block" onclick="copyText('remark7', this)">
-                <p id="remark7"><strong>IP NULL/NA Issue</strong><br><strong>Remark:</strong> Verified IP status in Home Networking. Suggested client to change IP setting from Static to DHCP through remote under network settings; issue resolved.</p>
-            </div>
-
-            <div class="text-block" onclick="copyText('remark8', this)">
-                <p id="remark8"><strong>Live TV Buffering</strong><br><strong>Remark:</strong> Verified buffering across all channels. Confirmed WiFi was off on IPTV and performed launcher refresh; issue resolved.</p>
-            </div>
-
-            <div class="text-block" onclick="copyText('remark9', this)">
-                <p id="remark9"><strong>STB Relocation Charge</strong><br><strong>Remark:</strong> Client requested STB relocation (one floor/room to another). Informed client about LAN cable charge (Rs. 35 per meter).</p>
-            </div>
-
-            <div class="text-block" onclick="copyText('remark10', this)">
-                <p id="remark10"><strong>STB Relocation Charge</strong><br><strong>Remark:</strong> Client requested STB relocation within the same location. Informed client about LAN cable charge (Rs. 35 per meter).</p>
-            </div>
-
-            <div class="text-block" onclick="copyText('remark11', this)">
-                <p id="remark11"><strong>NET TV Mobile App Inquiry</strong><br><strong>Remark:</strong> Provided information to client about Net TV mobile app and its features.</p>
-            </div>
-
-            <div class="text-block" onclick="copyText('remark12', this)">
-                <p id="remark12"><strong>Live TV Stopped Working</strong><br><strong>Remark:</strong> Resolved "Live TV has stopped" error by performing launcher refresh and STB reboot.</p>
-            </div>
-
-            <div class="text-block" onclick="copyText('remark13', this)">
-                <p id="remark13"><strong>Query About YouTube Services</strong><br><strong>Remark (Old System):</strong> Suggested client change to new STB due to issues with YouTube section.</p>
-            </div>
-
-            <div class="text-block" onclick="copyText('remark14', this)">
-                <p id="remark14"><strong>Query About YouTube Services</strong><br><strong>Remark (New System):</strong> Performed launcher update and refresh to resolve issue with YouTube section.</p>
-            </div>
-
-            <div class="text-block" onclick="copyText('remark15', this)">
-                <p id="remark15"><strong>Client Request for NETTV Installation</strong><br><strong>Remark:</strong> Informed client about NETTV installation pricing details and LAN cable charge (Rs. 35 per meter).</p>
-            </div>
-
-            <div class="text-block" onclick="copyText('remark16', this)">
-                <p id="remark16"><strong>Query About Netflix Services</strong><br><strong>Remark:</strong> Checked if client has Stream Z+ STB box. Updated STB box to include Netflix feature. Informed client they need their own Netflix subscription.</p>
-            </div>
-
-            <div class="text-block" onclick="copyText('remark17', this)">
-                <p id="remark17"><strong>Primary Package Expired</strong><br><strong>Remark:</strong> Performed launcher refresh and restarted STB box to resolve "Primary package has expired" error.</p>
-            </div>
-
         </div>
     </div>
 
