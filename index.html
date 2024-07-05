@@ -36,7 +36,7 @@
         .container, .credentials-container {
             background-color: var(--container-bg-color);
             padding: 20px;
-            border: 1px solid #444;
+            border: 1.7px solid #444;
             border-radius: 15px;
             text-align: center;
             transition: background-color 0.3s, color 0.3s;
@@ -95,7 +95,7 @@
 
         input:focus {
             border-color: var(--highlight-color);
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            box-shadow: 0 0 5px rgb(255, 0, 0);
             outline: none;
         }
 
@@ -125,7 +125,11 @@
             font-size: 14px;
             padding: 10px;
             margin: 0;
+            font-weight: 550; /* Lighter bold */
+    color: #fdf6f6cb; /* Optional: Set text color */
             transition: background-color 0.3s, color 0.3s;
+
+            font-family: Arial, sans-serif; /* Set the font style */
         }
 
         .main-container {
@@ -147,65 +151,75 @@
             font-size: 18px;
             font-weight: 600;
         }
+
+        h4 {
+    color: rgb(241, 246, 247);
+   
+    padding-left: 10px; /* Adding some padding to offset the border */
+    font-weight: bold; /* Making the text bold */
+   
+
     </style>
 </head>
 <body>
     <div class="main-container">
         <div class="remark-container">
             <div class="container">
-                <h3>Net TV Cases</h3>  
-                <hr>
-
+                <h3>Net TV Cases</h3> 
+                <br><br>
+                <hr> 
+               
                 <h4>Authentication Issue</h4>
-                <hr>
+              
                 <div class="text-block" onclick="copyText('remark1', this)">
                     <p id="remark1">Reset OSP password after client verification and re-entered it on the STB box; issue resolved.</p>
                 </div>
+            
 
                 <h4>No Signal</h4>
-                <hr>
+                
                 <div class="text-block" onclick="copyText('remark2', this)">
                     <p id="remark2">Verified and replugged HDMI/AV Jack connection, changed source; issue resolved.</p>
                 </div>
 
                 <h4>Error Code 1417: Could Not Fetch Data</h4>
-                <hr>
+                
                 <div class="text-block" onclick="copyText('remark3', this)">
                     <p id="remark3">Updated launcher setting in My Apps section; issue resolved.</p>
                 </div>
 
                 <h4>Error Code 1503: No Internet Connection</h4>
-                <hr>
+                
                 <div class="text-block" onclick="copyText('remark4', this)">
                     <p id="remark4">Checked LAN status, replugged LAN cable, and restarted system; issue resolved.</p>
                 </div>
 
                 <h4>Error Code 1598: No Internet Connection</h4>
-                <hr>
+                
                 <div class="text-block" onclick="copyText('remark5', this)">
                     <p id="remark5">Verified LAN status, replugged LAN cable, checked byte received, device filtering, and date/time settings; restarted system; issue resolved.</p>
                 </div>
 
                 <h4>Error Code 1599: Could Not Connect to the Server</h4>
-                <hr>
+                
                 <div class="text-block" onclick="copyText('remark6', this)">
                     <p id="remark6">Checked LAN status, replugged LAN cable, verified IP allocation, checked device filtering, and confirmed date/time settings; issue resolved.</p>
                 </div>
 
                 <h4>IP NULL/NA Issue</h4>
-                <hr>
+                
                 <div class="text-block" onclick="copyText('remark7', this)">
                     <p id="remark7">Verified IP status in Home Networking. Suggested client to change IP setting from Static to DHCP through remote under network settings; issue resolved.</p>
                 </div>
 
                 <h4>Live TV Buffering</h4>
-                <hr>
+              
                 <div class="text-block" onclick="copyText('remark8', this)">
                     <p id="remark8">Verified buffering across all channels. Confirmed WiFi was off on IPTV and performed launcher refresh; issue resolved.</p>
                 </div>
 
                 <h4>STB Relocation Request</h4>
-                <hr>
+         
                 <div class="text-block" onclick="copyText('remark9', this)">
                     <p id="remark9">Client requested STB relocation (one floor/room to another). Informed client about LAN cable charge (Rs. 35 per meter).</p>
                 </div>
@@ -214,19 +228,19 @@
                 </div>
 
                 <h4>NET TV Mobile App Inquiry</h4>
-                <hr>
+               
                 <div class="text-block" onclick="copyText('remark11', this)">
                     <p id="remark11">Provided information to client about Net TV mobile app and its features.</p>
                 </div>
 
                 <h4>Live TV Stopped Working</h4>
-                <hr>
+               
                 <div class="text-block" onclick="copyText('remark12', this)">
                     <p id="remark12">Resolved "Live TV has stopped" error by performing launcher refresh and STB reboot.</p>
                 </div>
 
                 <h4>Query About YouTube Services</h4>
-                <hr>
+               
                 <div class="text-block" onclick="copyText('remark13', this)">
                     <p id="remark13">Suggested client change to new STB due to issues with YouTube section.</p>
                 </div>
@@ -235,19 +249,19 @@
                 </div>
 
                 <h4>Client Request for NETTV Installation</h4>
-                <hr>
+               
                 <div class="text-block" onclick="copyText('remark15', this)">
                     <p id="remark15">Informed client about NETTV installation pricing details and LAN cable charge (Rs. 35 per meter).</p>
                 </div>
 
                 <h4>Query About Netflix Services</h4>
-                <hr>
+               
                 <div class="text-block" onclick="copyText('remark16', this)">
                     <p id="remark16">Checked if client has Stream Z+ STB box. Updated STB box to include Netflix feature. Informed client they need their own Netflix subscription.</p>
                 </div>
 
                 <h4>Primary Package Expired</h4>
-                <hr>
+               
                 <div class="text-block" onclick="copyText('remark17', this)">
                     <p id="remark17">Performed launcher refresh and restarted STB box to resolve "Primary package has expired" error.</p>
                 </div>
@@ -261,9 +275,9 @@
                     <p id="resultText"></p>
                 </div>
             </div>
-
-            <h3>ONU Status</h3>
-            <hr>
+<hr>
+            <h4>ONU Status</h4>
+           
             <div class="text-block" onclick="copyText('text1', this)">
                 <p id="text1">No light on auth and link. Please do the needful.</p>
             </div>
@@ -284,7 +298,7 @@
                 <p id="text36">Client requests cable management. Please proceed accordingly.</p>
             </div>
             <h4>Account</h4>
-            <hr>
+           
             <div class="text-block" onclick="copyText('text2', this)">
                 <p id="text2">Account extended for 3 days. Suggested to use My WorldLink app. Suggested payment.</p>
             </div>
@@ -298,13 +312,13 @@
 </div>
 
               <h4>Password</h4>
-              <hr>
+             
               <div class="text-block" onclick="copyText('text9', this)">
                 <p id="text9">Password changed after client verification.</p>
             </div>
 
             <div class="text-block" onclick="copyText('text35', this)">
-                <p id="text35">"Online services Password reset completed after client verification."</p>
+                <p id="text35">Online services Password reset completed after client verification.</p>
             </div>
 
             
@@ -318,12 +332,12 @@
 </div>
 
 <h4>speed test fine</h4>
-<hr>
+
 <div class="text-block" onclick="copyText('text14', this)">
     <p id="text14">Bandwidth verified, R.X. power checked, device verified, ping test fine, speed test done,domain ping fine, issue resolved.</p>
 </div>
 <h4>High Latency in a single device with good RSSI</h4>
-<hr>
+
 <div class="text-block" onclick="copyText('text15', this)">
     <p id="text15">Bandwidth verified, R.X. power checked, OLT RX difference <5 verified, device checked, initial ping not fine, range fine (<= -65dBm), another device ping fine, reconnected WiFi on first device, issue solved. </p>
 </div>
@@ -334,7 +348,7 @@
 </div>  
 
 <h4>Channel Interference</h4>
-<hr>
+
 <div class="text-block" onclick="copyText('text24', this)">
     <h5>For Single Band ONU</h5>
     <p id="text24">Bandwidth verified, R.X. power checked, OLT RX difference <5, device checked, initial ping not fine, range fine (<= -65dBm), another device ping not fine, channel interference seen, suggested solutions for interference (suggested dual band ONU), refreshed channel and verified, issue solved.</p>
@@ -346,15 +360,15 @@
 </div>
 
 <h4>RANGE ISSUES</h4>
-<hr>
+
 <div class="text-block" onclick="copyText('text31', this)">
     <p id="text31">Bandwidth verified, R.X. power checked, OLT RX difference <5, device verified, initial ping not fine, range not fine (<= -65dBm), suggest secondary ONU/beacon placement.</p>
 </div>
-
+<hr>
 
             <div class="credential">
                 <h3>Nokia ONU:</h3>
-                <hr>
+               
                 <span class="copy-button" onclick="copyToClipboard('wlinkuser', this)">Username</span>
                 <span class="copy-button" onclick="copyToClipboard('35wl#Login465', this)">Password</span>
                 <span class="copy-button" onclick="copyToClipboard('AdminGPON', this)">Username</span>
@@ -362,7 +376,7 @@
             </div>
             <div class="credential">
                 <h3>Huawei ONU:</h3>
-                <hr>
+               
                 <span class="copy-button" onclick="copyToClipboard('wlinkuser', this)">Username</span>
                 <span class="copy-button" onclick="copyToClipboard('35wl%Login465', this)">Password</span>
             </div>
