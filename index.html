@@ -95,7 +95,7 @@
 
         input:focus {
             border-color: var(--highlight-color);
-            box-shadow: 0 0 5px rgb(255, 0, 0);
+            box-shadow: 0 0 5px rgb(10, 10, 10);
             outline: none;
         }
 
@@ -158,7 +158,48 @@
     padding-left: 10px; /* Adding some padding to offset the border */
     font-weight: bold; /* Making the text bold */
    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+  }
 
+ 
+  .calculator {
+      width: 100%;
+      max-width: 400px;
+      padding: 30px;
+      border: 1px solid #444;
+      border-radius: 8px;
+      background-color: #1e1e1e;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 1s ease-in-out;
+  }
+ 
+  label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #bbbbbb;
+  }
+  input[type="number"], select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #555;
+      border-radius: 4px;
+      box-sizing: border-box;
+      background-color: #2a2a2a;
+      color: #ffffff;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+  }
+  input[type="number"]:focus, select:focus {
+      border-color: #4CAF50;
+  }
+ 
+  p.visible {
+      opacity: 1;
+  }
     </style>
 </head>
 <body>
@@ -366,6 +407,21 @@
 </div>
 <hr>
 
+<div>
+    <h4>Wireless Speed Calculator</h4>
+    <label for="bandwidth">Total Bandwidth (in Mbps):</label>
+    <input type="number" id="bandwidth" placeholder="Enter total bandwidth in Mbps" oninput="calculateSpeed()">
+    <label for="standard">Wireless Standard:</label>
+    <select id="standard" onchange="calculateSpeed()">
+        <option value="802.11ac">802.11ac (Wi-Fi 5)</option>
+        <option value="802.11n">802.11n (Wi-Fi 4)</option>
+    </select>
+    <label for="devices">Number of Devices:</label>
+    <input type="number" id="devices" placeholder="Enter number of devices" value="1" oninput="calculateSpeed()">
+    <h5 id="result"></h5>
+</div>
+<hr>
+
             <div class="credential">
                 <h3>Nokia ONU:</h3>
                
@@ -434,6 +490,36 @@
                 element.classList.remove('copied');
             }, 2000);
         }
+
+        function calculateSpeed() {
+          const bandwidthMbps = parseFloat(document.getElementById('bandwidth').value);
+          const wirelessStandard = document.getElementById('standard').value;
+          const numDevices = parseInt(document.getElementById('devices').value);
+          let expectedSpeed = 0;
+          const resultElement = document.getElementById('result');
+      
+          if (isNaN(bandwidthMbps) || isNaN(numDevices) || numDevices <= 0) {
+              resultElement.textContent = 'Please enter valid numbers for bandwidth and number of devices.';
+              resultElement.classList.add('visible');
+              return;
+          }
+      
+          switch (wirelessStandard) {
+              case '802.11ac':
+                  // Assuming typical throughput percentages for 802.11ac
+                  expectedSpeed = (bandwidthMbps * 0.7) / numDevices;
+                  break;
+              case '802.11n':
+                  // Assuming typical throughput percentages for 802.11n
+                  expectedSpeed = (bandwidthMbps * 0.5) / numDevices;
+                  break;
+              default:
+                  break;
+          }
+      
+          resultElement.textContent = `Expected speed per device on ${wirelessStandard} network with ${numDevices} device(s): ${expectedSpeed.toFixed(2)} Mbps`;
+          resultElement.classList.add('visible');
+      }
     </script>
 </body>
 </html>
