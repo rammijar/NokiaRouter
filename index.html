@@ -25,24 +25,49 @@
         body {
             font-family: Arial, sans-serif;
             display: flex;
-            justify-content: center;
-            align-items: flex-start;
+            flex-direction: column;
+            align-items: center;
             margin: 0;
             padding: 20px;
             height: 100vh;
             transition: background-color 0.3s, color 0.3s;
         }
 
-        .container, .credentials-container {
+        .container {
             background-color: var(--container-bg-color);
             padding: 20px;
             border: 1.7px solid #444;
             border-radius: 15px;
             text-align: center;
             transition: background-color 0.3s, color 0.3s;
-            max-width: 600px;
             width: 100%;
-            margin: 10px;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+
+        .menu {
+            width: 100%;
+            max-width: 600px;
+            background-color: var(--container-bg-color);
+            border: 1.7px solid #444;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .menu a:hover {
+            background-color: var(--hover-bg-color);
         }
 
         .copy-button {
@@ -59,7 +84,7 @@
             bottom: 120%;
             left: 50%;
             transform: translateX(-50%);
-            background-color: rgba(0, 123, 255, 0.5); /* Lighter color for initial state */
+            background-color: rgba(0, 123, 255, 0.5);
             color: white;
             padding: 5px 10px;
             border-radius: 4px;
@@ -72,13 +97,13 @@
 
         .copy-button:hover::after, .text-block:hover::after {
             opacity: 1;
-            background-color: var(--highlight-color); /* Darker color when hovered */
+            background-color: var(--highlight-color);
         }
 
         .copy-button.copied::after, .text-block.copied::after {
             content: 'Copied!';
             opacity: 1;
-            background-color: var(--success-color); /* Darker color when copied */
+            background-color: var(--success-color);
         }
 
         input {
@@ -97,11 +122,6 @@
             border-color: var(--highlight-color);
             box-shadow: 0 0 5px rgb(10, 10, 10);
             outline: none;
-        }
-
-        #resultContainer {
-            display: none;
-            margin-top: 20px;
         }
 
         .text-block {
@@ -125,330 +145,314 @@
             font-size: 14px;
             padding: 10px;
             margin: 0;
-            font-weight: 550; /* Lighter bold */
-    color: #fdf6f6cb; /* Optional: Set text color */
+            font-weight: 550;
+            color: #fdf6f6cb;
             transition: background-color 0.3s, color 0.3s;
-
-            font-family: Arial, sans-serif; /* Set the font style */
+            font-family: Arial, sans-serif;
         }
 
-        .main-container {
-            display: flex;
-            justify-content: space-between;
+      
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #bbbbbb;
+        }
+
+        input[type="number"], select {
             width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #555;
+            border-radius: 4px;
+            box-sizing: border-box;
+            background-color: #2a2a2a;
+            color: #ffffff;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
         }
 
-        .remark-container {
-            width: 45%;
+        input[type="number"]:focus, select:focus {
+            border-color: #4CAF50;
         }
 
-        .credential {
+        p.visible {
+            opacity: 1;
+        }
+
+        footer {
             margin-top: 20px;
+            font-size: 12px;
+            text-align: center;
+            color: var(--text-color);
         }
 
-        h3 {
-            margin: 20px 0 10px;
-            font-size: 18px;
-            font-weight: 600;
+        footer a {
+            color: inherit;
+            text-decoration: none;
         }
 
-        h4 {
-    color: rgb(241, 246, 247);
-   
-    padding-left: 10px; /* Adding some padding to offset the border */
-    font-weight: bold; /* Making the text bold */
-   
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-  }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
- 
-  .calculator {
-      width: 100%;
-      max-width: 400px;
-      padding: 30px;
-      border: 1px solid #444;
-      border-radius: 8px;
-      background-color: #1e1e1e;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-      animation: fadeIn 1s ease-in-out;
-  }
- 
-  label {
-      display: block;
-      margin-bottom: 10px;
-      font-weight: bold;
-      color: #bbbbbb;
-  }
-  input[type="number"], select {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 20px;
-      border: 1px solid #555;
-      border-radius: 4px;
-      box-sizing: border-box;
-      background-color: #2a2a2a;
-      color: #ffffff;
-      font-size: 16px;
-      transition: border-color 0.3s ease;
-  }
-  input[type="number"]:focus, select:focus {
-      border-color: #4CAF50;
-  }
- 
-  p.visible {
-      opacity: 1;
-  }
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
-    <div class="main-container">
-        <div class="remark-container">
-            <div class="container">
-                <h3>Net TV Cases</h3> 
-                <br><br>
-                <hr> 
-               
-                <h4>Authentication Issue</h4>
-              
-                <div class="text-block" onclick="copyText('remark1', this)">
-                    <p id="remark1">Reset OSP password after client verification and re-entered it on the STB box; issue resolved.</p>
-                </div>
-            
+    <div class="menu">
+        <a onclick="showSection('net-tv-cases')"><img width="30" src="https://cdn-icons-png.flaticon.com/512/550/550486.png" alt="net tv"></a>
+        <a onclick="showSection('nokia-router')"><img width="30" src="https://cdn-icons-png.flaticon.com/512/2743/2743461.png" alt="nokia router"></a>
+        <a onclick="showSection('wireless-calculator')"><img width="30" src="https://cdn-icons-png.flaticon.com/512/12878/12878110.png" alt="wifi calculator">
+        </a>
+    </div>
 
-                <h4>No Signal</h4>
+    <div id="net-tv-cases" class="container">
+        <h3>Net TV Cases   <img width="30" src="https://cdn-icons-png.flaticon.com/512/550/550486.png" alt="net tv"></h3>
+        <hr>
+        <h4>Authentication Issue</h4>
+        <div class="text-block" onclick="copyText('remark1', this)">
+            <p id="remark1">Reset OSP password after client verification and re-entered it on the STB box; issue resolved.</p>
+        </div>
+
+        <h4>No Signal</h4>
                 
-                <div class="text-block" onclick="copyText('remark2', this)">
-                    <p id="remark2">Verified and replugged HDMI/AV Jack connection, changed source; issue resolved.</p>
-                </div>
+        <div class="text-block" onclick="copyText('remark2', this)">
+            <p id="remark2">Verified and replugged HDMI/AV Jack connection, changed source; issue resolved.</p>
+        </div>
 
-                <h4>Error Code 1417: Could Not Fetch Data</h4>
-                
-                <div class="text-block" onclick="copyText('remark3', this)">
-                    <p id="remark3">Updated launcher setting in My Apps section; issue resolved.</p>
-                </div>
+        <h4>Error Code 1417: Could Not Fetch Data</h4>
+        
+        <div class="text-block" onclick="copyText('remark3', this)">
+            <p id="remark3">Updated launcher setting in My Apps section; issue resolved.</p>
+        </div>
 
-                <h4>Error Code 1503: No Internet Connection</h4>
-                
-                <div class="text-block" onclick="copyText('remark4', this)">
-                    <p id="remark4">Checked LAN status, replugged LAN cable, and restarted system; issue resolved.</p>
-                </div>
+        <h4>Error Code 1503: No Internet Connection</h4>
+        
+        <div class="text-block" onclick="copyText('remark4', this)">
+            <p id="remark4">Checked LAN status, replugged LAN cable, and restarted system; issue resolved.</p>
+        </div>
 
-                <h4>Error Code 1598: No Internet Connection</h4>
-                
-                <div class="text-block" onclick="copyText('remark5', this)">
-                    <p id="remark5">Verified LAN status, replugged LAN cable, checked byte received, device filtering, and date/time settings; restarted system; issue resolved.</p>
-                </div>
+        <h4>Error Code 1598: No Internet Connection</h4>
+        
+        <div class="text-block" onclick="copyText('remark5', this)">
+            <p id="remark5">Verified LAN status, replugged LAN cable, checked byte received, device filtering, and date/time settings; restarted system; issue resolved.</p>
+        </div>
 
-                <h4>Error Code 1599: Could Not Connect to the Server</h4>
-                
-                <div class="text-block" onclick="copyText('remark6', this)">
-                    <p id="remark6">Checked LAN status, replugged LAN cable, verified IP allocation, checked device filtering, and confirmed date/time settings; issue resolved.</p>
-                </div>
+        <h4>Error Code 1599: Could Not Connect to the Server</h4>
+        
+        <div class="text-block" onclick="copyText('remark6', this)">
+            <p id="remark6">Checked LAN status, replugged LAN cable, verified IP allocation, checked device filtering, and confirmed date/time settings; issue resolved.</p>
+        </div>
 
-                <h4>IP NULL/NA Issue</h4>
-                
-                <div class="text-block" onclick="copyText('remark7', this)">
-                    <p id="remark7">Verified IP status in Home Networking. Suggested client to change IP setting from Static to DHCP through remote under network settings; issue resolved.</p>
-                </div>
+        <h4>IP NULL/NA Issue</h4>
+        
+        <div class="text-block" onclick="copyText('remark7', this)">
+            <p id="remark7">Verified IP status in Home Networking. Suggested client to change IP setting from Static to DHCP through remote under network settings; issue resolved.</p>
+        </div>
 
-                <h4>Live TV Buffering</h4>
-              
-                <div class="text-block" onclick="copyText('remark8', this)">
-                    <p id="remark8">Verified buffering across all channels. Confirmed WiFi was off on IPTV and performed launcher refresh; issue resolved.</p>
-                </div>
+        <h4>Live TV Buffering</h4>
+      
+        <div class="text-block" onclick="copyText('remark8', this)">
+            <p id="remark8">Verified buffering across all channels. Confirmed WiFi was off on IPTV and performed launcher refresh; issue resolved.</p>
+        </div>
 
-                <h4>STB Relocation Request</h4>
-         
-                <div class="text-block" onclick="copyText('remark9', this)">
-                    <p id="remark9">Client requested STB relocation (one floor/room to another). Informed client about LAN cable charge (Rs. 35 per meter).</p>
-                </div>
-                <div class="text-block" onclick="copyText('remark10', this)">
-                    <p id="remark10">Client requested STB relocation within the same location. Informed client about LAN cable charge (Rs. 35 per meter).</p>
-                </div>
+        <h4>STB Relocation Request</h4>
+ 
+        <div class="text-block" onclick="copyText('remark9', this)">
+            <p id="remark9">Client requested STB relocation (one floor/room to another). Informed client about LAN cable charge (Rs. 35 per meter).</p>
+        </div>
+        <div class="text-block" onclick="copyText('remark10', this)">
+            <p id="remark10">Client requested STB relocation within the same location. Informed client about LAN cable charge (Rs. 35 per meter).</p>
+        </div>
 
-                <h4>NET TV Mobile App Inquiry</h4>
-               
-                <div class="text-block" onclick="copyText('remark11', this)">
-                    <p id="remark11">Provided information to client about Net TV mobile app and its features.</p>
-                </div>
+        <h4>NET TV Mobile App Inquiry</h4>
+       
+        <div class="text-block" onclick="copyText('remark11', this)">
+            <p id="remark11">Provided information to client about Net TV mobile app and its features.</p>
+        </div>
 
-                <h4>Live TV Stopped Working</h4>
-               
-                <div class="text-block" onclick="copyText('remark12', this)">
-                    <p id="remark12">Resolved "Live TV has stopped" error by performing launcher refresh and STB reboot.</p>
-                </div>
+        <h4>Live TV Stopped Working</h4>
+       
+        <div class="text-block" onclick="copyText('remark12', this)">
+            <p id="remark12">Resolved "Live TV has stopped" error by performing launcher refresh and STB reboot.</p>
+        </div>
 
-                <h4>Query About YouTube Services</h4>
-               
-                <div class="text-block" onclick="copyText('remark13', this)">
-                    <p id="remark13">Suggested client change to new STB due to issues with YouTube section.</p>
-                </div>
-                <div class="text-block" onclick="copyText('remark14', this)">
-                    <p id="remark14">Performed launcher update and refresh to resolve issue with YouTube section.</p>
-                </div>
+        <h4>Query About YouTube Services</h4>
+       
+        <div class="text-block" onclick="copyText('remark13', this)">
+            <p id="remark13">Suggested client change to new STB due to issues with YouTube section.</p>
+        </div>
+        <div class="text-block" onclick="copyText('remark14', this)">
+            <p id="remark14">Performed launcher update and refresh to resolve issue with YouTube section.</p>
+        </div>
 
-                <h4>Client Request for NETTV Installation</h4>
-               
-                <div class="text-block" onclick="copyText('remark15', this)">
-                    <p id="remark15">Informed client about NETTV installation pricing details and LAN cable charge (Rs. 35 per meter).</p>
-                </div>
+        <h4>Client Request for NETTV Installation</h4>
+       
+        <div class="text-block" onclick="copyText('remark15', this)">
+            <p id="remark15">Informed client about NETTV installation pricing details and LAN cable charge (Rs. 35 per meter).</p>
+        </div>
 
-                <h4>Query About Netflix Services</h4>
-               
-                <div class="text-block" onclick="copyText('remark16', this)">
-                    <p id="remark16">Checked if client has Stream Z+ STB box. Updated STB box to include Netflix feature. Informed client they need their own Netflix subscription.</p>
-                </div>
+        <h4>Query About Netflix Services</h4>
+       
+        <div class="text-block" onclick="copyText('remark16', this)">
+            <p id="remark16">Checked if client has Stream Z+ STB box. Updated STB box to include Netflix feature. Informed client they need their own Netflix subscription.</p>
+        </div>
 
-                <h4>Primary Package Expired</h4>
-               
-                <div class="text-block" onclick="copyText('remark17', this)">
-                    <p id="remark17">Performed launcher refresh and restarted STB box to resolve "Primary package has expired" error.</p>
-                </div>
+        <h4>Primary Package Expired</h4>
+       
+        <div class="text-block" onclick="copyText('remark17', this)">
+            <p id="remark17">Performed launcher refresh and restarted STB box to resolve "Primary package has expired" error.</p>
+        </div>
+
+        
+    </div>
+
+    <div id="nokia-router" class="container hidden">
+        <h3>Nokia Router <img width="30" src="https://cdn-icons-png.flaticon.com/512/2743/2743461.png" alt="nokia router"></h3>
+        <input type="text" id="searchInput" placeholder="Type Serial Number here...">
+        <div id="resultContainer" class="hidden">
+            <div class="text-block" id="resultTextContainer" onclick="copyText('resultText', this)">
+                <p id="resultText"></p>
             </div>
         </div>
-        <div class="container">
-            <h3>Nokia Router</h3>
-            <input type="text" id="searchInput" placeholder="Type Serial Number here...">
-            <div id="resultContainer">
-                <div class="text-block" id="resultTextContainer" onclick="copyText('resultText', this)">
-                    <p id="resultText"></p>
-                </div>
-            </div>
-<hr>
-            <h4>ONU Status</h4>
-           
-            <div class="text-block" onclick="copyText('text1', this)">
-                <p id="text1">No light on auth and link. Please do the needful.</p>
-            </div>
+        <hr>
+        <h4>ONU Status</h4>
+        <div class="text-block" onclick="copyText('text1', this)">
+            <p id="text1">No light on auth and link. Please do the needful.</p>
+        </div>
 
-            <div class="text-block" onclick="copyText('text3', this)">
-                <p id="text3">Light not verified. Please do the needful.</p>
-            </div>
+        <div class="text-block" onclick="copyText('text3', this)">
+            <p id="text3">Light not verified. Please do the needful.</p>
+        </div>
 
-            <div class="text-block" onclick="copyText('text4', this)">
-                <p id="text4">Urgent. Please do the needful.</p>
-            </div>
+        <div class="text-block" onclick="copyText('text4', this)">
+            <p id="text4">Urgent. Please do the needful.</p>
+        </div>
 
-            <div class="text-block" onclick="copyText('text6', this)">
-                <p id="text6">As per client, fiber cable has been damaged. Please do the needful.</p>
-            </div>
+        <div class="text-block" onclick="copyText('text6', this)">
+            <p id="text6">As per client, fiber cable has been damaged. Please do the needful.</p>
+        </div>
 
-            <div class="text-block" onclick="copyText('text36', this)">
-                <p id="text36">Client requests cable management. Please proceed accordingly.</p>
-            </div>
-            <h4>Account</h4>
-           
-            <div class="text-block" onclick="copyText('text2', this)">
-                <p id="text2">Account extended for 3 days. Suggested to use My WorldLink app. Suggested payment.</p>
-            </div>
-            
+        <div class="text-block" onclick="copyText('text36', this)">
+            <p id="text36">Client requests cable management. Please proceed accordingly.</p>
+        </div>
+        <h4>Account</h4>
+       
+        <div class="text-block" onclick="copyText('text2', this)">
+            <p id="text2">Account extended for 3 days. Suggested to use My WorldLink app. Suggested payment.</p>
+        </div>
+        
 <div class="text-block" onclick="copyText('text17', this)">
-    <p id="text17">Client was informed by branch about a 1-month free offer for 3 months' payment, but the 1-month bonus has not been added. Please address this urgently.</p>
+<p id="text17">Client was informed by branch about a 1-month free offer for 3 months' payment, but the 1-month bonus has not been added. Please address this urgently.</p>
 </div>
 
 <div class="text-block" onclick="copyText('text4', this)">
-    <p id="text4">Guided client to pay through mobile banking.</p>
+<p id="text4">Guided client to pay through mobile banking.</p>
 </div>
 
-              <h4>Password</h4>
-             
-              <div class="text-block" onclick="copyText('text9', this)">
-                <p id="text9">Password changed after client verification.</p>
-            </div>
+          <h4>Password</h4>
+         
+          <div class="text-block" onclick="copyText('text9', this)">
+            <p id="text9">Password changed after client verification.</p>
+        </div>
 
-            <div class="text-block" onclick="copyText('text35', this)">
-                <p id="text35">Online services Password reset completed after client verification.</p>
-            </div>
+        <div class="text-block" onclick="copyText('text35', this)">
+            <p id="text35">Online services Password reset completed after client verification.</p>
+        </div>
 
-            
+        
 <div class="text-block" onclick="copyText('text7', this)">
-    <p id="text7">Client not verified// Suggested verifying.</p>
+<p id="text7">Client not verified// Suggested verifying.</p>
 </div>
 
 
 <div class="text-block" onclick="copyText('text8', this)">
-    <p id="text8">Client verified// Password changed.</p>
+<p id="text8">Client verified// Password changed.</p>
 </div>
 
 <h4>speed test fine</h4>
 
 <div class="text-block" onclick="copyText('text14', this)">
-    <p id="text14">Bandwidth verified, R.X. power checked, device verified, ping test fine, speed test done,domain ping fine, issue resolved.</p>
+<p id="text14">Bandwidth verified, R.X. power checked, device verified, ping test fine, speed test done,domain ping fine, issue resolved.</p>
 </div>
 <h4>High Latency in a single device with good RSSI</h4>
 
 <div class="text-block" onclick="copyText('text15', this)">
-    <p id="text15">Bandwidth verified, R.X. power checked, OLT RX difference <5 verified, device checked, initial ping not fine, range fine (<= -65dBm), another device ping fine, reconnected WiFi on first device, issue solved. </p>
+<p id="text15">Bandwidth verified, R.X. power checked, OLT RX difference <5 verified, device checked, initial ping not fine, range fine (<= -65dBm), another device ping fine, reconnected WiFi on first device, issue solved. </p>
 </div>
- 
+
 <div class="text-block" onclick="copyText('text16', this)">
-    <h3>Interference not seen</h3>
-    <p id="text16">Bandwidth verified, R.X. power checked, OLT RX difference <5, device checked, initial ping not fine, range fine (<= -65dBm),another device ping not fine, channel interference not seen, reconnected WiFi, issue solved.</p>
+<h3>Interference not seen</h3>
+<p id="text16">Bandwidth verified, R.X. power checked, OLT RX difference <5, device checked, initial ping not fine, range fine (<= -65dBm),another device ping not fine, channel interference not seen, reconnected WiFi, issue solved.</p>
 </div>  
 
 <h4>Channel Interference</h4>
 
 <div class="text-block" onclick="copyText('text24', this)">
-    <h5>For Single Band ONU</h5>
-    <p id="text24">Bandwidth verified, R.X. power checked, OLT RX difference <5, device checked, initial ping not fine, range fine (<= -65dBm), another device ping not fine, channel interference seen, suggested solutions for interference (suggested dual band ONU), refreshed channel and verified, issue solved.</p>
+<h5>For Single Band ONU</h5>
+<p id="text24">Bandwidth verified, R.X. power checked, OLT RX difference <5, device checked, initial ping not fine, range fine (<= -65dBm), another device ping not fine, channel interference seen, suggested solutions for interference (suggested dual band ONU), refreshed channel and verified, issue solved.</p>
 </div>
 
 <div class="text-block" onclick="copyText('text30', this)">
-    <h5>For Dual Band ONU</h5>
-    <p id="text30">Bandwidth verified, R.X. power checked, OLT RX difference <5, device checked, initial ping not fine, range fine (<= -65dBm), another device ping not fine, channel interference seen,refreshed channel and verified, issue solved.</p>
+<h5>For Dual Band ONU</h5>
+<p id="text30">Bandwidth verified, R.X. power checked, OLT RX difference <5, device checked, initial ping not fine, range fine (<= -65dBm), another device ping not fine, channel interference seen,refreshed channel and verified, issue solved.</p>
 </div>
 
 <h4>RANGE ISSUES</h4>
 
 <div class="text-block" onclick="copyText('text31', this)">
-    <p id="text31">Bandwidth verified, R.X. power checked, OLT RX difference <5, device verified, initial ping not fine, range not fine (<= -65dBm), suggest secondary ONU/beacon placement.</p>
+<p id="text31">Bandwidth verified, R.X. power checked, OLT RX difference <5, device verified, initial ping not fine, range not fine (<= -65dBm), suggest secondary ONU/beacon placement.</p>
 </div>
-<hr>
 
-<div>
-    <h4>Wireless Speed Calculator</h4>
-    <label for="bandwidth">Total Bandwidth (in Mbps):</label>
-    <input type="number" id="bandwidth" placeholder="Enter total bandwidth in Mbps" oninput="calculateSpeed()">
-    <label for="standard">Wireless Standard:</label>
-    <select id="standard" onchange="calculateSpeed()">
-        <option value="802.11ac">802.11ac (Wi-Fi 5)</option>
-        <option value="802.11n">802.11n (Wi-Fi 4)</option>
-    </select>
-    <label for="devices">Number of Devices:</label>
-    <input type="number" id="devices" placeholder="Enter number of devices" value="1" oninput="calculateSpeed()">
-    <h5 id="result"></h5>
-</div>
-<hr>
-
-            <div class="credential">
-                <h3>Nokia ONU:</h3>
-               
-                <span class="copy-button" onclick="copyToClipboard('wlinkuser', this)">Username</span>
-                <span class="copy-button" onclick="copyToClipboard('35wl#Login465', this)">Password</span>
-                <span class="copy-button" onclick="copyToClipboard('AdminGPON', this)">Username</span>
-                <span class="copy-button" onclick="copyToClipboard('ALC#FGU', this)">Password</span>
-            </div>
-            <div class="credential">
-                <h3>Huawei ONU:</h3>
-               
-                <span class="copy-button" onclick="copyToClipboard('wlinkuser', this)">Username</span>
-                <span class="copy-button" onclick="copyToClipboard('35wl%Login465', this)">Password</span>
-            </div>
-            <br>
-            <br>
-            <br>
-            <footer>
-                <h6>&copy; <a href="http://www.rammijar.com.np" target="_blank" style="color: inherit; text-decoration: none;">Ram Mijar</a>. All rights reserved.</h6>
-            </footer>
+        <hr>
+        <div class="credential">
+            <h3>Nokia ONU:</h3>
+            <span class="copy-button" onclick="copyToClipboard('wlinkuser', this)">Username</span>
+            <span class="copy-button" onclick="copyToClipboard('35wl#Login465', this)">Password</span>
+            <span class="copy-button" onclick="copyToClipboard('AdminGPON', this)">Username</span>
+            <span class="copy-button" onclick="copyToClipboard('ALC#FGU', this)">Password</span>
+        </div>
+        <div class="credential">
+            <h3>Huawei ONU:</h3>
+            <span class="copy-button" onclick="copyToClipboard('wlinkuser', this)">Username</span>
+            <span class="copy-button" onclick="copyToClipboard('35wl%Login465', this)">Password</span>
         </div>
     </div>
 
+    <div id="wireless-calculator" class="container hidden">
+        <div class="calculator">
+            <h4>Wireless Speed Calculator <img width="30" src="https://cdn-icons-png.flaticon.com/512/12878/12878110.png" alt="wifi calculator"></h4>
+            <label for="bandwidth">Total Bandwidth (in Mbps):</label>
+            <input type="number" id="bandwidth" placeholder="Enter total bandwidth in Mbps" oninput="calculateSpeed()">
+            <label for="standard">Wireless Standard:</label>
+            <select id="standard" onchange="calculateSpeed()">
+                <option value="802.11ac">802.11ac (Wi-Fi 5)</option>
+                <option value="802.11n">802.11n (Wi-Fi 4)</option>
+            </select>
+            <label for="devices">Number of Devices:</label>
+            <input type="number" id="devices" placeholder="Enter number of devices" value="1" oninput="calculateSpeed()">
+            <h5 id="result"></h5>
+        </div>
+    </div>
 
+    <footer>
+        <h6>&copy; <a href="http://www.rammijar.com.np" target="_blank">Ram Mijar</a>. All rights reserved.</h6>
+    </footer>
 
-    
     <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.container');
+            sections.forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
         function copyToClipboard(text, element) {
             const tempInput = document.createElement('input');
             tempInput.value = text;
@@ -471,7 +475,7 @@
                 }
 
                 document.getElementById('resultText').textContent = resultText;
-                document.getElementById('resultContainer').style.display = 'block';
+                document.getElementById('resultContainer').classList.remove('hidden');
             }
         });
 
@@ -492,34 +496,32 @@
         }
 
         function calculateSpeed() {
-          const bandwidthMbps = parseFloat(document.getElementById('bandwidth').value);
-          const wirelessStandard = document.getElementById('standard').value;
-          const numDevices = parseInt(document.getElementById('devices').value);
-          let expectedSpeed = 0;
-          const resultElement = document.getElementById('result');
-      
-          if (isNaN(bandwidthMbps) || isNaN(numDevices) || numDevices <= 0) {
-              resultElement.textContent = 'Please enter valid numbers for bandwidth and number of devices.';
-              resultElement.classList.add('visible');
-              return;
-          }
-      
-          switch (wirelessStandard) {
-              case '802.11ac':
-                  // Assuming typical throughput percentages for 802.11ac
-                  expectedSpeed = (bandwidthMbps * 0.7) / numDevices;
-                  break;
-              case '802.11n':
-                  // Assuming typical throughput percentages for 802.11n
-                  expectedSpeed = (bandwidthMbps * 0.5) / numDevices;
-                  break;
-              default:
-                  break;
-          }
-      
-          resultElement.textContent = `Expected speed per device on ${wirelessStandard} network with ${numDevices} device(s): ${expectedSpeed.toFixed(2)} Mbps`;
-          resultElement.classList.add('visible');
-      }
+            const bandwidthMbps = parseFloat(document.getElementById('bandwidth').value);
+            const wirelessStandard = document.getElementById('standard').value;
+            const numDevices = parseInt(document.getElementById('devices').value);
+            let expectedSpeed = 0;
+            const resultElement = document.getElementById('result');
+
+            if (isNaN(bandwidthMbps) || isNaN(numDevices) || numDevices <= 0) {
+                resultElement.textContent = 'Please enter valid numbers for bandwidth and number of devices.';
+                resultElement.classList.add('visible');
+                return;
+            }
+
+            switch (wirelessStandard) {
+                case '802.11ac':
+                    expectedSpeed = (bandwidthMbps * 0.7) / numDevices;
+                    break;
+                case '802.11n':
+                    expectedSpeed = (bandwidthMbps * 0.5) / numDevices;
+                    break;
+                default:
+                    break;
+            }
+
+            resultElement.textContent = `Expected speed per device on ${wirelessStandard} network with ${numDevices} device(s): ${expectedSpeed.toFixed(2)} Mbps`;
+            resultElement.classList.add('visible');
+        }
     </script>
 </body>
 </html>
