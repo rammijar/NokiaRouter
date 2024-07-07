@@ -211,14 +211,22 @@
 </head>
 <body>
     <div class="menu">
-        <a onclick="showSection('net-tv-cases')"><img width="30" src="https://cdn-icons-png.flaticon.com/512/550/550486.png" alt="net tv"></a>
-        <a onclick="showSection('nokia-router')"><img width="30" src="https://cdn-icons-png.flaticon.com/512/2743/2743461.png" alt="nokia router"></a>
-        <a onclick="showSection('wireless-calculator')"><img width="30" src="https://cdn-icons-png.flaticon.com/512/12878/12878110.png" alt="wifi calculator"></a>
-        <a onclick="showSection('slow-topic')"><img width="30" src="https://cdn-icons-png.flaticon.com/512/13558/13558082.png" alt="slow topic"></a> <!-- Added Slow Menu Item -->
+        <a onclick="showSection('net-tv-cases', 'Net TV Cases')">
+            <img width="30" src="https://cdn-icons-png.flaticon.com/512/550/550486.png" alt="net tv">
+        </a>
+        <a onclick="showSection('nokia-router', 'Nokia Router')">
+            <img width="30" src="https://cdn-icons-png.flaticon.com/512/2743/2743461.png" alt="nokia router">
+        </a>
+        <a onclick="showSection('wireless-calculator', 'Wireless Speed Calculator')">
+            <img width="30" src="https://cdn-icons-png.flaticon.com/512/12878/12878110.png" alt="wifi calculator">
+        </a>
+        <a onclick="showSection('slow-topic', 'slow issue')">
+            <img width="30" src="https://cdn-icons-png.flaticon.com/512/13558/13558082.png" alt="slow issue">
+        </a>
     </div>
 
     <div id="net-tv-cases" class="container">
-        <h3>Net TV Cases   <img width="30" src="https://cdn-icons-png.flaticon.com/512/550/550486.png" alt="net tv"></h3>
+        <h3>Net TV Cases <img width="30" src="https://cdn-icons-png.flaticon.com/512/550/550486.png" alt="net tv"></h3>
         <hr>
         <h4>Authentication Issue</h4>
         <div class="text-block" onclick="copyText('remark1', this)">
@@ -315,7 +323,6 @@
             <p id="remark17">Performed launcher refresh and restarted STB box to resolve "Primary package has expired" error.</p>
         </div>
 
-        
     </div>
 
     <div id="nokia-router" class="container hidden">
@@ -331,8 +338,6 @@
         <div class="text-block" onclick="copyText('text1', this)">
             <p id="text1">No light on auth and link. Please do the needful.</p>
         </div>
-
-
         <div class="text-block" onclick="copyText('text3', this)">
             <p id="text3">Light not verified. Please do the needful.</p>
         </div>
@@ -362,8 +367,8 @@
     <p id="text40">The client is interested in the current offers and bonuses. Please provide the necessary details.</p>
     </div>
 
-<div class="text-block" onclick="copyText('text4', this)">
-<p id="text4">Guided client to pay through mobile banking.</p>
+<div class="text-block" onclick="copyText('text43', this)">
+<p id="text43">Guided client to pay through mobile banking.</p>
 </div>
 
 <div class="text-block" onclick="copyText('text41', this)">
@@ -410,7 +415,7 @@
     <div id="wireless-calculator" class="container hidden">
         <div class="calculator">
             <h4>Wireless Speed Calculator <img width="30" src="https://cdn-icons-png.flaticon.com/512/12878/12878110.png" alt="wifi calculator"></h4>
-           <hr>
+            <hr>
             <label for="bandwidth">Total Bandwidth (in Mbps):</label>
             <input type="number" id="bandwidth" placeholder="Enter total bandwidth in Mbps" oninput="calculateSpeed()">
             <label for="standard">Wireless Standard:</label>
@@ -425,13 +430,13 @@
     </div>
 
     <div id="slow-topic" class="container hidden slow-section">
-        <h3>Slow<img width="30" src="https://cdn-icons-png.flaticon.com/512/13558/13558082.png" alt="slow topic"></h3>
+        <h3>Slow <img width="30" src="https://cdn-icons-png.flaticon.com/512/13558/13558082.png" alt="slow issue"></h3>
         <hr>
-        <h4>speed test fine</h4>
-
+        <h4>Speed test fine</h4>
         <div class="text-block" onclick="copyText('text14', this)">
-        <p id="text14">Bandwidth verified, R.X. power checked, device verified, ping test fine, speed test done,domain ping fine, issue resolved.</p>
+            <p id="text14">Bandwidth verified, R.X. power checked, device verified, ping test fine, speed test done, domain ping fine, issue resolved.</p>
         </div>
+
         <h4>High Latency in a single device with good RSSI</h4>
         
         <div class="text-block" onclick="copyText('text15', this)">
@@ -461,6 +466,7 @@
         <p id="text31">Bandwidth verified, R.X. power checked, OLT RX difference <5, device verified, initial ping not fine, range not fine (<= -65dBm), suggest secondary ONU/beacon placement.</p>
         </div>
 
+
     </div>
 
     <footer>
@@ -468,12 +474,13 @@
     </footer>
 
     <script>
-        function showSection(sectionId) {
+        function showSection(sectionId, title) {
             const sections = document.querySelectorAll('.container');
             sections.forEach(section => {
                 section.classList.add('hidden');
             });
             document.getElementById(sectionId).classList.remove('hidden');
+            document.title = title; // Update page title
         }
 
         function copyToClipboard(text, element) {
