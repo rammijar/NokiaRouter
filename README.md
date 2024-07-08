@@ -19,4 +19,4 @@ This guide provides solutions for common issues encountered with Nokia routers a
 For more information, visit the [Nokia Router Troubleshooting Guide](http://ram2020-art.github.io/NokiaRouter/).
 
 ## License
-© 2024 Nokia. All rights reserved.
+© 2024 Ram Mijar 2024. All rights reserved.
