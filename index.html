@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/12785/12785851.png">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2143/2143150.png">
     <title>Remark</title>
     <style>
         /* Dark mode variables */
@@ -35,78 +35,70 @@
         }
 
         .container {
-            background-color: var(--container-bg-color);
-            padding: 20px;
-            border: 1.7px solid #444;
-            border-radius: 15px;
-            text-align: center;
-            transition: background-color 0.3s, color 0.3s;
-            width: 100%;
-            max-width: 600px;
-            margin-top: 20px;
-            animation: fadeIn 3s forwards; /* Slow fade-in animation */
-        }
+    background-color: var(--container-bg-color); /* Background color using a CSS variable */
+    padding: 20px; /* Internal padding */
+    border: 1.7px solid #444; /* Border with a dark color */
+    border-radius: 15px; /* Rounded corners */
+    text-align: center; /* Center-aligns text */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for color changes */
+    width: 100%; /* Full width relative to parent */
+    max-width: 600px; /* Maximum width constraint */
+    margin-top: 20px; /* Space above the container */
+    animation: fadeIn 3s forwards; /* Fade-in animation */
+}
 
-        .menu {
-            width: 100%;
-            max-width: 600px;
-            background-color: var(--container-bg-color);
-            border: 1.7px solid #444;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            padding: 10px;
-            display: flex;
-            justify-content: space-around;
-        }
 
-        .menu a {
-            color: var(--text-color);
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.6s ease; /* Added transition effect */
-            cursor: pointer;
-        }
 
-        .menu a:hover {
-            background-color: var(--hover-bg-color);
-        }
 
         .copy-button {
-            cursor: pointer;
-            color: var(--highlight-color);
-            text-decoration: underline;
-            position: relative;
-            margin: 5px;
-        }
+    cursor: pointer;
+    color: var(--highlight-color);
+    text-decoration: underline;
+    position: relative;
+    margin: 5px;
+    transition: color 0.3s ease; /* Smooth color transition */
+}
 
-        .copy-button::after, .text-block::after {
-            content: 'Copy';
-            position: absolute;
-            bottom: 120%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0, 123, 255, 0.5);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-            white-space: nowrap;
-            z-index: 1;
-        }
+.copy-button::after,
+.text-block::after {
+    content: 'Copy';
+    position: absolute;
+    bottom: 120%; /* Positioned above the button */
+    left: 50%;
+    transform: translateX(-50%);
+    background-size: auto; /* No background image, default size */
+    background-repeat: no-repeat; /* No background image repeat */
+    background-position: center; /* Center the background image */
+    color: #fff; /* Light text color for readability */
+    padding: 6px 12px; /* Increased padding for a slightly larger appearance */
+    border-radius: 6px; /* Modern rounded corners */
+    font-size: 14px; /* Slightly larger font size for better readability */
+    opacity: 0;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+    white-space: nowrap;
+    z-index: 10; /* Ensure tooltip appears above other content */
+    pointer-events: none; /* Prevent interaction with the tooltip */
+    text-align: center; /* Center text horizontally */
+    line-height: 18px; /* Align text with the increased padding */
+    background-color: rgb(0, 0, 0); /* Dark background */
+}
 
-        .copy-button:hover::after, .text-block:hover::after {
-            opacity: 1;
-            background-color: var(--highlight-color);
-        }
+.copy-button:hover::after,
+.text-block:hover::after {
+    opacity: 1;
+    background-color: rgb(0, 0, 0); /* Maintain dark background on hover */
+}
 
-        .copy-button.copied::after, .text-block.copied::after {
-            content: 'Copied!';
-            opacity: 1;
-            background-color: var(--success-color);
-        }
+.copy-button.copied::after,
+.text-block.copied::after {
+    content: 'Copied!';
+    background-size: auto; /* No background image, default size */
+    background-repeat: no-repeat; /* No background image repeat */
+    background-position: center; /* Center the background image */
+    background-color: rgb(19, 18, 18); /* Success color with dark overlay */
+    opacity: 1;
+}
+
 
         input {
             margin: 10px 0;
@@ -207,9 +199,92 @@
             opacity: 0;
             animation: fadeIn 2s forwards; /* Slow fade-in animation */
         }
+
+
+
+
+  /* Menu Styles */
+  .menu {
+            display: flex; /* Flexbox for horizontal layout */
+            justify-content: center; /* Center items horizontally */
+            background-color: #1c1c1c; /* Dark background for the menu */
+            padding: 10px; /* Padding around the menu items */
+            border-bottom: 2px solid #444; /* Bottom border for separation */
+        }
+
+        .menu a {
+            color: #ddd; /* Light text color */
+            text-decoration: none; /* Remove underline */
+            font-size: 16px; /* Font size for menu items */
+            margin: 0 15px; /* Space between menu items */
+            padding: 5px 10px; /* Padding around text */
+            border-radius: 5px; /* Rounded corners for menu items */
+            transition: background-color 0.3s, color 0.3s; /* Smooth color transition */
+        }
+
+        .menu a:hover {
+            background-color: #444; /* Darker background on hover */
+            color: #fff; /* White text color on hover */
+        }
+
+        /* Fullscreen iFrame Popup Styles */
+        .iframe-popup {
+            position: fixed; /* Fixed positioning to cover the viewport */
+            top: 0; /* Align to the top of the viewport */
+            left: 0; /* Align to the left of the viewport */
+            width: 100vw; /* Full viewport width */
+            height: 100vh; /* Full viewport height */
+            background-color: rgba(0, 0, 0, 0.5); /* Lighter semi-transparent dark background */
+            display: none; /* Initially hidden */
+            align-items: center; /* Center content vertically */
+            justify-content: center; /* Center content horizontally */
+            z-index: 9999; /* Ensure it appears above other content */
+        }
+
+        .iframe-container {
+            position: relative; /* Relative positioning for the cancel button */
+            width: 95vw; /* 95% of viewport width */
+            height: 95vh; /* 95% of viewport height */
+            background-color: #2e2e2e; /* Dark grey background */
+            border-radius: 10px; /* Slightly rounded corners */
+            overflow: hidden; /* Hide overflow if any */
+        }
+
+        .iframe-container iframe {
+            width: 100%; /* Full width relative to container */
+            height: 100%; /* Full height relative to container */
+            border: none; /* No border */
+            filter: grayscale(1) invert(1); /* Apply grayscale and invert filters */
+        }
+
+        .cancel-button {
+            position: absolute; /* Absolute positioning inside the container */
+            top: 15px; /* Position from the top */
+            right: 15px; /* Position from the right */
+            background: transparent; /* Transparent background */
+            color: white; /* White color for the cross */
+            border: none; /* No border */
+            font-size: 24px; /* Font size for the cross */
+            cursor: pointer; /* Pointer cursor for the button */
+            z-index: 10000; /* Ensure button appears above other content */
+            padding: 0; /* Remove padding */
+        }
+
+        .cancel-button:before {
+            content: '✖'; /* Cross character */
+        }
     </style>
 </head>
 <body>
+
+    
+    <div class="iframe-popup" id="iframe-popup">
+        <div class="iframe-container">
+            <button class="cancel-button" onclick="hidePopup()"></button>
+            <iframe src="https://slownetguide.kalashservices.com.np/" title="Embedded Website"></iframe>
+        </div>
+    </div>
+
     
     <div class="menu">
         <a onclick="showSection('net-tv-cases', 'Net TV Cases')">
@@ -224,10 +299,14 @@
         <a onclick="showSection('slow-topic', 'slow issue')">
             <img width="30" src="https://cdn-icons-png.flaticon.com/512/13558/13558082.png" alt="slow issue">
         </a>
+        <a onclick="showPopup()">
+            <img width="30" src="https://cdn-icons-png.flaticon.com/512/14090/14090276.png" alt="Show iFrame">
+        </a>
+
     </div>
 
     <div id="net-tv-cases" class="container">
-        <h3>Net TV Cases <img width="30" src="https://cdn-icons-png.flaticon.com/512/550/550486.png" alt="net tv"></h3>
+        <h3>Net TV Cases <img width="17" src="https://cdn-icons-png.flaticon.com/512/2143/2143150.png" alt="net tv"></h3>
         <hr>
         <h4>Authentication Issue</h4>
         <div class="text-block" onclick="copyText('remark1', this)">
@@ -327,7 +406,7 @@
     </div>
 
     <div id="nokia-router" class="container hidden">
-        <h3>Nokia Router <img width="30" src="https://cdn-icons-png.flaticon.com/512/2743/2743461.png" alt="nokia router"></h3>
+        <h3>Nokia Router <img width="17" src="https://cdn-icons-png.flaticon.com/512/2143/2143150.png" alt="nokia router"></h3>
         <input type="text" id="searchInput" placeholder="Type Serial Number here...">
         <div id="resultContainer" class="hidden">
             <div class="text-block" id="resultTextContainer" onclick="copyText('resultText', this)">
@@ -422,7 +501,7 @@
 
     <div id="wireless-calculator" class="container hidden">
         <div class="calculator">
-            <h4>Wireless Speed Calculator <img width="30" src="https://cdn-icons-png.flaticon.com/512/12878/12878110.png" alt="wifi calculator"></h4>
+            <h4>Wireless Speed Calculator <img width="17" src="https://cdn-icons-png.flaticon.com/512/2143/2143150.png" alt="wifi calculator"></h4>
             <hr>
             <label for="bandwidth">Total Bandwidth (in Mbps):</label>
             <input type="number" id="bandwidth" placeholder="Enter total bandwidth in Mbps" oninput="calculateSpeed()">
@@ -441,7 +520,7 @@
    
 
     <div id="slow-topic" class="container hidden slow-section">
-        <h3>Slow <img width="30" src="https://cdn-icons-png.flaticon.com/512/13558/13558082.png" alt="slow issue"></h3>
+        <h3>Slow <img width="17" src="https://cdn-icons-png.flaticon.com/512/2143/2143150.png" alt="slow issue"></h3>
         <hr>
         <h4>Speed test fine</h4>
         <div class="text-block" onclick="copyText('text14', this)">
@@ -479,7 +558,6 @@
 
 
     </div>
-            
 
     <footer>
         <h6>&copy; <a href="http://www.rammijar.com.np" target="_blank">Ram Mijar</a>. All rights reserved.</h6>
@@ -566,12 +644,18 @@
             resultElement.textContent = `Expected speed per device on ${wirelessStandard} network with ${numDevices} device(s): ${expectedSpeed.toFixed(2)} Mbps`;
             resultElement.classList.add('visible');
         }
+
+// iframe 
+
+        function showPopup() {
+            document.getElementById('iframe-popup').style.display = 'flex'; // Show the popup
+        }
+
+        function hidePopup() {
+            document.getElementById('iframe-popup').style.display = 'none'; // Hide the popup
+        }
+
     </script>
-
-            
-
-
-
             
 </body>
 </html>
