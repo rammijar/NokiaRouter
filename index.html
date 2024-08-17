@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2143/2143150.png">
     <title>Remark</title>
+
+
+    <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:200,400,500,300&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
     <style>
         /* Dark mode variables */
         :root {
@@ -14,10 +22,11 @@
             --hover-bg-color: #383838;
             --success-color: #28a745;
             --highlight-color: #007bff;
+            --form--bg--color:#2b2828;
         }
 
         /* Apply the theme */
-        body, .container, .credentials-container, h1, h2, p {
+        body, .container, .credentials-container, h2 {
             background-color: var(--bg-color);
             color: var(--text-color);
         }
@@ -34,6 +43,22 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
+        h1, p {
+      margin: 0;
+      padding: 0;
+      line-height: normal;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+
+
+
+        
         .container {
     background-color: var(--container-bg-color); /* Background color using a CSS variable */
     padding: 20px; /* Internal padding */
@@ -273,6 +298,279 @@
         .cancel-button:before {
             content: '✖'; /* Cross character */
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        #taskInput {
+            flex-grow: 1;
+            padding: 0.75rem 1rem;
+            background: var(--input-bg);
+            border: none;
+            color: var(--font-color);
+            font-size: 1rem;
+            border-radius: var(--border-radius);
+            outline: none;
+            transition: var(--transition);
+        }
+
+        #taskInput::placeholder {
+            color: #888;
+        }
+
+        #taskInput:focus {
+            background-color: var(--task-bg);
+            box-shadow: 0 0 0 2px var(--accent-color);
+        }
+
+        /* Tasks List Styling */
+        #tasks {
+            padding: 1rem 1.5rem;
+        }
+
+        #tasksList {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #tasksList li {
+            background-color: var(--task-bg);
+            color: var(--font-color);
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        /* Edit and Remove Buttons */
+        .task-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .edit, .remove {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .edit img, .remove img {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+
+        .edit:hover, .remove:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Notification Styling */
+        #notification {
+            text-align: center;
+            color: #888;
+            font-weight: 500;
+            font-size: 1.25rem;
+            padding: 1rem;
+            display: none;
+        }
+
+
+
+
+
+
+
+
+
+          /* Feedback Form Container */
+    .feedback {
+      background: var(--form--bg--color);
+      width: 90%;
+      max-width: 450px;
+      border-radius: 8px;
+      margin: 20px auto;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      padding: 20px;
+    }
+
+    .feedback h1 {
+      font-size: 1.4em;
+      color: var(--highlight-color);
+      font-weight: 500;
+      margin-bottom: 15px;
+    }
+
+    .feedback p {
+      font-size: 0.9em;
+      margin-bottom: 10px;
+      color: #b0bec5;
+    }
+
+    .feedback ul.type li {
+      display: inline-block;
+      margin-right: 5px;
+    }
+
+    .feedback ul.type li:last-child {
+      margin-right: 0;
+    }
+
+    .feedback ul.type li.active a {
+      background: var(--highlight-color);
+      color: var(--text-color);
+      position: relative;
+    }
+
+    .feedback ul.type li.active a:after {
+      top: 100%;
+      left: 50%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-color: rgba(136, 183, 213, 0);
+      border-top-color: var(--highlight-color);
+      border-width: 5px;
+      margin-left: -5px;
+    }
+
+    .feedback ul.type li a {
+      background: var(--hover-bg-color);
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 0.9em;
+      color: var(--text-color);
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .feedback ul.type li a:hover {
+      background: var(--highlight-color);
+      color: var(--text-color);
+    }
+
+    .feedback ul.type li a i {
+      margin-right: 5px;
+    }
+
+    .feedback ul.type.speed li a:hover {
+      color: var(--text-color);
+    }
+
+    .feedback ul.type.speed li:first-child a:hover {
+      background: var(--success-color);
+    }
+
+    .feedback ul.type.speed li:nth-child(2) a:hover {
+      background: var(--highlight-color);
+    }
+
+    .feedback ul.type.speed li:last-child a:hover {
+      background: #e53935;
+    }
+
+    .feedback .form {
+      margin-top: 20px;
+    }
+
+    .feedback textarea {
+      min-height: 150px;
+      resize: none;
+      width: 92%;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: none;
+      border: 1px solid var(--hover-bg-color);
+      background: var(--container-bg-color);
+      color: var(--text-color);
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .feedback input[type="email"] {
+      width: 92%;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: none;
+      border: 1px solid var(--hover-bg-color);
+      background: var(--container-bg-color);
+      color: var(--text-color);
+      margin-top: 15px;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .feedback button {
+      padding: 15px;
+      background: var(--success-color);
+      margin-top: 20px;
+      color: var(--text-color);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+      width: 100%;
+      transition: background 0.3s;
+    }
+
+    .feedback button:hover {
+      background: #388e3c;
+    }
+
+    /* Live Site Example */
+    .live-site {
+      text-align: center;
+      color: var(--text-color);
+      font-size: 14px;
+      margin: 20px 0;
+    }
+
+    .live-site a {
+      color: #ff5252;
+      border: 1px solid #ff5252;
+      background: transparent;
+      display: inline-block;
+      padding: 10px;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .live-site a:hover {
+      background: #ff5252;
+      color: var(--text-color);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      .feedback {
+        width: 100%;
+        margin: 10px;
+      }
+    }
+
     </style>
 </head>
 <body>
@@ -301,6 +599,10 @@
         </a>
         <a onclick="showPopup()">
             <img width="30" src="https://cdn-icons-png.flaticon.com/512/14090/14090276.png" alt="Show iFrame">
+        </a>
+
+        <a onclick="showSection('feedback-form', 'feedback form')">
+            <img width="30" src="https://cdn-icons-png.flaticon.com/512/2646/2646064.png" alt="feedback form">
         </a>
 
     </div>
@@ -413,6 +715,24 @@
                 <p id="resultText"></p>
             </div>
         </div>
+
+
+
+        
+<div id="container">
+    <!-- Tasks List -->
+    <div id="tasks">
+        <div id="notification">Your note list is empty.</div>
+        <ul id="tasksList"></ul>
+    </div>
+
+    <div id="footer">
+        <input id="taskInput" type="text" placeholder="Type your note and press enter....." autofocus>
+    </div>
+</div>
+
+
+
         <hr>
         <h4>ONU Status</h4>
         <div class="text-block" onclick="copyText('text1', this)">
@@ -553,11 +873,41 @@
         <h4>RANGE ISSUES</h4>
         
         <div class="text-block" onclick="copyText('text31', this)">
-        <p id="text31">Bandwidth verified, R.X. power checked, OLT RX difference <5, device verified, initial ping not fine, range not fine (<= -65dBm), suggest secondary ONU/beacon placement.</p>
+        <p id="text31">Bandwidth verified, R.X. power checked, OLT RX difference <5, device verified, initial ping not fine, range not fine (<= -65dBm), suggest secondary ONU/beacon placement and also suggest reposition </p>
         </div>
 
 
     </div>
+
+<!-- modify this form HTML and place wherever you want your form -->
+<form
+  action="https://formspree.io/f/myzgpvqb"
+  method="POST"
+>
+  <div id="feedback-form" class="container hidden feedback">
+    <h1>Feedback</h1>
+    <p>What would you like to share with us?</p>
+    <ul class="type">
+      <li class="active"><a href="#"><i class="fa fa-bug"></i> Problem</a></li>
+      <li><a href="#"><i class="fa fa-question-circle"></i> Question</a></li>
+      <li><a href="#"><i class="fa fa-lightbulb-o"></i> Suggestion</a></li>
+      <li><a href="#"><i class="fa fa-heart"></i> Ram</a></li>
+    </ul>
+    <div class="form">
+      <textarea name="feedback_text" placeholder="Your feedback"></textarea>
+      <input type="email" name="email" placeholder="Your Email (will not be published)" required />
+    </div>
+    <p>How would you rate the speed of our website?</p>
+    <ul class="type speed">
+      <li><a href="#"><i class="fa fa-bolt"></i> Fast</a></li>
+      <li><a href="#"><i class="fa fa-thumbs-o-up"></i> Fine</a></li>
+      <li><a href="#"><i class="fa fa-thumbs-o-down"></i> Slow</a></li>
+    </ul>
+    <button class="button small success radius" type="submit">Submit</button>
+  </div>
+</form>
+
+    
 
     <footer>
         <h6>&copy; <a href="http://www.rammijar.com.np" target="_blank">Ram Mijar</a>. All rights reserved.</h6>
@@ -657,5 +1007,84 @@
 
     </script>
             
+
+
+
+
+
+            
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(function () {
+        var $tasksList = $("#tasksList");
+        var $taskInput = $("#taskInput");
+        var $notification = $("#notification");
+        var editingTask = null;
+
+        // Function to display or hide the notification
+        function displayNotification() {
+            if (!$tasksList.children().length) {
+                $notification.fadeIn("fast");
+            } else {
+                $notification.hide();
+            }
+        }
+
+        // Add or edit task when pressing Enter
+        $taskInput.on("keypress", function (e) {
+            if (e.which === 13 && $taskInput.val().trim() !== "") {
+                var taskText = $taskInput.val().trim();
+
+                if (editingTask) {
+                    editingTask.contents().get(0).nodeValue = taskText;
+                    editingTask = null;
+                } else {
+                    var $newTask = $("<li>").html(taskText + `
+                        <div class="task-actions">
+                            <button class="edit">
+                                <img src="https://cdn-icons-png.flaticon.com/512/1250/1250615.png" alt="Edit">
+                            </button>
+                            <button class="remove">
+                                <img src="https://cdn-icons-png.flaticon.com/512/9035/9035017.png" alt="Remove">
+                            </button>
+                        </div>
+                    `);
+                    $tasksList.append($newTask);
+                }
+
+                $taskInput.val(""); // Clear input field
+                displayNotification();
+            }
+        });
+
+        // Remove task
+        $tasksList.on("click", ".remove", function () {
+            $(this).closest("li").remove();
+            displayNotification();
+        });
+
+        // Edit task
+        $tasksList.on("click", ".edit", function () {
+            var $taskItem = $(this).closest("li");
+            var taskText = $taskItem.contents().get(0).nodeValue.trim();
+            $taskInput.val(taskText).focus();
+            editingTask = $taskItem;
+        });
+
+        // Copy task text when clicking on the task item
+        $tasksList.on("click", "li", function (e) {
+            if ($(e.target).is(".edit, .remove")) return; // Do nothing if clicking edit or remove buttons
+            var taskText = $(this).contents().get(0).nodeValue.trim();
+            navigator.clipboard.writeText(taskText).then(function () {
+                alert("Copied to clipboard: " + taskText);
+            });
+        });
+
+        // Initial notification check
+        displayNotification();
+    });
+</script>
+
+
 </body>
 </html>
