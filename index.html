@@ -139,7 +139,7 @@
 
         input:focus {
             border-color: var(--highlight-color);
-            box-shadow: 0 0 5px rgb(10, 10, 10);
+            box-shadow: 0 0 5px rgba(10, 10, 10, 0);
             outline: none;
         }
 
@@ -728,6 +728,7 @@
 
     <div id="footer">
         <input id="taskInput" type="text" placeholder="Type your note and press enter....." autofocus>
+        <input type="text" id="ttNumber" placeholder="Enter your Ticket ID" onkeypress="if(event.key === 'Enter' && this.value.trim() !== '') { window.open('https://tt.wlink.com.np/log_data/showLogDetails/' + this.value, '_blank'); }">
     </div>
 </div>
 
