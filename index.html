@@ -571,6 +571,37 @@
       }
     }
 
+
+
+
+
+    /*notic table */
+    table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        th, td {
+            padding: 8px;
+            border: 1px solid #333;
+            text-align: left;
+        }
+        th {
+            background-color: #333;
+            color: #b3b7bdf8;
+        }
+        td {
+            background-color: #2a2a2a;
+        }
+        a {
+            color: #00b2f8c7;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
     </style>
 </head>
 <body>
@@ -605,6 +636,10 @@
             <img width="30" src="https://cdn-icons-png.flaticon.com/512/2646/2646064.png" alt="feedback form">
         </a>
 
+         <!-- New Notice Menu -->
+    <a onclick="showSection('notice', 'Notice')">
+        <img width="30" src="https://cdn-icons-png.flaticon.com/512/3075/3075946.png" alt="notice">
+    </a>
     </div>
 
     <div id="net-tv-cases" class="container">
@@ -907,6 +942,40 @@
     <button class="button small success radius" type="submit">Submit</button>
   </div>
 </form>
+<div id="notice" class="container hidden notic">
+       <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Offer</th>
+                    <th>Eligibility</th>
+                    <th>Details</th>
+                    <th>How to Participate</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>WorldLink x Khalti Lucky Draw</strong></td>
+                    <td>- Pay via Khalti App/Web (KYC verified)<br>- Available to new and existing customers</td>
+                    <td>- Chance to win Nammi 01 E3 EV Car<br>- Weekly Samsung product prizes</td>
+                    <td>- Pay through Khalti.<br>- Receive a voucher for the lucky draw and weekly Samsung products.</td>
+                </tr>
+                <tr>
+                    <td><strong>WorldLink x Samsung Discount</strong></td>
+                    <td>- Pay via any vendor</td>
+                    <td>- Up to 39% off Samsung products<br>- Valid until December 25, 2024<br>- One voucher per username</td>
+                    <td>- Get a discount voucher from WorldLink.<br>- Redeem at authorized Samsung showrooms.</td>
+                </tr>
+                <tr>
+                    <td><strong>WorldLink x BoAt Products</strong></td>
+                    <td>- Pay via any vendor</td>
+                    <td>- Collect BoAt products based on tenure<br>- 1 item (1-month)<br>- Up to 2 items (3/12/24-month)</td>
+                    <td>- Visit a nearby WorldLink branch to collect products.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="source">Source: <a href="https://docs.google.com/spreadsheets/d/1yCLvefgWU_SnU3OIPX_GBJWorQFRE1SASISzv6SJLbM/edit?gid=1385235321#gid=1385235321" target="_blank">WorldLink Dashain Offer</a></p>
+    </div>
 
     
 
