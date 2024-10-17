@@ -287,7 +287,7 @@
             top: 15px; /* Position from the top */
             right: 15px; /* Position from the right */
             background: transparent; /* Transparent background */
-            color: white; /* White color for the cross */
+            color: rgb(230, 16, 16); /* White color for the cross */
             border: none; /* No border */
             font-size: 24px; /* Font size for the cross */
             cursor: pointer; /* Pointer cursor for the button */
@@ -380,10 +380,6 @@
             width: 20px;
             height: 20px;
             vertical-align: middle;
-        }
-
-        .edit:hover, .remove:hover {
-            background-color: rgba(255, 255, 255, 0.1);
         }
 
         /* Notification Styling */
@@ -610,11 +606,11 @@
     <div class="iframe-popup" id="iframe-popup">
         <div class="iframe-container">
             <button class="cancel-button" onclick="hidePopup()"></button>
-            <iframe src="https://ram2020-art.github.io/new_connection-/" title="Embedded Website"></iframe>
+            <iframe id="iframe-content" src="" title="Embedded Website"></iframe>
         </div>
     </div>
-
     
+    <!-- Menu with new option -->
     <div class="menu">
         <a onclick="showSection('net-tv-cases', 'Net TV Cases')">
             <img width="30" src="https://cdn-icons-png.flaticon.com/512/550/550486.png" alt="net tv">
@@ -628,18 +624,20 @@
         <a onclick="showSection('slow-topic', 'slow issue')">
             <img width="30" src="https://cdn-icons-png.flaticon.com/512/13558/13558082.png" alt="slow issue">
         </a>
-        <a onclick="showPopup()">
+        <a onclick="showPopup('https://ram2020-art.github.io/new_connection-/')">
             <img width="30" src="https://cdn-icons-png.flaticon.com/512/2178/2178616.png" alt="Show iFrame">
         </a>
-
         <a onclick="showSection('feedback-form', 'feedback form')">
             <img width="30" src="https://cdn-icons-png.flaticon.com/512/2646/2646064.png" alt="feedback form">
         </a>
-
-         <!-- New Notice Menu -->
-    <a onclick="showSection('notice', 'Notice')">
-        <img width="30" src="https://cdn-icons-png.flaticon.com/512/3075/3075946.png" alt="notice">
-    </a>
+        <a onclick="showSection('notice', 'Notice')">
+            <img width="30" src="https://cdn-icons-png.flaticon.com/512/3258/3258504.png" alt="notice">
+        </a>
+    
+        <!-- New Menu Item for Slow Net Guide -->
+        <a onclick="showPopup('https://slownetguide.kalashservices.com.np/')">
+            <img width="30" src="https://cdn-icons-png.flaticon.com/512/7205/7205663.png" alt="Slow Net Guide">
+        </a>
     </div>
 
     <div id="net-tv-cases" class="container">
@@ -794,7 +792,11 @@
 
 
           <div class="text-block" onclick="copyText('text50', this)">
-            <p id="text50">Verified WAN, checked domain ping, reconnected; now working.</p>
+            <p id="text50">Verified WAN, checked ping, reconnected; now working.</p>
+        </div>
+
+        <div class="text-block" onclick="copyText('text60', this)">
+            <p id="text60">disconnection Problem seen please do need full</p>
         </div>
 
         
@@ -828,11 +830,11 @@
           <h4>Password</h4>
          
           <div class="text-block" onclick="copyText('text9', this)">
-            <p id="text9">Password changed after client verification.</p>
+            <p id="text9">Inform Password  after client verification.</p>
         </div>
 
         <div class="text-block" onclick="copyText('text35', this)">
-            <p id="text35">Online services Password reset completed after client verification.</p>
+            <p id="text35">Password reset completed after client verification.</p>
         </div>
 
         
@@ -1067,15 +1069,23 @@
             resultElement.classList.add('visible');
         }
 
-// iframe 
+        function showPopup(url) {
+        var popup = document.getElementById('iframe-popup');
+        var iframe = document.getElementById('iframe-content');
+        
+        iframe.src = url; // Set the iframe source dynamically
+        popup.style.display = 'flex'; // Show the popup
+        popup.style.opacity = '1';    // Make it visible
+    }
 
-        function showPopup() {
-            document.getElementById('iframe-popup').style.display = 'flex'; // Show the popup
-        }
-
-        function hidePopup() {
-            document.getElementById('iframe-popup').style.display = 'none'; // Hide the popup
-        }
+    function hidePopup() {
+        var popup = document.getElementById('iframe-popup');
+        popup.style.opacity = '0';    // Hide the popup
+        setTimeout(function() {
+            popup.style.display = 'none';
+            document.getElementById('iframe-content').src = ''; // Clear the iframe source
+        }, 300); // Delay to allow transition effect
+    }
 
     </script>
             
@@ -1112,12 +1122,12 @@
                     editingTask = null;
                 } else {
                     var $newTask = $("<li>").html(taskText + `
-                        <div class="task-actions">
+                        <div class="task-actions" >
                             <button class="edit">
-                                <img src="https://cdn-icons-png.flaticon.com/512/1250/1250615.png" alt="Edit">
+                                <img src="https://cdn-icons-png.flaticon.com/512/4476/4476194.png" alt="Edit">
                             </button>
                             <button class="remove">
-                                <img src="https://cdn-icons-png.flaticon.com/512/9035/9035017.png" alt="Remove">
+                                <img src="https://cdn-icons-png.flaticon.com/512/3221/3221897.png" alt="Remove">
                             </button>
                         </div>
                     `);
@@ -1148,7 +1158,7 @@
             if ($(e.target).is(".edit, .remove")) return; // Do nothing if clicking edit or remove buttons
             var taskText = $(this).contents().get(0).nodeValue.trim();
             navigator.clipboard.writeText(taskText).then(function () {
-                alert("Copied to clipboard: " + taskText);
+                
             });
         });
 
