@@ -361,6 +361,46 @@
             cursor: pointer;
         }
 
+
+
+
+
+        /* Style for the task item */
+.task-item {
+    position: relative;
+    padding: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+/* Show the popup on hover */
+.task-item:hover .copy-popup {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Style for the copy popup, appearing above the task item */
+.copy-popup {
+    position: absolute;
+    bottom: 100%; /* Position above the task item */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%) translateY(-5px); /* Adjust centering and add spacing above */
+    background-color: #000; /* Popup background color */
+    color: #fff; /* Text color */
+    padding: 5px; /* Padding for the popup */
+    font-size: 12px; /* Font size */
+    border-radius: 5px; /* Rounded corners */
+    visibility: hidden; /* Initially hidden */
+    opacity: 0; /* Initially invisible */
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out; /* Smooth appearance */
+}
+
+/* Change the background to green when copied */
+.copied {
+    background-color: #151616d7; /* Green for 'Copied' */
+    color: white;
+}
+
         /* Edit and Remove Buttons */
         .task-actions {
             display: flex;
@@ -571,33 +611,65 @@
 
 
 
-    /*notic table */
-    table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 10px 0;
-            font-size: 14px;
-        }
-        th, td {
-            padding: 8px;
-            border: 1px solid #333;
-            text-align: left;
-        }
-        th {
-            background-color: #333;
-            color: #b3b7bdf8;
-        }
-        td {
-            background-color: #2a2a2a;
-        }
-        a {
-            color: #00b2f8c7;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
+    
+    .cards-container {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
+        .offer-card {
+            background-color: #1f1f1f;
+            width: 900px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .offer-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .offer-title {
+            font-size: 22px;
+            margin: 15px 0;
+            color: #f8f7f4;
+        }
+
+        .offer-text {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+
+        .action {
+            background-color: #383737;
+            border: none;
+            padding: 10px;
+            margin-top: 20px;
+            color: white;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .action:hover {
+            background-color: #ee0505;
+        }
+
+        @media (max-width: 768px) {
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -947,38 +1019,25 @@
   </div>
 </form>
 <div id="notice" class="container hidden notic">
-       <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Offer</th>
-                    <th>Eligibility</th>
-                    <th>Details</th>
-                    <th>How to Participate</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>WorldLink x Khalti Lucky Draw</strong></td>
-                    <td>- Pay via Khalti App/Web (KYC verified)<br>- Available to new and existing customers</td>
-                    <td>- Chance to win Nammi 01 E3 EV Car<br>- Weekly Samsung product prizes</td>
-                    <td>- Pay through Khalti.<br>- Receive a voucher for the lucky draw and weekly Samsung products.</td>
-                </tr>
-                <tr>
-                    <td><strong>WorldLink x Samsung Discount</strong></td>
-                    <td>- Pay via any vendor</td>
-                    <td>- Up to 39% off Samsung products<br>- Valid until December 25, 2024<br>- One voucher per username</td>
-                    <td>- Get a discount voucher from WorldLink.<br>- Redeem at authorized Samsung showrooms.</td>
-                </tr>
-                <tr>
-                    <td><strong>WorldLink x BoAt Products</strong></td>
-                    <td>- Pay via any vendor</td>
-                    <td>- Collect BoAt products based on tenure<br>- 1 item (1-month)<br>- Up to 2 items (3/12/24-month)</td>
-                    <td>- Visit a nearby WorldLink branch to collect products.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="source">Source: <a href="https://docs.google.com/spreadsheets/d/1yCLvefgWU_SnU3OIPX_GBJWorQFRE1SASISzv6SJLbM/edit?gid=1385235321#gid=1385235321" target="_blank">WorldLink Dashain Offer</a></p>
+    <div class="cards-container">
+        <!-- First Offer Card -->
+        <div class="offer-card">
+            <img src="./bloggg-1536x674.jpg" alt="Offer Image">
+            <h4 class="offer-title">Festive कारNIVAL WorldLink Dashain Offer: Win a Nammi 01 E3 EV Car  </h4>
+            <p class="offer-text">Enjoy up to 53% off on select items, exclusively for Worldlink customers.</p>
+            <button class="action">Explore More</button>
+        </div>
+
+        <!-- Second Offer Card -->
+        <div class="offer-card">
+            <img src="offer1.jpg" alt="Exclusive Offer">
+            <h4 class="offer-title">Exclusive Offer</h4>
+            <p class="offer-text">Get up to 39% off on Samsung Appliances, only for Worldlink users! <br> 
+                Enjoy up to 53% off on select items, exclusively for Worldlink customers.
+            </p>
+            <button class="action">Discover Now</button>
+        </div>
+    </div>
     </div>
 
     
@@ -1098,73 +1157,81 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(function () {
-        var $tasksList = $("#tasksList");
-        var $taskInput = $("#taskInput");
-        var $notification = $("#notification");
-        var editingTask = null;
+    var $tasksList = $("#tasksList");
+    var $taskInput = $("#taskInput");
+    var $notification = $("#notification");
+    var editingTask = null;
 
-        // Function to display or hide the notification
-        function displayNotification() {
-            if (!$tasksList.children().length) {
-                $notification.fadeIn("fast");
-            } else {
-                $notification.hide();
-            }
+    // Function to display or hide the notification
+    function displayNotification() {
+        if (!$tasksList.children().length) {
+            $notification.fadeIn("fast");
+        } else {
+            $notification.hide();
         }
+    }
 
-        // Add or edit task when pressing Enter
-        $taskInput.on("keypress", function (e) {
-            if (e.which === 13 && $taskInput.val().trim() !== "") {
-                var taskText = $taskInput.val().trim();
+    // Add or edit task when pressing Enter
+    $taskInput.on("keypress", function (e) {
+        if (e.which === 13 && $taskInput.val().trim() !== "") {
+            var taskText = $taskInput.val().trim();
 
-                if (editingTask) {
-                    editingTask.contents().get(0).nodeValue = taskText;
-                    editingTask = null;
-                } else {
-                    var $newTask = $("<li>").html(taskText + `
-                        <div class="task-actions" >
-                            <button class="edit">
-                                <img src="https://cdn-icons-png.flaticon.com/512/4476/4476194.png" alt="Edit">
-                            </button>
-                            <button class="remove">
-                                <img src="https://cdn-icons-png.flaticon.com/512/3221/3221897.png" alt="Remove">
-                            </button>
-                        </div>
-                    `);
-                    $tasksList.append($newTask);
-                }
-
-                $taskInput.val(""); // Clear input field
-                displayNotification();
+            if (editingTask) {
+                editingTask.contents().get(0).nodeValue = taskText;
+                editingTask = null;
+            } else {
+                var $newTask = $("<li class='task-item'>").html(taskText + `
+                    <span class="copy-popup">Copy</span>
+                    <div class="task-actions">
+                        <button class="edit">
+                            <img src="https://cdn-icons-png.flaticon.com/512/4476/4476194.png" alt="Edit">
+                        </button>
+                        <button class="remove">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3221/3221897.png" alt="Remove">
+                        </button>
+                    </div>
+                `);
+                $tasksList.append($newTask);
             }
-        });
 
-        // Remove task
-        $tasksList.on("click", ".remove", function () {
-            $(this).closest("li").remove();
+            $taskInput.val(""); // Clear input field
             displayNotification();
-        });
+        }
+    });
 
-        // Edit task
-        $tasksList.on("click", ".edit", function () {
-            var $taskItem = $(this).closest("li");
-            var taskText = $taskItem.contents().get(0).nodeValue.trim();
-            $taskInput.val(taskText).focus();
-            editingTask = $taskItem;
-        });
-
-        // Copy task text when clicking on the task item
-        $tasksList.on("click", "li", function (e) {
-            if ($(e.target).is(".edit, .remove")) return; // Do nothing if clicking edit or remove buttons
-            var taskText = $(this).contents().get(0).nodeValue.trim();
-            navigator.clipboard.writeText(taskText).then(function () {
-                
-            });
-        });
-
-        // Initial notification check
+    // Remove task
+    $tasksList.on("click", ".remove", function () {
+        $(this).closest("li").remove();
         displayNotification();
     });
+
+    // Edit task
+    $tasksList.on("click", ".edit", function () {
+        var $taskItem = $(this).closest("li");
+        var taskText = $taskItem.contents().get(0).nodeValue.trim();
+        $taskInput.val(taskText).focus();
+        editingTask = $taskItem;
+    });
+
+    // Copy task text when clicking on the task item
+    $tasksList.on("click", "li", function (e) {
+        if ($(e.target).is(".edit, .remove")) return; // Do nothing if clicking edit or remove buttons
+        var $taskItem = $(this);
+        var taskText = $taskItem.contents().get(0).nodeValue.trim();
+
+        navigator.clipboard.writeText(taskText).then(function () {
+            var $popup = $taskItem.find('.copy-popup');
+            $popup.text('Copied').addClass('copied'); // Change popup text to 'Copied'
+            setTimeout(function () {
+                $popup.text('Copy').removeClass('copied'); // Revert after 2 seconds
+            }, 2000);
+        });
+    });
+
+    // Initial notification check
+    displayNotification();
+});
+
 </script>
 
 
