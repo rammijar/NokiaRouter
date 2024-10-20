@@ -670,6 +670,60 @@
                 align-items: center;
             }
         }
+
+
+
+        
+        /* Unique class for the container card */
+        .calc-card-unique {
+            background-color: var(--container-bg-color);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+           
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .calc-card-unique:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Styling input fields */
+        .calc-input-unique {
+            padding: 10px;
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid var(--hover-bg-color);
+            border-radius: 8px;
+            background-color: var(--form-bg-color);
+            color: var(--text-color);
+            font-size: 0.95em;
+            transition: border-color 0.3s;
+        }
+
+        .calc-input-unique::placeholder {
+            color: #aaa;
+        }
+
+        .calc-input-unique:focus {
+            border-color: var(--highlight-color);
+            outline: none;
+        }
+
+        /* Styling result display */
+        .calc-result-unique {
+            margin-top: 20px;
+            font-weight: bold;
+            color: var(--success-color);
+            transition: color 0.3s;
+        }
+
+        .calc-error-unique {
+            color: var(--error-color);
+        }
     </style>
 </head>
 <body>
@@ -710,6 +764,11 @@
         <a onclick="showPopup('https://slownetguide.kalashservices.com.np/')">
             <img width="30" src="https://cdn-icons-png.flaticon.com/512/7205/7205663.png" alt="Slow Net Guide">
         </a>
+
+         <!-- New Menu Item for Month and Day Calculator -->
+    <a onclick="showSection('month-day-calculator', 'Month and Day Calculator')">
+        <img width="30" src="https://cdn-icons-png.flaticon.com/512/2175/2175566.png" alt="Month and Day Calculator">
+    </a>
     </div>
 
     <div id="net-tv-cases" class="container">
@@ -991,6 +1050,16 @@
 
     </div>
 
+    <!-- Add a corresponding section for the Month and Day Calculator -->
+<div id="month-day-calculator" class="container">
+    <div class="calc-card-unique">
+        <h4>Advanced Date Calculator</h4>
+        <input type="text" id="calc-date1" class="calc-input-unique" placeholder="e.g., 18-Oct-2023 16:56:21">
+        <input type="text" id="calc-date2" class="calc-input-unique" placeholder="e.g., 12-Oct-2024 00:03:32">
+        <div id="calc-result" class="calc-result-unique"></div>
+    </div>
+</div>
+
 <!-- modify this form HTML and place wherever you want your form -->
 <form
   action="https://formspree.io/f/myzgpvqb"
@@ -1232,6 +1301,64 @@
     displayNotification();
 });
 
+</script>
+
+
+<script>
+    function parseDateInput(dateString) {
+        const parts = dateString.match(/(\d{2})-(\w{3})-(\d{4}) (\d{2}):(\d{2}):(\d{2})/);
+        if (!parts) return null;
+
+        const [_, day, month, year, hours, minutes, seconds] = parts;
+        const monthMap = {
+            Jan: 0, Feb: 1, Mar: 2, Apr: 3,
+            May: 4, Jun: 5, Jul: 6, Aug: 7,
+            Sep: 8, Oct: 9, Nov: 10, Dec: 11
+        };
+
+        const monthIndex = monthMap[month];
+        if (monthIndex === undefined) return null;
+
+        return new Date(year, monthIndex, day, hours, minutes, seconds);
+    }
+
+    function calculateDateDifference() {
+        const date1Str = document.getElementById("calc-date1").value.trim();
+        const date2Str = document.getElementById("calc-date2").value.trim();
+        
+        const date1 = parseDateInput(date1Str);
+        const date2 = parseDateInput(date2Str);
+
+        const resultDiv = document.getElementById("calc-result");
+
+        if (!date1 || !date2) {
+            resultDiv.innerText = "Invalid date format. Please use DD-MMM-YYYY HH:MM:SS";
+            resultDiv.classList.add("calc-error-unique");
+            return;
+        }
+
+        if (date1 > date2) {
+            resultDiv.innerText = "Start date must be before end date.";
+            resultDiv.classList.add("calc-error-unique");
+            return;
+        }
+
+        let months = date2.getMonth() - date1.getMonth() + (12 * (date2.getFullYear() - date1.getFullYear()));
+        let days = date2.getDate() - date1.getDate();
+
+        if (days < 0) {
+            months--;
+            const lastMonthDate = new Date(date1.getFullYear(), date1.getMonth() + 1, 0);
+            days += lastMonthDate.getDate();
+        }
+
+        resultDiv.innerText = `Difference: ${months} months and ${days} days`;
+        resultDiv.classList.remove("calc-error-unique");
+    }
+
+    // Automatically trigger calculation on input
+    document.getElementById("calc-date1").addEventListener("input", calculateDateDifference);
+    document.getElementById("calc-date2").addEventListener("input", calculateDateDifference);
 </script>
 
 
