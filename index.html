@@ -12,6 +12,9 @@
   
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
   
     <style>
         /* Dark mode variables */
@@ -43,7 +46,7 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
-        h1, p {
+        h1 {
       margin: 0;
       padding: 0;
       line-height: normal;
@@ -56,6 +59,9 @@
     }
 
 
+    body p {
+            font-family: 'Lora', serif;
+        }
 
 
         
@@ -724,6 +730,11 @@
         .calc-error-unique {
             color: var(--error-color);
         }
+
+        input::placeholder {
+      font-family: 'Roboto', sans-serif; /* Apply custom font */
+      font-weight: normal; /* Ensure the text is not bold */
+    }
     </style>
 </head>
 <body>
@@ -750,15 +761,21 @@
         <a onclick="showSection('slow-topic', 'slow issue')">
             <img width="30" src="https://cdn-icons-png.flaticon.com/512/13558/13558082.png" alt="slow issue">
         </a>
+          <!--  remark dash board 
         <a onclick="showPopup('https://ram2020-art.github.io/RemarksDashboard/')">
             <img width="30" src="https://cdn-icons-png.flaticon.com/512/16343/16343586.png" alt="Show iFrame">
         </a>
+        -->
         <a onclick="showSection('feedback-form', 'feedback form')">
             <img width="30" src="https://cdn-icons-png.flaticon.com/512/2646/2646064.png" alt="feedback form">
         </a>
+
+
+         <!-- notice menu 
         <a onclick="showSection('notice', 'Notice')">
             <img width="30" src="https://cdn-icons-png.flaticon.com/512/3258/3258504.png" alt="notice">
         </a>
+         -->
     
         <!-- New Menu Item for Slow Net Guide -->
         <a onclick="showPopup('https://slownetguide.kalashservices.com.np/')">
@@ -886,15 +903,18 @@
 <div id="container">
     <!-- Tasks List -->
     <div id="tasks">
-        <div id="notification">Your note list is empty.</div>
+        <div id="notification"><p style="font-size: 18px; font-weight: bold;">Your remark list is currently empty!</p>
+            <p style="font-size: 12px; color: gray;">Please type below to add your remark.</p>
+        </div>
         <ul id="tasksList"></ul>
     </div>
 
     <div id="footer">
-        <input id="taskInput" type="text" placeholder="Type your note and press enter......." autofocus>
+        <input id="taskInput" type="text" placeholder="Enter your remark here........" autofocus>
         <input type="text" id="ttNumber" placeholder="Enter Location Shifting Ticket ID......." onkeypress="if(event.key === 'Enter' && this.value.trim() !== '') { window.open('https://tt.wlink.com.np/log_data/showLogDetails/' + this.value, '_blank'); }">
+        <!-- TT
         <input type="text" id="ttNumber" placeholder="Enter  Ticket ID....." onkeypress="if(event.key === 'Enter' && this.value.trim() !== '') { window.open('https://esupport.wlink.com.np/new_tickets/trouble_ticket_new/index.php/main/ticket_detail/' + this.value, '_blank'); }">
-   
+   -->
     </div>
 </div>
 
@@ -938,7 +958,7 @@
         </div>
         
 <div class="text-block" onclick="copyText('text17', this)">
-<p id="text17">Client was informed by branch about a 1-month free offer for 3 months' payment, but the 1-month bonus has not been added. Please address this urgently.</p>
+<p id="text17">Client was offered 1-month free, but it hasn't been added. Please address urgently.</p>
 </div>
 
 <div class="text-block" onclick="copyText('text40', this)">
@@ -1116,6 +1136,15 @@
     </footer>
 
 <script async data-id="4455653935" id="chatling-embed-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
+<script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+<script>
+  kofiWidgetOverlay.draw('rammijar', {
+    'type': 'floating-chat',
+    'floating-chat.donateButton.text': 'buy me a Ko-fi',
+    'floating-chat.donateButton.background-color': '#323842',
+    'floating-chat.donateButton.text-color': '#fff'
+  });
+</script>        
             
     <script>
         function showSection(sectionId, title) {
