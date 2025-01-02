@@ -737,6 +737,44 @@
       font-family: 'Roboto', sans-serif; /* Apply custom font */
       font-weight: normal; /* Ensure the text is not bold */
     }
+
+
+
+
+
+    /* card for my worldlink */
+    .card {
+            background-color: var(--card-bg-color);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px var(--shadow-color);
+            max-width: 600px;
+            width: 90%;
+            border: 1.5px solid var(--border-color);
+            text-align: left;
+        }
+
+        h1 {
+            font-size: small;
+            color: var(--text-color);
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        p {
+            font-size:small;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        ol {
+            padding-left: 25px;
+            font-size: small;
+        }
+
+        ol li {
+            margin-bottom: 12px;
+        }
     </style>
 </head>
 <body>
@@ -773,11 +811,11 @@
         </a>
 
 
-         <!-- notice menu 
+         
         <a onclick="showSection('notice', 'Notice')">
-            <img width="30" src="https://cdn-icons-png.flaticon.com/512/3258/3258504.png" alt="notice">
+            <img width="30" src="https://cdn-icons-png.flaticon.com/512/11794/11794260.png" alt="notice">
         </a>
-         -->
+         
     
         <!-- New Menu Item for Slow Net Guide -->
         <a onclick="showPopup('https://slownetguide.kalashservices.com.np/')">
@@ -1125,22 +1163,41 @@
 </form>
 <div id="notice" class="container hidden notic">
     <div class="cards-container">
-        <!-- First Offer Card -->
-        <div class="offer-card">
-            <img src="img/bloggg-1536x674.jpg" alt="Offer Image">
-            <h4 class="offer-title">Festive कारNIVAL WorldLink Dashain Offer: Win a Nammi 01 E3 EV Car  </h4>
-            <p class="offer-text">Enjoy up to 53% off on select items, exclusively for Worldlink customers.</p>
-            <button class="action">Explore More</button>
-        </div>
+        <div class="card">
+            <h1>MyWorldLink  Connection Guide</h1>
+            <p><strong>For Android Users:</strong></p>
+            <ol>
+                <li>Go to Wi-Fi Settings and select the SSID <strong>"myWorldLink"</strong>.</li>
+                <li>If available, click on <strong>"Advanced Options"</strong>.</li>
+                <li>Select <strong>"PEAP"</strong> in the EAP method.</li>
+                <li>Select <strong>"MSCHAPV2"</strong> in Phase 2 authentication.</li>
+                <li>Choose <strong>"Do not validate"</strong> or <strong>"Unspecified"</strong> in the CA certificate field.</li>
+                <li>Type your WorldLink account username in the <strong>Identity</strong> field.</li>
+                <li>In the <strong>Password</strong> section, enter your WorldLink Online Service password.</li>
+                <li>Click <strong>"CONNECT"</strong>.</li>
+            </ol>
+    
+            <p><strong>For iPhone/Windows/PC Users:</strong></p>
+            <ol>
+                <li>Go to Settings and select Wi-Fi.</li>
+                <li>Select the SSID <strong>"myWorldLink"</strong> from the list.</li>
+                <li>Enter your WorldLink account <strong>Username & Password</strong>.</li>
+                <li>Click <strong>"CONNECT"</strong>.</li>
+            </ol>
+    
+            <p><strong>For Non-WorldLink Customers:</strong></p>
+            <ol>
+                <li>Select the SSID <strong>"Free_WorldLink_Wi-Fi"</strong>.</li>
+                <li>Click on <strong>"Get Online"</strong>.</li>
+                <li>Click on <strong>"Connect on Free Wi-Fi"</strong>.</li>
+                <li>Click on <strong>"Are you a new user?"</strong>.</li>
+                <li>Insert your mobile number and click <strong>"Next"</strong>.</li>
+                <li>Confirm your mobile number and click <strong>"Continue"</strong>.</li>
+                <li>Enter the OTP received via SMS and click <strong>"Login"</strong>.</li>
+            </ol>
+    
+            <footer>&copy; 2025 <a href="https://www.rammijar.com.np">Ram mijar</a>. All rights reserved.</footer>
 
-        <!-- Second Offer Card -->
-        <div class="offer-card">
-            <img src="img/offer1.jpg" alt="Exclusive Offer">
-            <h4 class="offer-title">Exclusive Offer</h4>
-            <p class="offer-text">Get up to 39% off on Samsung Appliances, only for Worldlink users! <br> 
-                Enjoy up to 53% off on select items, exclusively for Worldlink customers.
-            </p>
-            <button class="action">Discover Now</button>
         </div>
     </div>
     </div>
