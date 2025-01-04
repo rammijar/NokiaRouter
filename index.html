@@ -161,10 +161,11 @@
             position: relative;
         }
 
+        /*
         .text-block:hover {
             background-color: var(--hover-bg-color);
         }
-
+*/
         .text-block p {
             background-color: var(--container-bg-color);
             flex-grow: 1;
@@ -235,30 +236,90 @@
 
 
 
+/* Menu Styles */
+.menu {
+    display: flex; /* Flexbox for horizontal layout */
+    justify-content: center; /* Center items horizontally */
+    background-color: #222; /* Dark background for the menu */
+    padding: 5px 10px; /* Smaller padding for a compact design */
+    border-radius: 20px; /* Rounded corners for the menu */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Subtle shadow for modern look */
+}
 
-  /* Menu Styles */
-  .menu {
-            display: flex; /* Flexbox for horizontal layout */
-            justify-content: center; /* Center items horizontally */
-            background-color: #1c1c1c; /* Dark background for the menu */
-            padding: 10px; /* Padding around the menu items */
-            border-bottom: 2px solid #444; /* Bottom border for separation */
-        }
+/* Menu Links */
+.menu a {
+    color: #ddd; /* Light text color */
+    text-decoration: none; /* Remove underline */
+    font-size: 14px; /* Smaller font size for compact design */
+    margin: 0 20px; /* Space between items */
+    padding: 6px 0; /* Small vertical padding */
+    border-radius: 5px; /* Slight rounded corners */
+    position: relative; /* For positioning pseudo-elements */
+    display: inline-block; /* Ensures the link can have a border */
+    overflow: hidden; /* Hide the sliding underline when not active */
+    transition: color 0.3s, transform 0.2s ease; /* Smooth transitions */
+}
 
-        .menu a {
-            color: #ddd; /* Light text color */
-            text-decoration: none; /* Remove underline */
-            font-size: 16px; /* Font size for menu items */
-            margin: 0 15px; /* Space between menu items */
-            padding: 5px 10px; /* Padding around text */
-            border-radius: 5px; /* Rounded corners for menu items */
-            transition: background-color 0.3s, color 0.3s; /* Smooth color transition */
-        }
+/* Hover Effects for Menu Links */
+.menu a:hover {
+    color: #fff; /* White text on hover */
+    transform: scale(1.1); /* Slightly larger on hover */
+}
 
-        .menu a:hover {
-            background-color: #444; /* Darker background on hover */
-            color: #fff; /* White text color on hover */
-        }
+/* Underline (Sliding) Effect */
+.menu a::after {
+    content: ''; /* Empty content for the underline */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Full width of the item */
+    height: 2px; /* Thickness of the underline */
+    background-color: transparent; /* Initially transparent */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth transition */
+    transform: translateX(-100%); /* Initially position the underline off-screen */
+}
+
+/* Unique Hover Effects for Each Menu Item (Sliding Underline Color Change) */
+.menu a:nth-child(1):hover::after {
+    background-color: #f39c12; /* Orange underline */
+    transform: translateX(0); /* Slide underline into place */
+}
+
+.menu a:nth-child(2):hover::after {
+    background-color: #e74c3c; /* Red underline */
+    transform: translateX(0); /* Slide underline into place */
+}
+
+.menu a:nth-child(3):hover::after {
+    background-color: #3498db; /* Blue underline */
+    transform: translateX(0); /* Slide underline into place */
+}
+
+.menu a:nth-child(4):hover::after {
+    background-color: #2ecc71; /* Green underline */
+    transform: translateX(0); /* Slide underline into place */
+}
+
+.menu a:nth-child(5):hover::after {
+    background-color: #9b59b6; /* Purple underline */
+    transform: translateX(0); /* Slide underline into place */
+}
+
+.menu a:nth-child(6):hover::after {
+    background-color: #e67e22; /* Orange-yellow underline */
+    transform: translateX(0); /* Slide underline into place */
+}
+
+.menu a:nth-child(7):hover::after {
+    background-color: #1abc9c; /* Teal underline */
+    transform: translateX(0); /* Slide underline into place */
+}
+
+.menu a:nth-child(8):hover::after {
+    background-color: #f1c40f; /* Yellow underline */
+    transform: translateX(0); /* Slide underline into place */
+}
+
 
         /* Fullscreen iFrame Popup Styles */
         .iframe-popup {
@@ -405,7 +466,7 @@
 
 /* Change the background to green when copied */
 .copied {
-    background-color: #151616d7; /* Green for 'Copied' */
+  /*  background-color: #151616d7; issue with bacground text when client on spand text Green for 'Copied' */
     color: white;
 }
 
@@ -619,65 +680,7 @@
 
 
 
-    
-    .cards-container {
-            display: flex;
-            justify-content: space-around;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .offer-card {
-            background-color: #1f1f1f;
-            width: 900px;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-            overflow: hidden;
-            text-align: center;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .offer-card img {
-            width: 100%;
-            height: auto;
-            border-radius: 12px 12px 0 0;
-        }
-
-        .offer-title {
-            font-size: 22px;
-            margin: 15px 0;
-            color: #f8f7f4;
-        }
-
-        .offer-text {
-            font-size: 16px;
-            margin-bottom: 10px;
-            color: #ccc;
-        }
-
-        .action {
-            background-color: #383737;
-            border: none;
-            padding: 10px;
-            margin-top: 20px;
-            color: white;
-            cursor: pointer;
-            width: 100%;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-
-        .action:hover {
-            background-color: #ee0505;
-        }
-
-        @media (max-width: 768px) {
-            .cards-container {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
+  
 
 
 
@@ -962,6 +965,7 @@
 
         <hr>
         <h4>ONU Status</h4>
+
         <div class="text-block" onclick="copyText('text1', this)">
             <p id="text1">No light on auth and link. Please do the needful.</p>
         </div>
@@ -992,6 +996,13 @@
 
         
         <h4>Account</h4>
+        
+        <div class="text-block" onclick="copyText('text100', this)">
+            <p id="text100" style="display: none;">⠀⠀⠀⠀⠀⠀⠀</p>
+            <span>
+               <p>Empty remark. Use at your own risk. Not responsible.</p> 
+            </span>
+        </div>
        
         <div class="text-block" onclick="copyText('text2', this)">
             <p id="text2">Account extended for 3 days. Suggested to use My WorldLink app. Suggested payment.</p>
@@ -1203,7 +1214,7 @@
     
 
     <footer>
-        <span style="font-size: small; color: gray;">Remark can make mistakes. Check important info.</span>
+        <span style="font-size:small; color: gray;">"Remarks may contain errors. Use at your own risk. We are not responsible for any outcomes."</span>
 
         <h6>&copy; <a href="http://www.rammijar.com.np" target="_blank">Ram Mijar</a>. All rights reserved.</h6>
     </footer>
