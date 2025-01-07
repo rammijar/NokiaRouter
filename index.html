@@ -234,8 +234,6 @@
             animation: fadeIn 2s forwards; /* Slow fade-in animation */
         }
 
-
-
 /* Menu Styles */
 .menu {
     display: flex; /* Flexbox for horizontal layout */
@@ -248,7 +246,7 @@
 
 /* Menu Links */
 .menu a {
-    color: #ddd; /* Light text color */
+    color: white; /* Default icon color */
     text-decoration: none; /* Remove underline */
     font-size: 14px; /* Smaller font size for compact design */
     margin: 0 20px; /* Space between items */
@@ -262,8 +260,12 @@
 
 /* Hover Effects for Menu Links */
 .menu a:hover {
-    color: #fff; /* White text on hover */
     transform: scale(1.1); /* Slightly larger on hover */
+    color: var(--icon-color); /* Change icon color on hover */
+}
+
+.menu a:hover svg path {
+    fill: var(--icon-color); /* Change the color of the SVG path on hover */
 }
 
 /* Underline (Sliding) Effect */
@@ -279,46 +281,64 @@
     transform: translateX(-100%); /* Initially position the underline off-screen */
 }
 
-/* Unique Hover Effects for Each Menu Item (Sliding Underline Color Change) */
-.menu a:nth-child(1):hover::after {
-    background-color: #f39c12; /* Orange underline */
+/* Hover Effects: Change the underline color */
+.menu a:hover::after {
+    background-color: var(--icon-color); /* Underline color same as the icon color */
     transform: translateX(0); /* Slide underline into place */
 }
 
-.menu a:nth-child(2):hover::after {
-    background-color: #e74c3c; /* Red underline */
+/* Active State Styles (When Tab is Active) */
+.menu a.active {
+    color: var(--icon-color); /* Set the icon color for the active state */
+}
+
+.menu a.active svg path {
+    fill: var(--icon-color); /* Set the fill color for the SVG icon */
+}
+
+.menu a.active::after {
+    background-color: var(--icon-color); /* Same color for the active underline */
     transform: translateX(0); /* Slide underline into place */
 }
 
-.menu a:nth-child(3):hover::after {
-    background-color: #3498db; /* Blue underline */
-    transform: translateX(0); /* Slide underline into place */
+/* Unique Hover Effects for Each Menu Item */
+.menu a:nth-child(1) {
+    --icon-color: #f39c12; /* Set custom color for the first item */
 }
 
-.menu a:nth-child(4):hover::after {
-    background-color: #2ecc71; /* Green underline */
-    transform: translateX(0); /* Slide underline into place */
+.menu a:nth-child(2) {
+    --icon-color: #e74c3c; /* Set custom color for the second item */
 }
 
-.menu a:nth-child(5):hover::after {
-    background-color: #9b59b6; /* Purple underline */
-    transform: translateX(0); /* Slide underline into place */
+.menu a:nth-child(3) {
+    --icon-color: #3498db; /* Set custom color for the third item */
 }
 
-.menu a:nth-child(6):hover::after {
-    background-color: #e67e22; /* Orange-yellow underline */
-    transform: translateX(0); /* Slide underline into place */
+.menu a:nth-child(4) {
+    --icon-color: #2ecc71; /* Set custom color for the fourth item */
 }
 
-.menu a:nth-child(7):hover::after {
-    background-color: #1abc9c; /* Teal underline */
-    transform: translateX(0); /* Slide underline into place */
+.menu a:nth-child(5) {
+    --icon-color: #9b59b6; /* Set custom color for the fifth item */
 }
 
-.menu a:nth-child(8):hover::after {
-    background-color: #f1c40f; /* Yellow underline */
-    transform: translateX(0); /* Slide underline into place */
+.menu a:nth-child(6) {
+    --icon-color: #e67e22; /* Set custom color for the sixth item */
 }
+
+.menu a:nth-child(7) {
+    --icon-color: #1abc9c; /* Set custom color for the seventh item */
+}
+
+.menu a:nth-child(8) {
+    --icon-color: #f1c40f; /* Set custom color for the eighth item */
+}
+
+
+
+
+
+
 
 
         /* Fullscreen iFrame Popup Styles */
@@ -778,6 +798,10 @@
         ol li {
             margin-bottom: 12px;
         }
+
+
+
+    
     </style>
 </head>
 <body>
@@ -792,43 +816,91 @@
     
     <!-- Menu with new option -->
     <div class="menu">
-        <a onclick="showSection('net-tv-cases', 'Net TV Cases')">
-            <img width="30" src="https://cdn-icons-png.flaticon.com/512/550/550486.png" alt="net tv">
+
+      
+        <a onclick="showSection('net-tv-cases', 'Net TV Cases')" class="menu-item" data-color="#f39c12">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                <path d="M19 6h-4.865l3.633-4.36A1 1 0 1 0 16.232.36L12 5.438 7.768.36a1 1 0 1 0-1.536 1.28L9.865 6H5c-2.757 0-5 2.243-5 5v8c0 2.757 2.243 5 5 5h14c2.757 0 5-2.243 5-5v-8c0-2.757-2.243-5-5-5Zm3 13c0 1.654-1.346 3-3 3H5c-1.654 0-3-1.346-3-3v-8c0-1.654 1.346-3 3-3h14c1.654 0 3 1.346 3 3v8Zm-9-9H6c-1.103 0-2 .897-2 2v6c0 1.103.897 2 2 2h7c1.103 0 2-.897 2-2v-6c0-1.103-.897-2-2-2Zm-7 8v-6h7v6H6Zm14-5.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 20 12.5Zm0 5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 20 17.5Z" fill="white"></path>
+            </svg>
         </a>
-        <a onclick="showSection('nokia-router', 'Nokia Router')">
-            <img width="30" src="https://cdn-icons-png.flaticon.com/512/2743/2743461.png" alt="nokia router">
+        <!-- Other Menu Items -->
+        <a onclick="showSection('nokia-router', 'Nokia Router')" class="menu-item" data-color="#e74c3c">
+            <!-- Updated SVG icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve">
+                <g>
+                    <path d="M14.302 8.646a1 1 0 1 1-1.043 1.707 2.456 2.456 0 0 0-2.518 0 1 1 0 1 1-1.043-1.707c1.385-.846 3.219-.846 4.604 0ZM16.539 7.5a1 1 0 0 0 .598-1.801C15.645 4.588 13.868 4.001 12 4.001s-3.645.587-5.137 1.698a.998.998 0 1 0 1.193 1.603c2.291-1.703 5.596-1.703 7.887 0a.992.992 0 0 0 .596.198ZM5.516 4.279C7.342 2.809 9.645 2 12 2s4.658.81 6.484 2.279a1 1 0 0 0 1.254-1.558C17.559.967 14.81 0 12 0S6.441.967 4.262 2.721a1 1 0 1 0 1.254 1.558ZM24 18.5v2a3.5 3.5 0 0 1-3.5 3.5h-17A3.5 3.5 0 0 1 0 20.5v-2A3.5 3.5 0 0 1 3.5 15h1.485L.16 7.543a1 1 0 0 1 1.68-1.086l5.5 8.5c.009.013.009.029.017.043h9.286c.008-.014.008-.029.017-.043l5.5-8.5a1 1 0 1 1 1.68 1.086L19.015 15H20.5a3.5 3.5 0 0 1 3.5 3.5Zm-18 1a1.5 1.5 0 1 0-3.001.001A1.5 1.5 0 0 0 6 19.5Zm4 0a1.5 1.5 0 1 0-3.001.001A1.5 1.5 0 0 0 10 19.5Z" fill="white" opacity="1" data-original="#000000" class=""></path>
+                </g>
+            </svg>
         </a>
-        <a onclick="showSection('wireless-calculator', 'Wireless Speed Calculator')">
-            <img width="30" src="https://cdn-icons-png.flaticon.com/512/12878/12878110.png" alt="wifi calculator">
+        
+        <a onclick="showSection('wireless-calculator', 'Wireless Speed Calculator')" class="menu-item" data-color="#3498db">
+            <!-- Updated SVG icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512 512" xml:space="preserve">
+                <g>
+                    <path d="M7.757 14.757c-.293.293-.677.439-1.061.439s-.768-.146-1.061-.439a1.5 1.5 0 0 1 0-2.121 8.992 8.992 0 0 1 6.963-2.616 1.5 1.5 0 0 1-.198 2.993 6.017 6.017 0 0 0-4.644 1.744Zm9.623-7.596a1.497 1.497 0 0 0 1.985-.746 1.499 1.499 0 0 0-.745-1.986C12.584 1.688 5.376 2.997.687 7.687l-.272.278a1.5 1.5 0 0 0 2.171 2.072l.222-.228c3.811-3.812 9.668-4.874 14.572-2.646Zm6.181.278a1.5 1.5 0 0 0-2.121 0l-8.672 8.672a2.986 2.986 0 0 0-.767-.112 3 3 0 1 0 3 3c0-.267-.046-.521-.112-.767l8.672-8.672a1.5 1.5 0 0 0 0-2.121Z" fill="white" opacity="1" data-original="#000000" class="icon-svg"></path>
+                </g>
+            </svg>
         </a>
-        <a onclick="showSection('slow-topic', 'slow issue')">
-            <img width="30" src="https://cdn-icons-png.flaticon.com/512/13558/13558082.png" alt="slow issue">
-        </a>
+        
+        
+     <!-- Slow Issue Menu Item -->
+<a onclick="showSection('slow-topic', 'slow issue')">
+    <!-- SVG for Slow Issue Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
+        <g>
+            <path d="M8.5 12c3.032 0 5.5-2.467 5.5-5.5S11.532 1 8.5 1 3 3.467 3 6.5 5.468 12 8.5 12Zm0-10C10.981 2 13 4.019 13 6.5S10.981 11 8.5 11 4 8.981 4 6.5 6.019 2 8.5 2Zm11.26 12.802L24 22.877V24h-9.896l-.31-1h9.142l-4.061-7.733a3.29 3.29 0 0 0-2.922-1.767c-.078.01-.865.151-5.768 1.202a3.468 3.468 0 0 0-1.935 1.164L3.076 21.59l6.382-4.117L11.859 24h-1.066l-1.844-5.011L1.387 24H.059l1.949-11.086.984.173-1.505 8.734 6-6.599a4.512 4.512 0 0 1 2.488-1.497c5.712-1.225 5.878-1.225 5.978-1.225 1.604 0 3.062.882 3.807 2.302Zm.907-6.223.833-1.667.833 1.667L24 9.412l-1.667.833-.833 1.667-.833-1.667L19 9.412l1.667-.833Zm-2.634-1.71 1.123-2.246L21.401 3.5l-2.245-1.123L18.032.132l-1.123 2.246-2.245 1.123 2.245 1.123 1.123 2.246Zm-.377-3.746.377-.754.377.754.755.377-.755.377-.377.754-.377-.754-.755-.377.755-.377Z" fill="#ffffff" opacity="1" data-original="#000000" class=""></path>
+        </g>
+    </svg>
+</a>
+
           <!--  remark dash board 
         <a onclick="showPopup('https://ram2020-art.github.io/RemarksDashboard/')">
             <img width="30" src="https://cdn-icons-png.flaticon.com/512/16343/16343586.png" alt="Show iFrame">
         </a>
         -->
-        <a onclick="showSection('feedback-form', 'feedback form')">
-            <img width="30" src="https://cdn-icons-png.flaticon.com/512/2646/2646064.png" alt="feedback form">
-        </a>
+       <!-- Feedback Form Menu Item -->
+<a onclick="showSection('feedback-form', 'feedback form')">
+    <!-- SVG for Feedback Form Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
+        <g>
+            <path d="m10.095 18.042.628 2.825a4 4 0 0 0 3.905 3.132h4.373v-6a1 1 0 0 1 2 0v6a3 3 0 0 0 3-3v-3a3 3 0 0 0-3-3h-.456l-2.193-4.149c-.18-.352-.428-.614-.682-.719a1.663 1.663 0 0 0-.64-.132c-.682 0-1.244.446-1.432 1.136-.022.08-.05.265.007.599l.58 3.265h-3.649a2.5 2.5 0 0 0-2.44 3.042ZM9.5 0A9.5 9.5 0 0 0 0 9.5c0 4.818 3.59 8.788 8.238 9.407l-.096-.431a4.477 4.477 0 0 1 .883-3.792A4.482 4.482 0 0 1 12.535 13h1.263l-.162-.916c-.098-.561-.084-1.059.036-1.489.42-1.546 1.771-2.596 3.356-2.596.478 0 .951.096 1.407.285.179.074.352.17.517.283C18.484 3.759 14.432 0 9.5 0Zm4.4 7.219-3.721 3.566a2.5 2.5 0 0 1-3.508-.007L4.798 9a1.003 1.003 0 0 1 1.407-1.429l2.21 2.097 4.086-3.885a1.003 1.003 0 0 1 1.4 1.436Z" fill="#ffffff" opacity="1" data-original="#000000" class=""></path>
+        </g>
+    </svg>
+</a>
 
 
-         
-        <a onclick="showSection('notice', 'Notice')">
-            <img width="30" src="https://cdn-icons-png.flaticon.com/512/11794/11794260.png" alt="notice">
-        </a>
-         
-    
-        <!-- New Menu Item for Slow Net Guide -->
-        <a onclick="showPopup('https://slownetguide.kalashservices.com.np/')">
-            <img width="30" src="https://cdn-icons-png.flaticon.com/512/7205/7205663.png" alt="Slow Net Guide">
-        </a>
 
-         <!-- New Menu Item for Month and Day Calculator -->
-    <a onclick="showSection('month-day-calculator', 'Month and Day Calculator')">
-        <img width="30" src="https://cdn-icons-png.flaticon.com/512/2175/2175566.png" alt="Month and Day Calculator">
-    </a>
+<a onclick="showSection('notice', 'Notice')" class="menu-item" data-color="#3498db">
+            <!-- Updated SVG icon for "Notice" -->
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
+                <g>
+                    <path d="M4 12c0-2.319 1.052-4.597 2.963-6.413a1.5 1.5 0 1 0-2.067-2.175C2.384 5.8 1 8.85 1 12s1.384 6.2 3.896 8.587c.29.276 1.203.829 2.121-.054.576-.555.546-1.55-.054-2.121C5.052 16.596 4 14.319 4 11.999zM19.105 3.413a1.5 1.5 0 1 0-2.067 2.175c1.911 1.816 2.963 4.093 2.963 6.413s-1.052 4.597-2.963 6.413c-.601.571-.63 1.566-.054 2.121.918.883 1.831.33 2.121.054 2.513-2.388 3.896-5.438 3.896-8.587s-1.384-6.2-3.896-8.587z" fill="white" opacity="1" data-original="#000000" class=""></path>
+                    <path d="M9.769 15.233C8.74 14.255 8.196 13.137 8.196 12s.544-2.255 1.573-3.233a1.5 1.5 0 1 0-2.067-2.175C6.086 8.128 5.196 10.049 5.196 12s.89 3.872 2.506 5.408c.29.276 1.197.799 2.121-.054.609-.562.546-1.55-.054-2.121zM16.305 6.592a1.5 1.5 0 1 0-2.067 2.175c1.029.978 1.573 2.096 1.573 3.233s-.544 2.255-1.573 3.233c-.601.571-.663 1.558-.054 2.121.924.853 1.831.33 2.121.054 1.616-1.536 2.506-3.457 2.506-5.408s-.89-3.872-2.506-5.408z" fill="white" opacity="1" data-original="#000000" class=""></path>
+                    <ellipse cx="12" cy="12" rx="2.448" ry="2.436" fill="white" opacity="1" data-original="#000000" class=""></ellipse>
+                </g>
+            </svg>
+        </a>
+        
+       <!-- New Menu Item for Slow Net Guide -->
+<a onclick="showPopup('https://slownetguide.kalashservices.com.np/')">
+    <!-- Replace the image with the provided SVG -->
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
+        <g>
+            <path d="M9 15h6V9H9v6Zm1-5h4v4h-4v-4ZM9 7h6V1H9v6Zm1-5h4v4h-4V2ZM9 23h6v-6H9v6Zm1-5h4v4h-4v-4Zm-2.336 1.65a1.249 1.249 0 0 1 0 1.765L5.02 24.059l-.707-.707L6.665 21H2.5A2.503 2.503 0 0 1 0 18.5v-5C0 12.122 1.122 11 2.5 11H8v1H2.5c-.827 0-1.5.673-1.5 1.5v5c0 .827.673 1.5 1.5 1.5h4.099l-2.286-2.286.707-.707 2.644 2.644ZM17 10h-1V9h1a1.001 1.001 0 0 0 0-2h-1V6h1c1.103 0 2 .897 2 2s-.897 2-2 2Zm4.86-.899 1.94 1.133-1.512 2.591-1.937-1.131a4.947 4.947 0 0 1-1.853 1.068V15h-2.5v-1h1.5v-2.031a3.995 3.995 0 0 0 2.66-1.517l1.77 1.004.504-.863-1.763-1.001c.212-.488.33-1.026.33-1.592 0-.55-.111-1.074-.312-1.55l1.745-1.043-.504-.863-1.742 1.041a3.994 3.994 0 0 0-2.688-1.553V2.001h-1.5v-1h2.5v2.238a4.973 4.973 0 0 1 1.853 1.067l1.937-1.13L23.8 5.767 21.86 6.9c.094.384.14.748.14 1.101s-.046.716-.14 1.101Z" fill="#ffffff" opacity="1" data-original="#000000" class=""></path>
+        </g>
+    </svg>
+</a>
+
+
+    <!-- New Menu Item for Month and Day Calculator -->
+<a id="month-day-calculator-icon" onclick="showSection('month-day-calculator', 'Month and Day Calculator')" class="icon-link">
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512 512" xml:space="preserve" class="icon">
+        <g>
+            <path d="M24 12a1.5 1.5 0 0 1-1.5 1.5h-9v9a1.5 1.5 0 1 1-3 0v-9h-9a1.5 1.5 0 1 1 0-3h9v-9a1.5 1.5 0 1 1 3 0v9h9A1.5 1.5 0 0 1 24 12Zm-1.5 4h-6a1.5 1.5 0 1 0 0 3h6a1.5 1.5 0 1 0 0-3Zm0 5h-6a1.5 1.5 0 1 0 0 3h6a1.5 1.5 0 1 0 0-3ZM1.5 6h6a1.5 1.5 0 1 0 0-3h-6a1.5 1.5 0 1 0 0 3Zm15 0H18v1.5a1.5 1.5 0 1 0 3 0V6h1.5a1.5 1.5 0 1 0 0-3H21V1.5a1.5 1.5 0 1 0-3 0V3h-1.5a1.5 1.5 0 1 0 0 3ZM7.561 16.439a1.5 1.5 0 0 0-2.121 0l-1.439 1.439-1.439-1.439A1.5 1.5 0 1 0 .441 18.56l1.439 1.439-1.439 1.439a1.5 1.5 0 1 0 2.122 2.121l1.439-1.439 1.439 1.439c.293.293.677.439 1.061.439s.768-.146 1.061-.439a1.5 1.5 0 0 0 0-2.121l-1.439-1.439 1.439-1.439a1.5 1.5 0 0 0 0-2.121Z" fill="#ffffff" opacity="1" data-original="#000000"></path>
+        </g>
+    </svg>
+</a>
+
     </div>
 
     <div id="net-tv-cases" class="container">
@@ -1219,261 +1291,266 @@
         <h6>&copy; <a href="http://www.rammijar.com.np" target="_blank">Ram Mijar</a>. All rights reserved.</h6>
     </footer>
 
-<script async data-id="4455653935" id="chatling-embed-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
-<script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
-<script>
-  kofiWidgetOverlay.draw('rammijar', {
-    'type': 'floating-chat',
-    'floating-chat.donateButton.text': 'buy me a Ko-fi',
-    'floating-chat.donateButton.background-color': '#323842',
-    'floating-chat.donateButton.text-color': '#fff'
-  });
-</script>        
-            
+
+
+  
+
+
+    <script async data-id="4455653935" id="chatling-embed-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
     <script>
-        function showSection(sectionId, title) {
-            const sections = document.querySelectorAll('.container');
-            sections.forEach(section => {
-                section.classList.add('hidden');
-            });
-            document.getElementById(sectionId).classList.remove('hidden');
-            document.title = title; // Update page title
-        }
-
-        function copyToClipboard(text, element) {
-            const tempInput = document.createElement('input');
-            tempInput.value = text;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempInput);
-            showCopyAnimation(element);
-        }
-
-        document.getElementById('searchInput').addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                let inputText = document.getElementById('searchInput').value;
-                let resultText;
-
-                if (inputText.includes('ALCL')) {
-                    resultText = inputText.replace(/ALCL/g, '414C434C');
-                } else {
-                    resultText = '414C434C' + inputText;
+      kofiWidgetOverlay.draw('rammijar', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': 'buy me a Ko-fi',
+        'floating-chat.donateButton.background-color': '#323842',
+        'floating-chat.donateButton.text-color': '#fff'
+      });
+    </script>        
+                
+        <script>
+            function showSection(sectionId, title) {
+                const sections = document.querySelectorAll('.container');
+                sections.forEach(section => {
+                    section.classList.add('hidden');
+                });
+                document.getElementById(sectionId).classList.remove('hidden');
+                document.title = title; // Update page title
+            }
+    
+            function copyToClipboard(text, element) {
+                const tempInput = document.createElement('input');
+                tempInput.value = text;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+                showCopyAnimation(element);
+            }
+    
+            document.getElementById('searchInput').addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    let inputText = document.getElementById('searchInput').value;
+                    let resultText;
+    
+                    if (inputText.includes('ALCL')) {
+                        resultText = inputText.replace(/ALCL/g, '414C434C');
+                    } else {
+                        resultText = '414C434C' + inputText;
+                    }
+    
+                    document.getElementById('resultText').textContent = resultText;
+                    document.getElementById('resultContainer').classList.remove('hidden');
                 }
-
-                document.getElementById('resultText').textContent = resultText;
-                document.getElementById('resultContainer').classList.remove('hidden');
+            });
+    
+            function copyText(elementId, element) {
+                let textToCopy = document.getElementById(elementId).textContent;
+                navigator.clipboard.writeText(textToCopy).then(function() {
+                    showCopyAnimation(element);
+                }, function() {
+                    alert('Failed to copy text.');
+                });
+            }
+    
+            function showCopyAnimation(element) {
+                element.classList.add('copied');
+                setTimeout(() => {
+                    element.classList.remove('copied');
+                }, 2000);
+            }
+    
+            function calculateSpeed() {
+                const bandwidthMbps = parseFloat(document.getElementById('bandwidth').value);
+                const wirelessStandard = document.getElementById('standard').value;
+                const numDevices = parseInt(document.getElementById('devices').value);
+                let expectedSpeed = 0;
+                const resultElement = document.getElementById('result');
+    
+                if (isNaN(bandwidthMbps) || isNaN(numDevices) || numDevices <= 0) {
+                    resultElement.textContent = 'Please enter valid numbers for bandwidth and number of devices.';
+                    resultElement.classList.add('visible');
+                    return;
+                }
+    
+                switch (wirelessStandard) {
+                    case '802.11ac':
+                        expectedSpeed = (bandwidthMbps * 0.7) / numDevices;
+                        break;
+                    case '802.11n':
+                        expectedSpeed = (bandwidthMbps * 0.5) / numDevices;
+                        break;
+                    default:
+                        break;
+                }
+    
+                resultElement.textContent = `Expected speed per device on ${wirelessStandard} network with ${numDevices} device(s): ${expectedSpeed.toFixed(2)} Mbps`;
+                resultElement.classList.add('visible');
+            }
+    
+            function showPopup(url) {
+            var popup = document.getElementById('iframe-popup');
+            var iframe = document.getElementById('iframe-content');
+            
+            iframe.src = url; // Set the iframe source dynamically
+            popup.style.display = 'flex'; // Show the popup
+            popup.style.opacity = '1';    // Make it visible
+        }
+    
+        function hidePopup() {
+            var popup = document.getElementById('iframe-popup');
+            popup.style.opacity = '0';    // Hide the popup
+            setTimeout(function() {
+                popup.style.display = 'none';
+                document.getElementById('iframe-content').src = ''; // Clear the iframe source
+            }, 300); // Delay to allow transition effect
+        }
+    
+        </script>
+                
+    
+    
+    
+    
+    
+                
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+        var $tasksList = $("#tasksList");
+        var $taskInput = $("#taskInput");
+        var $notification = $("#notification");
+        var editingTask = null;
+    
+        // Function to display or hide the notification
+        function displayNotification() {
+            if (!$tasksList.children().length) {
+                $notification.fadeIn("fast");
+            } else {
+                $notification.hide();
+            }
+        }
+    
+        // Add or edit task when pressing Enter
+        $taskInput.on("keypress", function (e) {
+            if (e.which === 13 && $taskInput.val().trim() !== "") {
+                var taskText = $taskInput.val().trim();
+    
+                if (editingTask) {
+                    editingTask.contents().get(0).nodeValue = taskText;
+                    editingTask = null;
+                } else {
+                    var $newTask = $("<li class='task-item'>").html(taskText + `
+                        <span class="copy-popup">Copy</span>
+                        <div class="task-actions">
+                            <button class="edit">
+                                <img src="https://cdn-icons-png.flaticon.com/512/4476/4476194.png" alt="Edit">
+                            </button>
+                            <button class="remove">
+                                <img src="https://cdn-icons-png.flaticon.com/512/3221/3221897.png" alt="Remove">
+                            </button>
+                        </div>
+                    `);
+                    $tasksList.append($newTask);
+                }
+    
+                $taskInput.val(""); // Clear input field
+                displayNotification();
             }
         });
-
-        function copyText(elementId, element) {
-            let textToCopy = document.getElementById(elementId).textContent;
-            navigator.clipboard.writeText(textToCopy).then(function() {
-                showCopyAnimation(element);
-            }, function() {
-                alert('Failed to copy text.');
-            });
-        }
-
-        function showCopyAnimation(element) {
-            element.classList.add('copied');
-            setTimeout(() => {
-                element.classList.remove('copied');
-            }, 2000);
-        }
-
-        function calculateSpeed() {
-            const bandwidthMbps = parseFloat(document.getElementById('bandwidth').value);
-            const wirelessStandard = document.getElementById('standard').value;
-            const numDevices = parseInt(document.getElementById('devices').value);
-            let expectedSpeed = 0;
-            const resultElement = document.getElementById('result');
-
-            if (isNaN(bandwidthMbps) || isNaN(numDevices) || numDevices <= 0) {
-                resultElement.textContent = 'Please enter valid numbers for bandwidth and number of devices.';
-                resultElement.classList.add('visible');
-                return;
-            }
-
-            switch (wirelessStandard) {
-                case '802.11ac':
-                    expectedSpeed = (bandwidthMbps * 0.7) / numDevices;
-                    break;
-                case '802.11n':
-                    expectedSpeed = (bandwidthMbps * 0.5) / numDevices;
-                    break;
-                default:
-                    break;
-            }
-
-            resultElement.textContent = `Expected speed per device on ${wirelessStandard} network with ${numDevices} device(s): ${expectedSpeed.toFixed(2)} Mbps`;
-            resultElement.classList.add('visible');
-        }
-
-        function showPopup(url) {
-        var popup = document.getElementById('iframe-popup');
-        var iframe = document.getElementById('iframe-content');
-        
-        iframe.src = url; // Set the iframe source dynamically
-        popup.style.display = 'flex'; // Show the popup
-        popup.style.opacity = '1';    // Make it visible
-    }
-
-    function hidePopup() {
-        var popup = document.getElementById('iframe-popup');
-        popup.style.opacity = '0';    // Hide the popup
-        setTimeout(function() {
-            popup.style.display = 'none';
-            document.getElementById('iframe-content').src = ''; // Clear the iframe source
-        }, 300); // Delay to allow transition effect
-    }
-
-    </script>
-            
-
-
-
-
-
-            
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(function () {
-    var $tasksList = $("#tasksList");
-    var $taskInput = $("#taskInput");
-    var $notification = $("#notification");
-    var editingTask = null;
-
-    // Function to display or hide the notification
-    function displayNotification() {
-        if (!$tasksList.children().length) {
-            $notification.fadeIn("fast");
-        } else {
-            $notification.hide();
-        }
-    }
-
-    // Add or edit task when pressing Enter
-    $taskInput.on("keypress", function (e) {
-        if (e.which === 13 && $taskInput.val().trim() !== "") {
-            var taskText = $taskInput.val().trim();
-
-            if (editingTask) {
-                editingTask.contents().get(0).nodeValue = taskText;
-                editingTask = null;
-            } else {
-                var $newTask = $("<li class='task-item'>").html(taskText + `
-                    <span class="copy-popup">Copy</span>
-                    <div class="task-actions">
-                        <button class="edit">
-                            <img src="https://cdn-icons-png.flaticon.com/512/4476/4476194.png" alt="Edit">
-                        </button>
-                        <button class="remove">
-                            <img src="https://cdn-icons-png.flaticon.com/512/3221/3221897.png" alt="Remove">
-                        </button>
-                    </div>
-                `);
-                $tasksList.append($newTask);
-            }
-
-            $taskInput.val(""); // Clear input field
+    
+        // Remove task
+        $tasksList.on("click", ".remove", function () {
+            $(this).closest("li").remove();
             displayNotification();
-        }
-    });
-
-    // Remove task
-    $tasksList.on("click", ".remove", function () {
-        $(this).closest("li").remove();
+        });
+    
+        // Edit task
+        $tasksList.on("click", ".edit", function () {
+            var $taskItem = $(this).closest("li");
+            var taskText = $taskItem.contents().get(0).nodeValue.trim();
+            $taskInput.val(taskText).focus();
+            editingTask = $taskItem;
+        });
+    
+        // Copy task text when clicking on the task item
+        $tasksList.on("click", "li", function (e) {
+            if ($(e.target).is(".edit, .remove")) return; // Do nothing if clicking edit or remove buttons
+            var $taskItem = $(this);
+            var taskText = $taskItem.contents().get(0).nodeValue.trim();
+    
+            navigator.clipboard.writeText(taskText).then(function () {
+                var $popup = $taskItem.find('.copy-popup');
+                $popup.text('Copied').addClass('copied'); // Change popup text to 'Copied'
+                setTimeout(function () {
+                    $popup.text('Copy').removeClass('copied'); // Revert after 2 seconds
+                }, 2000);
+            });
+        });
+    
+        // Initial notification check
         displayNotification();
     });
-
-    // Edit task
-    $tasksList.on("click", ".edit", function () {
-        var $taskItem = $(this).closest("li");
-        var taskText = $taskItem.contents().get(0).nodeValue.trim();
-        $taskInput.val(taskText).focus();
-        editingTask = $taskItem;
-    });
-
-    // Copy task text when clicking on the task item
-    $tasksList.on("click", "li", function (e) {
-        if ($(e.target).is(".edit, .remove")) return; // Do nothing if clicking edit or remove buttons
-        var $taskItem = $(this);
-        var taskText = $taskItem.contents().get(0).nodeValue.trim();
-
-        navigator.clipboard.writeText(taskText).then(function () {
-            var $popup = $taskItem.find('.copy-popup');
-            $popup.text('Copied').addClass('copied'); // Change popup text to 'Copied'
-            setTimeout(function () {
-                $popup.text('Copy').removeClass('copied'); // Revert after 2 seconds
-            }, 2000);
-        });
-    });
-
-    // Initial notification check
-    displayNotification();
-});
-
-</script>
-
-
-<script>
-    function parseDateInput(dateString) {
-        const parts = dateString.match(/(\d{2})-(\w{3})-(\d{4}) (\d{2}):(\d{2}):(\d{2})/);
-        if (!parts) return null;
-
-        const [_, day, month, year, hours, minutes, seconds] = parts;
-        const monthMap = {
-            Jan: 0, Feb: 1, Mar: 2, Apr: 3,
-            May: 4, Jun: 5, Jul: 6, Aug: 7,
-            Sep: 8, Oct: 9, Nov: 10, Dec: 11
-        };
-
-        const monthIndex = monthMap[month];
-        if (monthIndex === undefined) return null;
-
-        return new Date(year, monthIndex, day, hours, minutes, seconds);
-    }
-
-    function calculateDateDifference() {
-        const date1Str = document.getElementById("calc-date1").value.trim();
-        const date2Str = document.getElementById("calc-date2").value.trim();
-        
-        const date1 = parseDateInput(date1Str);
-        const date2 = parseDateInput(date2Str);
-
-        const resultDiv = document.getElementById("calc-result");
-
-        if (!date1 || !date2) {
-            resultDiv.innerText = "Invalid date format. Please use DD-MMM-YYYY HH:MM:SS";
-            resultDiv.classList.add("calc-error-unique");
-            return;
+    
+    </script>
+    
+    
+    <script>
+        function parseDateInput(dateString) {
+            const parts = dateString.match(/(\d{2})-(\w{3})-(\d{4}) (\d{2}):(\d{2}):(\d{2})/);
+            if (!parts) return null;
+    
+            const [_, day, month, year, hours, minutes, seconds] = parts;
+            const monthMap = {
+                Jan: 0, Feb: 1, Mar: 2, Apr: 3,
+                May: 4, Jun: 5, Jul: 6, Aug: 7,
+                Sep: 8, Oct: 9, Nov: 10, Dec: 11
+            };
+    
+            const monthIndex = monthMap[month];
+            if (monthIndex === undefined) return null;
+    
+            return new Date(year, monthIndex, day, hours, minutes, seconds);
         }
-
-        if (date1 > date2) {
-            resultDiv.innerText = "Start date must be before end date.";
-            resultDiv.classList.add("calc-error-unique");
-            return;
+    
+        function calculateDateDifference() {
+            const date1Str = document.getElementById("calc-date1").value.trim();
+            const date2Str = document.getElementById("calc-date2").value.trim();
+            
+            const date1 = parseDateInput(date1Str);
+            const date2 = parseDateInput(date2Str);
+    
+            const resultDiv = document.getElementById("calc-result");
+    
+            if (!date1 || !date2) {
+                resultDiv.innerText = "Invalid date format. Please use DD-MMM-YYYY HH:MM:SS";
+                resultDiv.classList.add("calc-error-unique");
+                return;
+            }
+    
+            if (date1 > date2) {
+                resultDiv.innerText = "Start date must be before end date.";
+                resultDiv.classList.add("calc-error-unique");
+                return;
+            }
+    
+            let months = date2.getMonth() - date1.getMonth() + (12 * (date2.getFullYear() - date1.getFullYear()));
+            let days = date2.getDate() - date1.getDate();
+    
+            if (days < 0) {
+                months--;
+                const lastMonthDate = new Date(date1.getFullYear(), date1.getMonth() + 1, 0);
+                days += lastMonthDate.getDate();
+            }
+    
+            resultDiv.innerText = `Difference: ${months} months and ${days} days`;
+            resultDiv.classList.remove("calc-error-unique");
         }
-
-        let months = date2.getMonth() - date1.getMonth() + (12 * (date2.getFullYear() - date1.getFullYear()));
-        let days = date2.getDate() - date1.getDate();
-
-        if (days < 0) {
-            months--;
-            const lastMonthDate = new Date(date1.getFullYear(), date1.getMonth() + 1, 0);
-            days += lastMonthDate.getDate();
-        }
-
-        resultDiv.innerText = `Difference: ${months} months and ${days} days`;
-        resultDiv.classList.remove("calc-error-unique");
-    }
-
-    // Automatically trigger calculation on input
-    document.getElementById("calc-date1").addEventListener("input", calculateDateDifference);
-    document.getElementById("calc-date2").addEventListener("input", calculateDateDifference);
-</script>
-
-
-</body>
-</html>
+    
+        // Automatically trigger calculation on input
+        document.getElementById("calc-date1").addEventListener("input", calculateDateDifference);
+        document.getElementById("calc-date2").addEventListener("input", calculateDateDifference);
+    </script>
+    
+    
+    </body>
+    </html>
