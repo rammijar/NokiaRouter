@@ -1,0 +1,782 @@
+
+        /* Dark mode variables */
+        :root {
+            --bg-color: #181818;
+            --text-color: #fff;
+            --container-bg-color: #282828;
+            --hover-bg-color: #383838;
+            --success-color: #28a745;
+            --highlight-color: #007bff;
+            --form--bg--color:#2b2828;
+        }
+
+        /* Apply the theme */
+        body, .container, .credentials-container, h2 {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+            height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        h1 {
+      margin: 0;
+      padding: 0;
+      line-height: normal;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    body p {
+            font-family: 'Lora', serif;
+        }
+
+
+        
+        .container {
+    background-color: var(--container-bg-color); /* Background color using a CSS variable */
+    padding: 20px; /* Internal padding */
+    border: 1.7px solid #444; /* Border with a dark color */
+    border-radius: 15px; /* Rounded corners */
+    text-align: center; /* Center-aligns text */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for color changes */
+    width: 100%; /* Full width relative to parent */
+    max-width: 600px; /* Maximum width constraint */
+    margin-top: 20px; /* Space above the container */
+    animation: fadeIn 3s forwards; /* Fade-in animation */
+}
+
+
+
+
+        .copy-button {
+    cursor: pointer;
+    color: var(--highlight-color);
+    text-decoration: underline;
+    position: relative;
+    margin: 5px;
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.copy-button::after,
+.text-block::after {
+    content: 'Copy';
+    position: absolute;
+    bottom: 120%; /* Positioned above the button */
+    left: 50%;
+    transform: translateX(-50%);
+    background-size: auto; /* No background image, default size */
+    background-repeat: no-repeat; /* No background image repeat */
+    background-position: center; /* Center the background image */
+    color: #fff; /* Light text color for readability */
+    padding: 6px 12px; /* Increased padding for a slightly larger appearance */
+    border-radius: 6px; /* Modern rounded corners */
+    font-size: 14px; /* Slightly larger font size for better readability */
+    opacity: 0;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+    white-space: nowrap;
+    z-index: 10; /* Ensure tooltip appears above other content */
+    pointer-events: none; /* Prevent interaction with the tooltip */
+    text-align: center; /* Center text horizontally */
+    line-height: 18px; /* Align text with the increased padding */
+    background-color: rgb(0, 0, 0); /* Dark background */
+}
+
+.copy-button:hover::after,
+.text-block:hover::after {
+    opacity: 1;
+    background-color: rgb(0, 0, 0); /* Maintain dark background on hover */
+}
+
+.copy-button.copied::after,
+.text-block.copied::after {
+    content: 'Copied!';
+    background-size: auto; /* No background image, default size */
+    background-repeat: no-repeat; /* No background image repeat */
+    background-position: center; /* Center the background image */
+    background-color: rgb(19, 18, 18); /* Success color with dark overlay */
+    opacity: 1;
+}
+
+
+        input {
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            width: 90%;
+            font-size: 14px;
+            background-color: var(--container-bg-color);
+            color: var(--text-color);
+        }
+
+        input:focus {
+            border-color: var(--highlight-color);
+            box-shadow: 0 0 5px rgba(10, 10, 10, 0);
+            outline: none;
+        }
+
+        .text-block {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: relative;
+        }
+
+        /*
+        .text-block:hover {
+            background-color: var(--hover-bg-color);
+        }
+*/
+        .text-block p {
+            background-color: var(--container-bg-color);
+            flex-grow: 1;
+            text-align: left;
+            font-size: 14px;
+            padding: 10px;
+            margin: 0;
+            font-weight: 550;
+            color: #fdf6f6cb;
+            transition: background-color 0.3s, color 0.3s;
+            font-family: Arial, sans-serif;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #bbbbbb;
+        }
+
+        input[type="number"], select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #555;
+            border-radius: 4px;
+            box-sizing: border-box;
+            background-color: #2a2a2a;
+            color: #ffffff;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="number"]:focus, select:focus {
+            border-color: #4CAF50;
+        }
+
+        p.visible {
+            opacity: 1;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 12px;
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        footer a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Slow animation effect */
+        .slow-section {
+            opacity: 0;
+            animation: fadeIn 2s forwards; /* Slow fade-in animation */
+        }
+
+/* Menu Styles */
+.menu {
+    display: flex; /* Flexbox for horizontal layout */
+    justify-content: center; /* Center items horizontally */
+    background-color: #222; /* Dark background for the menu */
+    padding: 5px 10px; /* Smaller padding for a compact design */
+    border-radius: 20px; /* Rounded corners for the menu */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Subtle shadow for modern look */
+}
+
+/* Menu Links */
+.menu a {
+    color: white; /* Default icon color */
+    text-decoration: none; /* Remove underline */
+    font-size: 14px; /* Smaller font size for compact design */
+    margin: 0 20px; /* Space between items */
+    padding: 6px 0; /* Small vertical padding */
+    border-radius: 5px; /* Slight rounded corners */
+    position: relative; /* For positioning pseudo-elements */
+    display: inline-block; /* Ensures the link can have a border */
+    overflow: hidden; /* Hide the sliding underline when not active */
+    transition: color 0.3s, transform 0.2s ease; /* Smooth transitions */
+}
+
+/* Hover Effects for Menu Links */
+.menu a:hover {
+    transform: scale(1.1); /* Slightly larger on hover */
+    color: var(--icon-color); /* Change icon color on hover */
+}
+
+.menu a:hover svg path {
+    fill: var(--icon-color); /* Change the color of the SVG path on hover */
+}
+
+/* Underline (Sliding) Effect */
+.menu a::after {
+    content: ''; /* Empty content for the underline */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Full width of the item */
+    height: 2px; /* Thickness of the underline */
+    background-color: transparent; /* Initially transparent */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth transition */
+    transform: translateX(-100%); /* Initially position the underline off-screen */
+}
+
+/* Hover Effects: Change the underline color */
+.menu a:hover::after {
+    background-color: var(--icon-color); /* Underline color same as the icon color */
+    transform: translateX(0); /* Slide underline into place */
+}
+
+/* Active State Styles (When Tab is Active) */
+.menu a.active {
+    color: var(--icon-color); /* Set the icon color for the active state */
+}
+
+.menu a.active svg path {
+    fill: var(--icon-color); /* Set the fill color for the SVG icon */
+}
+
+.menu a.active::after {
+    background-color: var(--icon-color); /* Same color for the active underline */
+    transform: translateX(0); /* Slide underline into place */
+}
+
+/* Unique Hover Effects for Each Menu Item */
+.menu a:nth-child(1) {
+    --icon-color: #f39c12; /* Set custom color for the first item */
+}
+
+.menu a:nth-child(2) {
+    --icon-color: #e74c3c; /* Set custom color for the second item */
+}
+
+.menu a:nth-child(3) {
+    --icon-color: #3498db; /* Set custom color for the third item */
+}
+
+.menu a:nth-child(4) {
+    --icon-color: #2ecc71; /* Set custom color for the fourth item */
+}
+
+.menu a:nth-child(5) {
+    --icon-color: #9b59b6; /* Set custom color for the fifth item */
+}
+
+.menu a:nth-child(6) {
+    --icon-color: #e67e22; /* Set custom color for the sixth item */
+}
+
+.menu a:nth-child(7) {
+    --icon-color: #1abc9c; /* Set custom color for the seventh item */
+}
+
+.menu a:nth-child(8) {
+    --icon-color: #f1c40f; /* Set custom color for the eighth item */
+}
+
+
+
+
+
+
+
+
+        /* Fullscreen iFrame Popup Styles */
+        .iframe-popup {
+            position: fixed; /* Fixed positioning to cover the viewport */
+            top: 0; /* Align to the top of the viewport */
+            left: 0; /* Align to the left of the viewport */
+            width: 100vw; /* Full viewport width */
+            height: 100vh; /* Full viewport height */
+            background-color: rgba(0, 0, 0, 0.5); /* Lighter semi-transparent dark background */
+            display: none; /* Initially hidden */
+            align-items: center; /* Center content vertically */
+            justify-content: center; /* Center content horizontally */
+            z-index: 9999; /* Ensure it appears above other content */
+        }
+
+        .iframe-container {
+            position: relative; /* Relative positioning for the cancel button */
+            width: 95vw; /* 95% of viewport width */
+            height: 95vh; /* 95% of viewport height */
+            background-color: #2e2e2e; /* Dark grey background */
+            border-radius: 10px; /* Slightly rounded corners */
+            overflow: hidden; /* Hide overflow if any */
+        }
+
+        .iframe-container iframe {
+            width: 100%; /* Full width relative to container */
+            height: 100%; /* Full height relative to container */
+            border: none; /* No border */
+           
+        }
+
+        .cancel-button {
+            position: absolute; /* Absolute positioning inside the container */
+            top: 15px; /* Position from the top */
+            right: 15px; /* Position from the right */
+            background: transparent; /* Transparent background */
+            color: rgb(230, 16, 16); /* White color for the cross */
+            border: none; /* No border */
+            font-size: 24px; /* Font size for the cross */
+            cursor: pointer; /* Pointer cursor for the button */
+            z-index: 10000; /* Ensure button appears above other content */
+            padding: 0; /* Remove padding */
+        }
+
+        .cancel-button:before {
+            content: '✖'; /* Cross character */
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        #taskInput {
+            flex-grow: 1;
+            padding: 0.75rem 1rem;
+            background: var(--input-bg);
+            border: none;
+            color: var(--font-color);
+            font-size: 1rem;
+            border-radius: var(--border-radius);
+            outline: none;
+            transition: var(--transition);
+        }
+
+        #taskInput::placeholder {
+            color: #888;
+        }
+
+        #taskInput:focus {
+            background-color: var(--task-bg);
+            box-shadow: 0 0 0 2px var(--accent-color);
+        }
+
+        /* Tasks List Styling */
+        #tasks {
+            padding: 1rem 1.5rem;
+        }
+
+        #tasksList {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #tasksList li {
+            background-color: var(--task-bg);
+            color: var(--font-color);
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+
+
+
+
+        /* Style for the task item */
+.task-item {
+    position: relative;
+    padding: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+/* Show the popup on hover */
+.task-item:hover .copy-popup {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Style for the copy popup, appearing above the task item */
+.copy-popup {
+    position: absolute;
+    bottom: 100%; /* Position above the task item */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%) translateY(-5px); /* Adjust centering and add spacing above */
+    background-color: #000; /* Popup background color */
+    color: #fff; /* Text color */
+    padding: 5px; /* Padding for the popup */
+    font-size: 12px; /* Font size */
+    border-radius: 5px; /* Rounded corners */
+    visibility: hidden; /* Initially hidden */
+    opacity: 0; /* Initially invisible */
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out; /* Smooth appearance */
+}
+
+/* Change the background to green when copied */
+.copied {
+  /*  background-color: #151616d7; issue with bacground text when client on spand text Green for 'Copied' */
+    color: white;
+}
+
+        /* Edit and Remove Buttons */
+        .task-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .edit, .remove {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .edit img, .remove img {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+
+        /* Notification Styling */
+        #notification {
+            text-align: center;
+            color: #888;
+            font-weight: 500;
+            font-size: 1.25rem;
+            padding: 1rem;
+            display: none;
+        }
+
+
+
+
+
+
+
+
+
+          /* Feedback Form Container */
+    .feedback {
+      background: var(--form--bg--color);
+      width: 90%;
+      max-width: 450px;
+      border-radius: 8px;
+      margin: 20px auto;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      padding: 20px;
+    }
+
+    .feedback h1 {
+      font-size: 1.4em;
+      color: var(--highlight-color);
+      font-weight: 500;
+      margin-bottom: 15px;
+    }
+
+    .feedback p {
+      font-size: 0.9em;
+      margin-bottom: 10px;
+      color: #b0bec5;
+    }
+
+    .feedback ul.type li {
+      display: inline-block;
+      margin-right: 5px;
+    }
+
+    .feedback ul.type li:last-child {
+      margin-right: 0;
+    }
+
+    .feedback ul.type li.active a {
+      background: var(--highlight-color);
+      color: var(--text-color);
+      position: relative;
+    }
+
+    .feedback ul.type li.active a:after {
+      top: 100%;
+      left: 50%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-color: rgba(136, 183, 213, 0);
+      border-top-color: var(--highlight-color);
+      border-width: 5px;
+      margin-left: -5px;
+    }
+
+    .feedback ul.type li a {
+      background: var(--hover-bg-color);
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 0.9em;
+      color: var(--text-color);
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .feedback ul.type li a:hover {
+      background: var(--highlight-color);
+      color: var(--text-color);
+    }
+
+    .feedback ul.type li a i {
+      margin-right: 5px;
+    }
+
+    .feedback ul.type.speed li a:hover {
+      color: var(--text-color);
+    }
+
+    .feedback ul.type.speed li:first-child a:hover {
+      background: var(--success-color);
+    }
+
+    .feedback ul.type.speed li:nth-child(2) a:hover {
+      background: var(--highlight-color);
+    }
+
+    .feedback ul.type.speed li:last-child a:hover {
+      background: #e53935;
+    }
+
+    .feedback .form {
+      margin-top: 20px;
+    }
+
+    .feedback textarea {
+      min-height: 150px;
+      resize: none;
+      width: 92%;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: none;
+      border: 1px solid var(--hover-bg-color);
+      background: var(--container-bg-color);
+      color: var(--text-color);
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .feedback input[type="email"] {
+      width: 92%;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: none;
+      border: 1px solid var(--hover-bg-color);
+      background: var(--container-bg-color);
+      color: var(--text-color);
+      margin-top: 15px;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .feedback button {
+      padding: 15px;
+      background: var(--success-color);
+      margin-top: 20px;
+      color: var(--text-color);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+      width: 100%;
+      transition: background 0.3s;
+    }
+
+    .feedback button:hover {
+      background: #388e3c;
+    }
+
+    /* Live Site Example */
+    .live-site {
+      text-align: center;
+      color: var(--text-color);
+      font-size: 14px;
+      margin: 20px 0;
+    }
+
+    .live-site a {
+      color: #ff5252;
+      border: 1px solid #ff5252;
+      background: transparent;
+      display: inline-block;
+      padding: 10px;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .live-site a:hover {
+      background: #ff5252;
+      color: var(--text-color);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      .feedback {
+        width: 100%;
+        margin: 10px;
+      }
+    }
+
+
+
+
+
+  
+
+
+
+        
+        /* Unique class for the container card */
+        .calc-card-unique {
+            background-color: var(--container-bg-color);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+           
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .calc-card-unique:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Styling input fields */
+        .calc-input-unique {
+            padding: 10px;
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid var(--hover-bg-color);
+            border-radius: 8px;
+            background-color: var(--form-bg-color);
+            color: var(--text-color);
+            font-size: 0.95em;
+            transition: border-color 0.3s;
+        }
+
+        .calc-input-unique::placeholder {
+            color: #aaa;
+        }
+
+        .calc-input-unique:focus {
+            border-color: var(--highlight-color);
+            outline: none;
+        }
+
+        /* Styling result display */
+        .calc-result-unique {
+            margin-top: 20px;
+            font-weight: bold;
+            color: var(--success-color);
+            transition: color 0.3s;
+        }
+
+        .calc-error-unique {
+            color: var(--error-color);
+        }
+
+        input::placeholder {
+      font-family: 'Roboto', sans-serif; /* Apply custom font */
+      font-weight: normal; /* Ensure the text is not bold */
+    }
+
+
+
+
+
+    /* card for my worldlink */
+    .card {
+            background-color: var(--card-bg-color);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px var(--card-bg-color);
+            max-width: 600px;
+            width: 90%;
+            border: 1.5px solid var(--card-bg-color);
+            text-align: left;
+        }
+
+        h1 {
+            font-size: small;
+            color: var(--text-color);
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        p {
+            font-size:small;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        ol {
+            padding-left: 25px;
+            font-size: small;
+        }
+
+        ol li {
+            margin-bottom: 12px;
+        }
+
+
