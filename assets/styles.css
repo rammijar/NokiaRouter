@@ -287,7 +287,7 @@
 }
 
 .menu a:nth-child(2) {
-    --icon-color: #e74c3c; /* Set custom color for the second item */
+    --icon-color: #c44b3e; /* Set custom color for the second item */
 }
 
 .menu a:nth-child(3) {
@@ -312,6 +312,10 @@
 
 .menu a:nth-child(8) {
     --icon-color: #f1c40f; /* Set custom color for the eighth item */
+}
+
+.menu a:nth-child(9) {
+    --icon-color: #f81e05; /* Set custom color for the ninth item */
 }
 
 
