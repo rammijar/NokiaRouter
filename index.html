@@ -10,7 +10,7 @@
 <meta name="description" content="NokiaRouter repository for configuration and setup instructions. Remarks for CSR in network configuration.">
 <meta name="keywords" content="Nokia Router, Network Configuration,  Ram Mijar, Router Setup, Network Management, Nokia, Router Configuration, Ram Mijar">
 <meta name="author" content="Ram Mijar">
-<meta property="og:title" content="NokiaRouter GitHub Repository">
+<meta property="og:title" content="Remark">
 <meta property="og:description" content="Explore the NokiaRouter repository for configuration and setup instructions for Nokia routers. Remarks for CSR in network configuration.">
 <meta property="og:image" content="https://raw.githubusercontent.com/Ram2020-art/NokiaRouter/refs/heads/main/img/image.png">
 <meta property="og:url" content="https://github.com/Ram2020-art/NokiaRouter/">
@@ -254,18 +254,26 @@
 
 
 
+        <div id="container">
+            <!-- Tasks List -->
+            <div id="tasks">
+                <div id="notification">
+                    <p style="font-size: 18px; font-weight: bold;">Your remark list is currently empty!</p>
+                    <p style="font-size: 12px; color: gray;">Please type below to add your remark.</p>
+                </div>
+                <ul id="tasksList"></ul>
+            </div>
         
-<div id="container">
-    <!-- Tasks List -->
-    <div id="tasks">
-        <div id="notification"><p style="font-size: 18px; font-weight: bold;">Your remark list is currently empty!</p>
-            <p style="font-size: 12px; color: gray;">Please type below to add your remark.</p>
-        </div>
-        <ul id="tasksList"></ul>
-    </div>
+            
+        
 
     <div id="footer">
-        <input id="taskInput" type="text" placeholder="Enter your remark here........" autofocus>
+       <!-- Small Textarea in the Middle, Slightly to the Right -->
+<textarea id="taskInput" 
+placeholder="Type or paste your remark here..." 
+rows="2" 
+style="width: 100%; resize: none; padding: 5px; font-size: 14px; border: none; border-radius: 5px; outline: none; margin-top: 10px; margin-left: 20px; font-weight: bold;" ></textarea>
+
         <input type="text" id="ttNumber" placeholder="Enter Location Shifting Ticket ID......." onkeypress="if(event.key === 'Enter' && this.value.trim() !== '') { window.open('https://tt.wlink.com.np/log_data/showLogDetails/' + this.value, '_blank'); }">
         
         <input type="text" id="ttNumber" placeholder="Enter  S.N No....." onkeypress="if(event.key === 'Enter' && this.value.trim() !== '') { window.open('https://ftth.wlink.com.np/customer/search?filter%5Bolt%5D=&filter%5Bgpon%5D=&filter%5Bponport%5D=&filter%5Bpayplan%5D=&filter%5Bsplitter%5D=&filter%5Bname%5D=&filter%5Bserial%5D=' + this.value, '_blank'); }">
@@ -678,33 +686,26 @@
                 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(function () {
-        var $tasksList = $("#tasksList");
-        var $taskInput = $("#taskInput");
-        var $notification = $("#notification");
-        var editingTask = null;
-    
-        // Function to display or hide the notification
-        function displayNotification() {
-            if (!$tasksList.children().length) {
-                $notification.fadeIn("fast");
-            } else {
-                $notification.hide();
-            }
+    $(function () {
+    var $tasksList = $("#tasksList");
+    var $taskInput = $("#taskInput");
+    var $notification = $("#notification");
+    var editingTask = null; // Variable to keep track of the task being edited
+
+    // Function to display or hide the notification
+    function displayNotification() {
+        if (!$tasksList.children().length) {
+            $notification.fadeIn("fast");
+        } else {
+            $notification.hide();
         }
-    
-        // Add or edit task when pressing Enter
-        $taskInput.on("keypress", function (e) {
-            if (e.which === 13 && $taskInput.val().trim() !== "") {
-                var taskText = $taskInput.val().trim();
-    
-                if (editingTask) {
-                    editingTask.contents().get(0).nodeValue = taskText;
-                    editingTask = null;
-                } else {
-                    var $newTask = $("<li class='task-item'>").html(taskText + `
-                        <span class="copy-popup">Copy</span>
-                        <div class="task-actions">
+    }
+
+    // Function to add a task/note to the list
+    function addTask(taskText) {
+        var $newTask = $("<li class='task-item'>").html(taskText + `
+            <span class="copy-popup">Copy</span>
+            <div class="task-actions">
                             <button class="edit">
                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve" class="" width="20" height="20"><g><path d="M22.987 5.452c-.028-.177-.312-1.767-1.464-2.928-1.157-1.132-2.753-1.412-2.931-1.44a.989.989 0 0 0-.682.137c-.071.044-1.114.697-3.173 2.438 1.059.374 2.428 1.023 3.538 2.109 1.114 1.09 1.78 2.431 2.162 3.471 1.72-2.01 2.367-3.028 2.41-3.098.128-.205.178-.45.14-.689ZM12.95 5.223a108.333 108.333 0 0 0-3.752 3.564c-6.063 6.02-7.653 8.427-7.718 8.526-.091.14-.146.301-.159.467l-.319 4.071A1.001 1.001 0 0 0 2 22.929c.025 0 .051 0 .077-.003l4.101-.316c.165-.013.324-.066.463-.155.1-.064 2.523-1.643 8.585-7.662a108.255 108.255 0 0 0 3.655-3.797c-.151-.649-.678-2.501-2.005-3.798-1.346-1.317-3.283-1.833-3.927-1.975Z" fill="#faeded" opacity="1" data-original="#000000"></path></g></svg>
                             </button>
@@ -712,49 +713,87 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class="" height="20" width="20"><g><path d="M448 85.333h-66.133C371.66 35.703 328.002.064 277.333 0h-42.667c-50.669.064-94.327 35.703-104.533 85.333H64c-11.782 0-21.333 9.551-21.333 21.333S52.218 128 64 128h21.333v277.333C85.404 464.214 133.119 511.93 192 512h128c58.881-.07 106.596-47.786 106.667-106.667V128H448c11.782 0 21.333-9.551 21.333-21.333S459.782 85.333 448 85.333zM234.667 362.667c0 11.782-9.551 21.333-21.333 21.333-11.783 0-21.334-9.551-21.334-21.333v-128c0-11.782 9.551-21.333 21.333-21.333 11.782 0 21.333 9.551 21.333 21.333v128zm85.333 0c0 11.782-9.551 21.333-21.333 21.333-11.782 0-21.333-9.551-21.333-21.333v-128c0-11.782 9.551-21.333 21.333-21.333 11.782 0 21.333 9.551 21.333 21.333v128zM174.315 85.333c9.074-25.551 33.238-42.634 60.352-42.667h42.667c27.114.033 51.278 17.116 60.352 42.667H174.315z" fill="#edeaea" opacity="1" data-original="#000000" class=""></path></g></svg>
                             </button>
                         </div>
-                    `);
-                    $tasksList.append($newTask);
+        `);
+        $tasksList.append($newTask);
+        displayNotification();
+    }
+
+    // Auto-detect new lines in the input
+    $taskInput.on("input", function () {
+        var inputValue = $taskInput.val();
+
+        // Check if there are newlines
+        if (inputValue.includes("\n")) {
+            var tasks = inputValue.split(/\n+/); // Split by newlines
+            tasks.forEach(function (task) {
+                if (task.trim() !== "") {
+                    addTask(task.trim()); // Add each note to the list
                 }
-    
-                $taskInput.val(""); // Clear input field
-                displayNotification();
+            });
+            $taskInput.val(""); // Clear the input field after processing
+        }
+    });
+
+    // Add or update a task when pressing Enter
+    $taskInput.on("keypress", function (e) {
+        if (e.which === 13 && $taskInput.val().trim() !== "") {
+            e.preventDefault(); // Prevent new line in the input field
+            var taskText = $taskInput.val().trim();
+
+            // If editing, update the existing task
+            if (editingTask) {
+                editingTask.contents().get(0).nodeValue = taskText; // Update task text
+                editingTask = null; // Clear the editing task
+            } else {
+                addTask(taskText); // Add new task if not editing
             }
-        });
-    
-        // Remove task
-        $tasksList.on("click", ".remove", function () {
-            $(this).closest("li").remove();
+
+            $taskInput.val(""); // Clear the input field
+            displayNotification();
+        }
+    });
+
+    // Remove a task with fade-out animation
+    $tasksList.on("click", ".remove", function () {
+        var $taskItem = $(this).closest("li");
+        
+        // Fade out the task before removing it
+        $taskItem.fadeOut("fast", function () {
+            $(this).remove(); // Remove the task after animation
             displayNotification();
         });
-    
-        // Edit task
-        $tasksList.on("click", ".edit", function () {
-            var $taskItem = $(this).closest("li");
-            var taskText = $taskItem.contents().get(0).nodeValue.trim();
-            $taskInput.val(taskText).focus();
-            editingTask = $taskItem;
-        });
-    
-        // Copy task text when clicking on the task item
-        $tasksList.on("click", "li", function (e) {
-            if ($(e.target).is(".edit, .remove")) return; // Do nothing if clicking edit or remove buttons
-            var $taskItem = $(this);
-            var taskText = $taskItem.contents().get(0).nodeValue.trim();
-    
-            navigator.clipboard.writeText(taskText).then(function () {
-                var $popup = $taskItem.find('.copy-popup');
-                $popup.text('Copied').addClass('copied'); // Change popup text to 'Copied'
-                setTimeout(function () {
-                    $popup.text('Copy').removeClass('copied'); // Revert after 2 seconds
-                }, 2000);
-            });
-        });
-    
-        // Initial notification check
-        displayNotification();
     });
-    
+
+    // Edit a task
+    $tasksList.on("click", ".edit", function () {
+        var $taskItem = $(this).closest("li");
+        var taskText = $taskItem.contents().get(0).nodeValue.trim();
+        $taskInput.val(taskText).focus();
+        editingTask = $taskItem; // Set the task to be edited
+    });
+
+    // Copy task text
+    $tasksList.on("click", "li", function (e) {
+        if ($(e.target).is(".edit, .remove")) return; // Ignore clicks on edit/remove buttons
+        var $taskItem = $(this);
+        var taskText = $taskItem.contents().get(0).nodeValue.trim();
+
+        navigator.clipboard.writeText(taskText).then(function () {
+            var $popup = $taskItem.find('.copy-popup');
+            $popup.text('Copied').addClass('copied'); // Show "Copied" text
+            setTimeout(function () {
+                $popup.text('Copy').removeClass('copied'); // Revert to "Copy"
+            }, 2000);
+        });
+    });
+
+    // Initial notification check
+    displayNotification();
+});
+
     </script>
+
+
     
     
     <script>
