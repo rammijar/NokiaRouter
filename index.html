@@ -132,7 +132,20 @@
     </svg>
 </a>
 
-    </div>
+<!-- New Menu Item for Light Index -->
+<a id="light-index-icon" onclick="showSection('light-index', 'Light Index')" class="menu-item">
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve" class="" height="25" width="25">
+        <g>
+            <path d="M6.443 4.08 4.304.567l.853-.519 2.14 3.513-.854.52ZM20 12a7.996 7.996 0 0 1-2.771 6.051A3.509 3.509 0 0 0 16 20.704V24H8v-3.295c0-1.007-.456-1.982-1.252-2.675a8.01 8.01 0 0 1-2.661-7.227c.512-3.521 3.457-6.36 7.003-6.753 2.307-.256 4.527.45 6.245 1.987A8.015 8.015 0 0 1 20 11.999Zm-5 8.704c0-.239.04-.471.077-.704H8.921c.038.233.078.467.078.705V23h6v-2.296ZM19 12c0-1.988-.85-3.89-2.332-5.217-1.502-1.344-3.438-1.964-5.469-1.738-3.1.343-5.675 2.825-6.122 5.903a7.01 7.01 0 0 0 2.327 6.328A4.65 4.65 0 0 1 8.638 19h2.861v-5.551a2.503 2.503 0 0 1-2-2.449h1c0 .827.673 1.5 1.5 1.5s1.5-.673 1.5-1.5h1c0 1.208-.86 2.217-2 2.449V19h2.856a4.543 4.543 0 0 1 1.218-1.706A6.993 6.993 0 0 0 18.999 12ZM19.696.567l-.854-.52-2.14 3.513.854.52 2.14-3.513Zm3.86 4.342L20.02 6.506l.412.912 3.536-1.597-.412-.912ZM.031 5.821l3.536 1.597.412-.912L.443 4.909l-.412.912Z" fill="#fcf6f6" opacity="1" data-original="#000000" class=""></path>
+        </g>
+    </svg>
+</a>
+
+</div>
+
+
+
+
 
     <div id="net-tv-cases" class="container">
         <h3>Net TV Cases <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="15" height="15" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
@@ -554,6 +567,54 @@ style="width: 100%; resize: none; padding: 5px; font-size: 14px; border: none; b
     </div>
     </div>
 
+
+  
+        <div id="light-index" class="container hidden">
+            <h1>Beacon Router LED Status</h1>
+        
+            <div class="section">
+              <h4>Extender LED Status</h4>
+              <div class="status">
+                <div class="light blue-green"></div>
+                <p>Good/Normal Backhaul Status</p>
+              </div>
+              <div class="status">
+                <div class="light yellow"></div>
+                <p>Poor Backhaul Quality</p>
+              </div>
+              <div class="status">
+                <div class="light red"></div>
+                <p>Disconnected Backhaul</p>
+              </div>
+              <div class="status">
+                <div class="light white"></div>
+                <p>Boot Up in Progress</p>
+              </div>
+              <div class="status">
+                <div class="light yellow-pulse"></div>
+                <p>Configured Mode, Waiting to be Configured</p>
+              </div>
+              <div class="status">
+                <div class="light white-pulse"></div>
+                <p>Onboarding (Establishing Backhaul)</p>
+              </div>
+            </div>
+        
+            <div class="section">
+              <h4>Root LED Status</h4>
+              <div class="status">
+                <div class="light blue-green"></div>
+                <p>WAN Port Up & Obtained IP</p>
+              </div>
+              <div class="status">
+                <div class="light red"></div>
+                <p>WAN Port Down</p>
+              </div>
+              <div class="status">
+                <div class="light red-blink"></div>
+                <p>WAN Port Up & Obtaining IP in Progress</p>
+              </div>
+    </div>
     
 
     <footer>
