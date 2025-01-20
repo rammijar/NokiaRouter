@@ -258,12 +258,10 @@
               <path d="m16.298 8.288 1.404 1.425-5.793 5.707a2.001 2.001 0 0 1-2.823-.005l-2.782-2.696 1.393-1.437 2.793 2.707 5.809-5.701ZM24 12c0 6.617-5.383 12-12 12S0 18.617 0 12 5.383 0 12 0s12 5.383 12 12Zm-2 0c0-5.514-4.486-10-10-10S2 6.486 2 12s4.486 10 10 10 10-4.486 10-10Z" fill="#f6efef" opacity="1" data-original="#000000" class=""></path>
             </g>
           </svg> </h3>
-        <input type="text" id="searchInput" placeholder="Type Serial Number here...">
-        <div id="resultContainer" class="hidden">
-            <div class="text-block" id="resultTextContainer" onclick="copyText('resultText', this)">
-                <p id="resultText"></p>
-            </div>
-        </div>
+          <input type="text" id="searchInput" placeholder="e.g. ALCLB4FCEC55D">
+          <p id="resultText" class="hidden"></p>
+            
+        
 
 
 
@@ -288,10 +286,7 @@ rows="2"
 style="width: 100%; resize: none; padding: 5px; font-size: 14px; border: none; border-radius: 5px; outline: none; margin-top: 10px; margin-left: 20px; font-weight: bold;" ></textarea>
 
         <input type="text" id="ttNumber" placeholder="Enter Location Shifting Ticket ID......." onkeypress="if(event.key === 'Enter' && this.value.trim() !== '') { window.open('https://tt.wlink.com.np/log_data/showLogDetails/' + this.value, '_blank'); }">
-        
-        <input type="text" id="ttNumber" placeholder="Enter  S.N No....." onkeypress="if(event.key === 'Enter' && this.value.trim() !== '') { window.open('https://ftth.wlink.com.np/customer/search?filter%5Bolt%5D=&filter%5Bgpon%5D=&filter%5Bponport%5D=&filter%5Bpayplan%5D=&filter%5Bsplitter%5D=&filter%5Bname%5D=&filter%5Bserial%5D=' + this.value, '_blank'); }">
-   
-    </div>
+</div>
 </div>
 
 
@@ -660,21 +655,26 @@ style="width: 100%; resize: none; padding: 5px; font-size: 14px; border: none; b
             }
     
             document.getElementById('searchInput').addEventListener('keypress', function(event) {
-                if (event.key === 'Enter') {
-                    let inputText = document.getElementById('searchInput').value;
-                    let resultText;
-    
-                    if (inputText.includes('ALCL')) {
-                        resultText = inputText.replace(/ALCL/g, '414C434C');
-                    } else {
-                        resultText = '414C434C' + inputText;
-                    }
-    
-                    document.getElementById('resultText').textContent = resultText;
-                    document.getElementById('resultContainer').classList.remove('hidden');
+            if (event.key === 'Enter') {
+                let inputText = document.getElementById('searchInput').value;
+                let resultText;
+
+                // Check and replace/append based on the input
+                if (inputText.includes('ALCL')) {
+                    resultText = inputText.replace(/ALCL/g, '414C434C');
+                } else {
+                    resultText = '414C434C' + inputText;
                 }
-            });
-    
+
+                // Construct the URL with the result as a query parameter
+                const url = `https://ftth.wlink.com.np/customer/search?filter%5Bolt%5D=&filter%5Bgpon%5D=&filter%5Bponport%5D=&filter%5Bpayplan%5D=&filter%5Bsplitter%5D=&filter%5Bname%5D=&filter%5Bserial%5D=${encodeURIComponent(resultText)}`;
+                
+                // Open the URL in a new tab or window
+                window.open(url, '_blank');
+            }
+        });
+
+        
             function copyText(elementId, element) {
                 let textToCopy = document.getElementById(elementId).textContent;
                 navigator.clipboard.writeText(textToCopy).then(function() {
