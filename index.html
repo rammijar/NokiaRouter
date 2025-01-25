@@ -22,6 +22,8 @@
 
   <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css?family=Roboto:200,400,500,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+
 
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -567,8 +569,7 @@ style="width: 100%; resize: none; padding: 5px; font-size: 14px; border: none; b
       
   </div>
 
-  <div id="wireless-calculator" class="container hidden">
-      <div class="calculator">
+  <div id="wireless-calculator" class="container hidden  calculator">
           <h4>Wireless Speed Calculator 
               <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="15" height="15" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
               <g>
@@ -587,8 +588,7 @@ style="width: 100%; resize: none; padding: 5px; font-size: 14px; border: none; b
           <label for="devices">Number of Devices:</label>
           <input type="number" id="devices" placeholder="Enter number of devices" value="1" oninput="calculateSpeed()">
           <h5 id="result"></h5>
-      </div>
-  </div>
+     </div>
 
 
  
@@ -652,9 +652,8 @@ style="width: 100%; resize: none; padding: 5px; font-size: 14px; border: none; b
   </div>
 
   <!-- Add a corresponding section for the Month and Day Calculator -->
-<div id="month-day-calculator" class="container">
-  <div class="calc-card-unique">
-      <h4>Advanced Date Calculator   
+<div id="month-day-calculator" class="container calc-card-unique">
+      <h4>How Many Days?  
            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="15" height="15" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
           <g>
             <path d="m16.298 8.288 1.404 1.425-5.793 5.707a2.001 2.001 0 0 1-2.823-.005l-2.782-2.696 1.393-1.437 2.793 2.707 5.809-5.701ZM24 12c0 6.617-5.383 12-12 12S0 18.617 0 12 5.383 0 12 0s12 5.383 12 12Zm-2 0c0-5.514-4.486-10-10-10S2 6.486 2 12s4.486 10 10 10 10-4.486 10-10Z" fill="#f6efef" opacity="1" data-original="#000000" class=""></path>
@@ -663,7 +662,6 @@ style="width: 100%; resize: none; padding: 5px; font-size: 14px; border: none; b
       <input type="text" id="calc-date1" class="calc-input-unique" placeholder="e.g., 18-Oct-2023 16:56:21">
       <input type="text" id="calc-date2" class="calc-input-unique" placeholder="e.g., 12-Oct-2024 00:03:32">
       <div id="calc-result" class="calc-result-unique"></div>
-  </div>
 </div>
 
 <!-- modify this form HTML and place wherever you want your form -->
@@ -674,6 +672,7 @@ method="POST"
 <div id="feedback-form" class="container hidden feedback">
   <h1>Feedback</h1>
   <p>What would you like to share with us?</p>
+  <br>
   <ul class="type">
     <li class="active"><a href="#"><i class="fa fa-bug"></i> Problem</a></li>
     <li><a href="#"><i class="fa fa-question-circle"></i> Question</a></li>
@@ -685,6 +684,7 @@ method="POST"
     <input type="email" name="email" placeholder="Your Email (will not be published)" required />
   </div>
   <p>How would you rate the speed of our website?</p>
+  <br>
   <ul class="type speed">
     <li><a href="#"><i class="fa fa-bolt"></i> Fast</a></li>
     <li><a href="#"><i class="fa fa-thumbs-o-up"></i> Fine</a></li>
@@ -693,6 +693,7 @@ method="POST"
   <button class="button small success radius" type="submit">Submit</button>
 </div>
 </form>
+
 <div id="notice" class="container hidden notic">
 
       <div class="card">
@@ -948,14 +949,14 @@ function displayNotification() {
 
 // Function to add a task/note to the list
 function addTask(taskText) {
-    var $newTask = $("<li class='task-item'>").html(taskText + `
+    var $newTask = $("<li  class='task-item'>").html(taskText + `
         <span class="copy-popup">Copy</span>
         <div class="task-actions">
                         <button class="edit">
-                       <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve" class="" width="20" height="20"><g><path d="M22.987 5.452c-.028-.177-.312-1.767-1.464-2.928-1.157-1.132-2.753-1.412-2.931-1.44a.989.989 0 0 0-.682.137c-.071.044-1.114.697-3.173 2.438 1.059.374 2.428 1.023 3.538 2.109 1.114 1.09 1.78 2.431 2.162 3.471 1.72-2.01 2.367-3.028 2.41-3.098.128-.205.178-.45.14-.689ZM12.95 5.223a108.333 108.333 0 0 0-3.752 3.564c-6.063 6.02-7.653 8.427-7.718 8.526-.091.14-.146.301-.159.467l-.319 4.071A1.001 1.001 0 0 0 2 22.929c.025 0 .051 0 .077-.003l4.101-.316c.165-.013.324-.066.463-.155.1-.064 2.523-1.643 8.585-7.662a108.255 108.255 0 0 0 3.655-3.797c-.151-.649-.678-2.501-2.005-3.798-1.346-1.317-3.283-1.833-3.927-1.975Z" fill="#faeded" opacity="1" data-original="#000000"></path></g></svg>
+                       <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve" class="" width="17" height="17"><g><path d="M22.987 5.452c-.028-.177-.312-1.767-1.464-2.928-1.157-1.132-2.753-1.412-2.931-1.44a.989.989 0 0 0-.682.137c-.071.044-1.114.697-3.173 2.438 1.059.374 2.428 1.023 3.538 2.109 1.114 1.09 1.78 2.431 2.162 3.471 1.72-2.01 2.367-3.028 2.41-3.098.128-.205.178-.45.14-.689ZM12.95 5.223a108.333 108.333 0 0 0-3.752 3.564c-6.063 6.02-7.653 8.427-7.718 8.526-.091.14-.146.301-.159.467l-.319 4.071A1.001 1.001 0 0 0 2 22.929c.025 0 .051 0 .077-.003l4.101-.316c.165-.013.324-.066.463-.155.1-.064 2.523-1.643 8.585-7.662a108.255 108.255 0 0 0 3.655-3.797c-.151-.649-.678-2.501-2.005-3.798-1.346-1.317-3.283-1.833-3.927-1.975Z" fill="#faeded" opacity="1" data-original="#000000"></path></g></svg>
                         </button>
                         <button class="remove">
-                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class="" height="20" width="20"><g><path d="M448 85.333h-66.133C371.66 35.703 328.002.064 277.333 0h-42.667c-50.669.064-94.327 35.703-104.533 85.333H64c-11.782 0-21.333 9.551-21.333 21.333S52.218 128 64 128h21.333v277.333C85.404 464.214 133.119 511.93 192 512h128c58.881-.07 106.596-47.786 106.667-106.667V128H448c11.782 0 21.333-9.551 21.333-21.333S459.782 85.333 448 85.333zM234.667 362.667c0 11.782-9.551 21.333-21.333 21.333-11.783 0-21.334-9.551-21.334-21.333v-128c0-11.782 9.551-21.333 21.333-21.333 11.782 0 21.333 9.551 21.333 21.333v128zm85.333 0c0 11.782-9.551 21.333-21.333 21.333-11.782 0-21.333-9.551-21.333-21.333v-128c0-11.782 9.551-21.333 21.333-21.333 11.782 0 21.333 9.551 21.333 21.333v128zM174.315 85.333c9.074-25.551 33.238-42.634 60.352-42.667h42.667c27.114.033 51.278 17.116 60.352 42.667H174.315z" fill="#edeaea" opacity="1" data-original="#000000" class=""></path></g></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class="" height="17" width="17"><g><path d="M448 85.333h-66.133C371.66 35.703 328.002.064 277.333 0h-42.667c-50.669.064-94.327 35.703-104.533 85.333H64c-11.782 0-21.333 9.551-21.333 21.333S52.218 128 64 128h21.333v277.333C85.404 464.214 133.119 511.93 192 512h128c58.881-.07 106.596-47.786 106.667-106.667V128H448c11.782 0 21.333-9.551 21.333-21.333S459.782 85.333 448 85.333zM234.667 362.667c0 11.782-9.551 21.333-21.333 21.333-11.783 0-21.334-9.551-21.334-21.333v-128c0-11.782 9.551-21.333 21.333-21.333 11.782 0 21.333 9.551 21.333 21.333v128zm85.333 0c0 11.782-9.551 21.333-21.333 21.333-11.782 0-21.333-9.551-21.333-21.333v-128c0-11.782 9.551-21.333 21.333-21.333 11.782 0 21.333 9.551 21.333 21.333v128zM174.315 85.333c9.074-25.551 33.238-42.634 60.352-42.667h42.667c27.114.033 51.278 17.116 60.352 42.667H174.315z" fill="#edeaea" opacity="1" data-original="#000000" class=""></path></g></svg>
                         </button>
                     </div>
     `);
