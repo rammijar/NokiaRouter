@@ -1,4 +1,3 @@
-
         /* Dark mode variables */
         :root {
             --bg-color: #181818;
@@ -514,22 +513,23 @@
             padding: 0;
             margin: 0;
         }
-
         #tasksList li {
-            background-color: var(--task-bg);
-            color: var(--font-color);
-            padding: 1rem;
-            margin-bottom: 0.75rem;
-            border-radius: var(--border-radius);
-            font-size: 1rem;
-            font-weight: 500;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: var(--transition);
-            cursor: pointer;
-        }
-
+          background-color: var(--task-bg);
+          color: var(--font-color);
+          padding: 0.25rem; /* Smaller padding */
+          margin-bottom: 0.25rem; /* Smaller margin */
+          border-radius: var(--border-radius);
+          font-size: 0.85rem; /* Smaller font size */
+          font-family: 'Roboto', sans-serif; /* Changed to Roboto font */
+          font-weight: bold; /* Bold text */
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          transition: var(--transition);
+          cursor: pointer;
+      }
+      
+      
 
 
 
@@ -609,172 +609,126 @@
 
 
 
-          /* Feedback Form Container */
-    .feedback {
-      background: var(--form--bg--color);
-      width: 90%;
-      max-width: 450px;
-      border-radius: 8px;
-      margin: 20px auto;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-      padding: 20px;
-    }
+       /* Feedback Form Container - Enhanced Dark Theme with Hover Updates */
 
-    .feedback h1 {
-      font-size: 1.4em;
-      color: var(--highlight-color);
-      font-weight: 500;
-      margin-bottom: 15px;
-    }
+.feedback h1 {
+  font-size: 1.4em;
+  color: #ffffff; /* White text for headings */
+  font-weight: 500;
+  margin-bottom: 15px;
+}
 
-    .feedback p {
-      font-size: 0.9em;
-      margin-bottom: 10px;
-      color: #b0bec5;
-    }
+.feedback p {
+  font-size: 0.9em;
+  margin-bottom: 10px;
+  color: #cccccc; /* Light gray for paragraphs */
+}
 
-    .feedback ul.type li {
-      display: inline-block;
-      margin-right: 5px;
-    }
+.feedback ul.type li {
+  display: inline-block;
+  margin-right: 5px;
+}
 
-    .feedback ul.type li:last-child {
-      margin-right: 0;
-    }
+.feedback ul.type li:last-child {
+  margin-right: 0;
+}
 
-    .feedback ul.type li.active a {
-      background: var(--highlight-color);
-      color: var(--text-color);
-      position: relative;
-    }
+.feedback ul.type li.active a {
+  background: #1e88e5; /* Blue highlight */
+  color: #ffffff; /* White text on highlight */
+  position: relative;
+  border-radius: 4px;
+}
 
-    .feedback ul.type li.active a:after {
-      top: 100%;
-      left: 50%;
-      border: solid transparent;
-      content: " ";
-      height: 0;
-      width: 0;
-      position: absolute;
-      pointer-events: none;
-      border-color: rgba(136, 183, 213, 0);
-      border-top-color: var(--highlight-color);
-      border-width: 5px;
-      margin-left: -5px;
-    }
+.feedback ul.type li a {
+  background: #2b2b2b; /* Dark gray background */
+  padding: 8px; /* Smaller padding for cleaner look */
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #ffffff; /* White text */
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s, transform 0.3s;
+}
 
-    .feedback ul.type li a {
-      background: var(--hover-bg-color);
-      padding: 10px;
-      border-radius: 5px;
-      font-size: 0.9em;
-      color: var(--text-color);
-      text-decoration: none;
-      transition: background 0.3s, color 0.3s;
-    }
+.feedback ul.type li a:hover {
+  background: #1e88e5; /* Blue on hover */
+  color: #ffffff;
+  transform: scale(1.05); /* Slight zoom effect */
+}
 
-    .feedback ul.type li a:hover {
-      background: var(--highlight-color);
-      color: var(--text-color);
-    }
+.feedback .form {
+  margin-top: 20px;
+}
 
-    .feedback ul.type li a i {
-      margin-right: 5px;
-    }
+.feedback textarea, 
+.feedback input[type="email"] {
+  width: 95%; /* Slightly wider input fields */
+  padding: 14px; /* Comfortable padding */
+  border-radius: 6px;
+  box-shadow: none;
+  border: 1px solid #444444; /* Medium gray border */
+  background: #1c1c1c; /* Darker background */
+  color: #ffffff; /* White text */
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 15px; /* Spacing between fields */
+}
 
-    .feedback ul.type.speed li a:hover {
-      color: var(--text-color);
-    }
+.feedback textarea {
+  min-height: 180px; /* Slightly taller text area */
+  resize: vertical; /* Allow resizing only vertically */
+}
 
-    .feedback ul.type.speed li:first-child a:hover {
-      background: var(--success-color);
-    }
+.feedback button {
+  padding: 10px; /* Smaller padding for buttons */
+  background: #1e88e5; /* Blue button */
+  margin-top: 15px;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px; /* Softer corners */
+  cursor: pointer;
+  font-size: 0.95em; /* Slightly smaller font */
+  width: auto; /* Button adapts to content width */
+  min-width: 120px; /* Minimum width for consistency */
+  transition: background 0.3s, transform 0.3s;
+}
 
-    .feedback ul.type.speed li:nth-child(2) a:hover {
-      background: var(--highlight-color);
-    }
+.feedback button:hover {
+  background: #1565c0; /* Darker blue on hover */
+  transform: translateY(-2px); /* Button lifts slightly on hover */
+}
 
-    .feedback ul.type.speed li:last-child a:hover {
-      background: #e53935;
-    }
+/* Live Site Example */
+.live-site {
+  text-align: center;
+  color: #ffffff; /* White text */
+  font-size: 14px;
+  margin: 20px 0;
+}
 
-    .feedback .form {
-      margin-top: 20px;
-    }
+.live-site a {
+  color: #1e88e5; /* Blue link */
+  border: 1px solid #1e88e5;
+  background: transparent;
+  display: inline-block;
+  padding: 8px; /* Reduced padding for links */
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.3s, color 0.3s, transform 0.3s;
+}
 
-    .feedback textarea {
-      min-height: 150px;
-      resize: none;
-      width: 92%;
-      padding: 15px;
-      border-radius: 5px;
-      box-shadow: none;
-      border: 1px solid var(--hover-bg-color);
-      background: var(--container-bg-color);
-      color: var(--text-color);
-      font-family: 'Roboto', sans-serif;
-    }
+.live-site a:hover {
+  background: #1e88e5;
+  color: #ffffff;
+  transform: scale(1.05); /* Slight zoom effect */
+}
 
-    .feedback input[type="email"] {
-      width: 92%;
-      padding: 15px;
-      border-radius: 5px;
-      box-shadow: none;
-      border: 1px solid var(--hover-bg-color);
-      background: var(--container-bg-color);
-      color: var(--text-color);
-      margin-top: 15px;
-      font-family: 'Roboto', sans-serif;
-    }
-
-    .feedback button {
-      padding: 15px;
-      background: var(--success-color);
-      margin-top: 20px;
-      color: var(--text-color);
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1em;
-      width: 100%;
-      transition: background 0.3s;
-    }
-
-    .feedback button:hover {
-      background: #388e3c;
-    }
-
-    /* Live Site Example */
-    .live-site {
-      text-align: center;
-      color: var(--text-color);
-      font-size: 14px;
-      margin: 20px 0;
-    }
-
-    .live-site a {
-      color: #ff5252;
-      border: 1px solid #ff5252;
-      background: transparent;
-      display: inline-block;
-      padding: 10px;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    .live-site a:hover {
-      background: #ff5252;
-      color: var(--text-color);
-    }
-
-    /* Responsive Design */
-    @media (max-width: 600px) {
-      .feedback {
-        width: 100%;
-        margin: 10px;
-      }
-    }
+/* Responsive Design */
+@media (max-width: 600px) {
+  .feedback {
+    width: 100%;
+    margin: 10px;
+  }
+}
 
 
 
@@ -785,21 +739,7 @@
 
 
         
-        /* Unique class for the container card */
-        .calc-card-unique {
-            background-color: var(--container-bg-color);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-           
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .calc-card-unique:hover {
-            transform: translateY(-5px);
-        }
-
+     
         /* Styling input fields */
         .calc-input-unique {
             padding: 10px;
@@ -820,7 +760,7 @@
         }
 
         .calc-input-unique:focus {
-            border-color: var(--highlight-color);
+            border-color: var(--hover-bg-color);
             outline: none;
         }
 
