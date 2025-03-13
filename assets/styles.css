@@ -62,6 +62,17 @@
 
 
 
+/*  social list */
+.social-list {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  gap: 15px;
+  padding: 4px; /* Adjust padding as needed */
+}
+
+
+
         .copy-button {
     cursor: pointer;
     color: var(--highlight-color);
