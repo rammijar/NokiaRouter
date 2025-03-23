@@ -1,79 +1,85 @@
-        /* Dark mode variables */
-        :root {
-            --bg-color: #181818;
-            --text-color: #fff;
-            --container-bg-color: #282828;
-            --hover-bg-color: #383838;
-            --success-color: #28a745;
-            --highlight-color: #007bff;
-            --form--bg--color:#2b2828;
-        }
+/* Dark mode variables */
+:root {
+    --bg-color: #181818;
+    --text-color: #ffffffd5;
+    --container-bg-color: #282828;
+    --hover-bg-color: #383838;
+    --success-color: #28a745;
+    --highlight-color: #93d1ff; /* Base color for highlights */
+    --form--bg--color: #2b2828;
+    --shadow-color: rgba(0, 0, 0, 0.5); /* Dark shadow */
+}
 
-        /* Apply the theme */
-        body, .container, .credentials-container, h2 {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-        }
+/* Light mode variables */
+:root.light-mode {
+    --bg-color: #93d1ff; /* Light blue background */
+    --text-color: #666464; /* Slightly gray text color */
+    --container-bg-color: #cce4ff; /* Slightly lighter container background */
+    --hover-bg-color: #b3daffb9; /* Subtle hover effect */
+    --success-color: #28a745; /* Green for success */
+    --highlight-color: #0056b3; /* Darker blue for highlights */
+    --form--bg--color: #ffffff00; /* Form background */
+    --shadow-color: rgba(0, 0, 0, 0.1); /* Softer shadow */
+}
 
-        /* Basic styling */
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 0;
-            padding: 20px;
-            height: 100vh;
-            transition: background-color 0.3s, color 0.3s;
-        }
+/* Apply the theme */
+body, .container, .credentials-container, h2 {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
 
-        h1 {
-      margin: 0;
-      padding: 0;
-      line-height: normal;
-    }
+/* Basic styling */
+body {
+    font-family:'Lora', serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+    height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
+}
 
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
+h1 {
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+}
 
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
 
-    body p {
-            font-family: 'Lora', serif;
-        }
+body p {
+    font-family: 'Lora', serif;
+}
 
-
-        
-        .container {
+.container {
     background-color: var(--container-bg-color); /* Background color using a CSS variable */
-    padding: 20px; /* Internal padding */
-    border: 1.7px solid #444; /* Border with a dark color */
-    border-radius: 15px; /* Rounded corners */
+    padding: 24px; /* Slightly increased padding for better spacing */
+    border-radius: 18px; /* Softer, modern rounded corners */
     text-align: center; /* Center-aligns text */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition for color changes */
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
     width: 100%; /* Full width relative to parent */
     max-width: 600px; /* Maximum width constraint */
     margin-top: 20px; /* Space above the container */
-    animation: fadeIn 3s forwards; /* Fade-in animation */
+    animation: fadeIn 1.5s forwards; /* Faster fade-in animation */
+    /* Modern shadow for depth */
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15); /* Soft, modern shadow */
 }
-
-
-
 
 /*  social list */
 .social-list {
-  display: flex;
-  justify-content: center; /* Centers horizontally */
-  align-items: center; /* Centers vertically */
-  gap: 15px;
-  padding: 4px; /* Adjust padding as needed */
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    gap: 15px;
+    padding: 4px; /* Adjust padding as needed */
 }
 
-
-
-        .copy-button {
+.copy-button {
     cursor: pointer;
     color: var(--highlight-color);
     text-decoration: underline;
@@ -121,108 +127,104 @@
     background-color: rgb(19, 18, 18); /* Success color with dark overlay */
     opacity: 1;
 }
+input {
+  margin: 10px 0;
+  padding: 10px;
+  border: none; /* Removes the border */
+  border-radius: 4px;
+  transition: box-shadow 0.3s; /* Remove border-color transition */
+  width: 90%;
+  font-size: 14px;
+  background-color: var(--container-bg-color);
+  color: var(--text-color);
+  outline: none; /* Remove outline */
+}
+
+/* Ensure no border or shadow on focus */
+input:focus {
+  box-shadow: none !important; /* Remove any focus shadow */
+  outline: none;
+  border: none;
+}
 
 
-        input {
-            margin: 10px 0;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            transition: border-color 0.3s, box-shadow 0.3s;
-            width: 90%;
-            font-size: 14px;
-            background-color: var(--container-bg-color);
-            color: var(--text-color);
-        }
+.text-block {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: relative;
+}
 
-        input:focus {
-            border-color: var(--highlight-color);
-            box-shadow: 0 0 5px rgba(10, 10, 10, 0);
-            outline: none;
-        }
+.text-block p {
+    background-color: var(--container-bg-color);
+    flex-grow: 1;
+    text-align: left;
+    font-size: 14px;
+    padding: 10px;
+    margin: 0;
+    font-weight: 550;
+    color: #fdf6f6cb;
+    transition: background-color 0.3s, color 0.3s;
+    font-family: 'Lora', serif;
+}
 
-        .text-block {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            position: relative;
-        }
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #666464;
+}
 
-        /*
-        .text-block:hover {
-            background-color: var(--hover-bg-color);
-        }
-*/
-        .text-block p {
-            background-color: var(--container-bg-color);
-            flex-grow: 1;
-            text-align: left;
-            font-size: 14px;
-            padding: 10px;
-            margin: 0;
-            font-weight: 550;
-            color: #fdf6f6cb;
-            transition: background-color 0.3s, color 0.3s;
-            font-family: Arial, sans-serif;
-        }
+input[type="number"], select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #2a2a2a;
+    color: #ffffff;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
 
-        label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-            color: #bbbbbb;
-        }
+input[type="number"]:focus, select:focus {
+    border-color: #4CAF50;
+}
 
-        input[type="number"], select {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #555;
-            border-radius: 4px;
-            box-sizing: border-box;
-            background-color: #2a2a2a;
-            color: #ffffff;
-            font-size: 16px;
-            transition: border-color 0.3s ease;
-        }
+p.visible {
+    opacity: 1;
+}
 
-        input[type="number"]:focus, select:focus {
-            border-color: #4CAF50;
-        }
+footer {
+    margin-top: 20px;
+    font-size: 12px;
+    text-align: center;
+    color: var(--text-color);
+}
 
-        p.visible {
-            opacity: 1;
-        }
+footer a {
+    color: inherit;
+    text-decoration: none;
+}
 
-        footer {
-            margin-top: 20px;
-            font-size: 12px;
-            text-align: center;
-            color: var(--text-color);
-        }
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 
-        footer a {
-            color: inherit;
-            text-decoration: none;
-        }
+.hidden {
+    display: none;
+}
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        /* Slow animation effect */
-        .slow-section {
-            opacity: 0;
-            animation: fadeIn 2s forwards; /* Slow fade-in animation */
-        }
+/* Slow animation effect */
+.slow-section {
+    opacity: 0;
+    animation: fadeIn 2s forwards; /* Slow fade-in animation */
+}
 
 /* Menu Styles */
 .menu {
@@ -332,220 +334,280 @@
     --icon-color: #05f82d; /* Set custom color for the ninth item */
 }
 
+.menu {
+    display: flex;
+    justify-content: center;
+    background-color: var(--container-bg-color);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.menu-item {
+    margin: 0 15px;
+    cursor: pointer;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.menu-item:hover {
+    transform: scale(1.1);
+    color: var(--highlight-color);
+}
+
+.card {
+    background-color: var(--container-bg-color);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px var(--shadow-color); /* Dynamic shadow based on mode */
+    max-width: 600px;
+    width: 90%;
+    border: 1.5px solid var(--hover-bg-color);
+    text-align: left;
+    transition: box-shadow 0.3s, transform 0.3s; /* Smooth transitions */ 
+}
 
 
 
+/* Light mode adjustments for cards */
+:root.light-mode .card {
+    background-color: #ffffff; /* Bright background for light mode */
+    border: 1.5px solid #e0e0e0; /* Subtle border for light mode */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Softer shadow for light mode */
+}
+
+:root.light-mode .card:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* Enhanced hover shadow for light mode */
+}
+.input-field {
+    width: 90%; /* Smaller width for a compact look */
+    padding: 8px 10px; /* Reduced padding */
+    margin: 5px 0; /* Less margin */
+    border: none; /* No border */
+    border-radius: 6px; /* Slightly rounded corners */
+    background-color: var(--form--bg--color);
+    color: var(--text-color);
+    font-size: 14px; /* Smaller font size */
+    transition: box-shadow 0.2s, background-color 0.2s;
+}
+
+.input-field:focus {
+    box-shadow: 0 0 5px var(--highlight-color); /* Softer focus effect */
+    outline: none;
+    background-color: var(--form--bg--color); 
+}
 
 
+/* Menu SVG Path Color */
+.menu a svg path {
+    transition: fill 0.3s ease;
+}
 
-
-
-
-
-
-
-
+/* Light Mode SVG Path Color */
+:root.light-mode .menu a svg path {
+    fill: #000000; /* Black color for light mode */
+}
 
 .status {
     display: flex;
     align-items: center;
-    margin: 5px 0;
-    padding: 5px;
-    border-radius: 5px;
-    background-color: #2a2a2a;
-    transition: background-color 0.3s;
-  }
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: var(--container-bg-color);
+    box-shadow: 0 4px 10px var(--shadow-color); /* Dynamic shadow based on mode */
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
 
- /* .status:hover {
-    background-color: #333;
-  }
-*/
-  .status p {
-    margin-left: 15px;
+.status:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.status .light {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.status p {
+    margin: 0;
     font-size: 14px;
-    color: #cfcfcf;
-  }
+    color: var(--text-color);
+}
 
-  /* LED Light Styles */
-  .light {
+/* Light mode adjustments for status cards */
+:root.light-mode .status {
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow for light mode */
+}
+
+:root.light-mode .status:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+:root.light-mode .status p {
+    color: #333333b2;
+}
+
+/* LED Light Styles */
+.light {
     width: 18px;
     height: 18px;
     border-radius: 50%;
-  }
+}
 
-  /* Static Lights */
-  .blue-green {
+/* Static Lights */
+.blue-green {
     background: linear-gradient(45deg, #00ffea, #008cff);
-  }
+}
 
-  .yellow {
+.yellow {
     background: #ffcc00;
-  }
+}
 
-  .red {
+.red {
     background: #ff4d4d;
-  }
+}
 
-  .white {
+.white {
     background: #f5f5f5;
-  }
+}
 
-  /* Animated Lights */
-  .yellow-pulse {
+/* Animated Lights */
+.yellow-pulse {
     background: #ffcc00;
     animation: pulse 1.2s infinite ease-in-out;
-  }
+}
 
-  .white-pulse {
+.white-pulse {
     background: #f5f5f5;
     animation: pulse 1.2s infinite ease-in-out;
-  }
+}
 
-  .red-blink {
+.red-blink {
     background: #ff4d4d;
     animation: blink 0.8s infinite;
-  }
+}
 
-  /* Pulse Animation */
-  @keyframes pulse {
+/* Pulse Animation */
+@keyframes pulse {
     0%, 100% {
-      transform: scale(1);
-      opacity: 1;
+        transform: scale(1);
+        opacity: 1;
     }
     50% {
-      transform: scale(1.3);
-      opacity: 0.6;
+        transform: scale(1.3);
+        opacity: 0.6;
     }
-  }
+}
 
-  /* Blink Animation */
-  @keyframes blink {
+/* Blink Animation */
+@keyframes blink {
     0%, 50% {
-      opacity: 1;
+        opacity: 1;
     }
     51%, 100% {
-      opacity: 0;
+        opacity: 0;
     }
-  }
+}
 
+/* Fullscreen iFrame Popup Styles */
+.iframe-popup {
+    position: fixed; /* Fixed positioning to cover the viewport */
+    top: 0; /* Align to the top of the viewport */
+    left: 0; /* Align to the left of the viewport */
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    background-color: rgba(0, 0, 0, 0.5); /* Lighter semi-transparent dark background */
+    display: none; /* Initially hidden */
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    z-index: 9999; /* Ensure it appears above other content */
+}
 
+.iframe-container {
+    position: relative; /* Relative positioning for the cancel button */
+    width: 95vw; /* 95% of viewport width */
+    height: 95vh; /* 95% of viewport height */
+    background-color: #2e2e2e; /* Dark grey background */
+    border-radius: 10px; /* Slightly rounded corners */
+    overflow: hidden; /* Hide overflow if any */
+}
 
+.iframe-container iframe {
+    width: 100%; /* Full width relative to container */
+    height: 100%; /* Full height relative to container */
+    border: none; /* No border */
+}
 
-        /* Fullscreen iFrame Popup Styles */
-        .iframe-popup {
-            position: fixed; /* Fixed positioning to cover the viewport */
-            top: 0; /* Align to the top of the viewport */
-            left: 0; /* Align to the left of the viewport */
-            width: 100vw; /* Full viewport width */
-            height: 100vh; /* Full viewport height */
-            background-color: rgba(0, 0, 0, 0.5); /* Lighter semi-transparent dark background */
-            display: none; /* Initially hidden */
-            align-items: center; /* Center content vertically */
-            justify-content: center; /* Center content horizontally */
-            z-index: 9999; /* Ensure it appears above other content */
-        }
+.cancel-button {
+    position: absolute; /* Absolute positioning inside the container */
+    top: 15px; /* Position from the top */
+    right: 15px; /* Position from the right */
+    background: none; /* Transparent background */
+    color: rgb(230, 16, 16); /* White color for the cross */
+    border: none; /* No border */
+    font-size: 24px; /* Font size for the cross */
+    cursor: pointer; /* Pointer cursor for the button */
+    z-index: 10000; /* Ensure button appears above other content */
+    padding: 0; /* Remove padding */
+}
 
-        .iframe-container {
-            position: relative; /* Relative positioning for the cancel button */
-            width: 95vw; /* 95% of viewport width */
-            height: 95vh; /* 95% of viewport height */
-            background-color: #2e2e2e; /* Dark grey background */
-            border-radius: 10px; /* Slightly rounded corners */
-            overflow: hidden; /* Hide overflow if any */
-        }
+.cancel-button:before {
+    content: '✖'; /* Cross character */
+}
 
-        .iframe-container iframe {
-            width: 100%; /* Full width relative to container */
-            height: 100%; /* Full height relative to container */
-            border: none; /* No border */
-           
-        }
+#taskInput {
+    flex-grow: 1;
+    padding: 0.75rem 1rem;
+    background: var(--input-bg);
+    border: none;
+    color: var(--font-color);
+    font-size: 1rem;
+    border-radius: var(--border-radius);
+    outline: none;
+    transition: var(--transition);
+}
 
-        .cancel-button {
-            position: absolute; /* Absolute positioning inside the container */
-            top: 15px; /* Position from the top */
-            right: 15px; /* Position from the right */
-            background: transparent; /* Transparent background */
-            color: rgb(230, 16, 16); /* White color for the cross */
-            border: none; /* No border */
-            font-size: 24px; /* Font size for the cross */
-            cursor: pointer; /* Pointer cursor for the button */
-            z-index: 10000; /* Ensure button appears above other content */
-            padding: 0; /* Remove padding */
-        }
+#taskInput::placeholder {
+    color: #888;
+}
 
-        .cancel-button:before {
-            content: '✖'; /* Cross character */
-        }
+#taskInput:focus {
+    background-color: var(--task-bg);
+    box-shadow: 0 0 0 2px var(--accent-color);
+}
 
+/* Tasks List Styling */
+#tasks {
+    padding: 1rem 1.5rem;
+}
 
+#tasksList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
 
+#tasksList li {
+    background-color: var(--task-bg);
+    color: var(--font-color);
+    padding: 0.25rem; /* Smaller padding */
+    margin-bottom: 0.25rem; /* Smaller margin */
+    border-radius: var(--border-radius);
+    font-size: 0.85rem; /* Smaller font size */
+    font-family: 'Lora', serif; /* Changed to Roboto font */
+    font-weight: bold; /* Bold text */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transition);
+    cursor: pointer;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-        
-        #taskInput {
-            flex-grow: 1;
-            padding: 0.75rem 1rem;
-            background: var(--input-bg);
-            border: none;
-            color: var(--font-color);
-            font-size: 1rem;
-            border-radius: var(--border-radius);
-            outline: none;
-            transition: var(--transition);
-        }
-
-        #taskInput::placeholder {
-            color: #888;
-        }
-
-        #taskInput:focus {
-            background-color: var(--task-bg);
-            box-shadow: 0 0 0 2px var(--accent-color);
-        }
-
-        /* Tasks List Styling */
-        #tasks {
-            padding: 1rem 1.5rem;
-        }
-
-        #tasksList {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-        #tasksList li {
-          background-color: var(--task-bg);
-          color: var(--font-color);
-          padding: 0.25rem; /* Smaller padding */
-          margin-bottom: 0.25rem; /* Smaller margin */
-          border-radius: var(--border-radius);
-          font-size: 0.85rem; /* Smaller font size */
-          font-family: 'Roboto', sans-serif; /* Changed to Roboto font */
-          font-weight: bold; /* Bold text */
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          transition: var(--transition);
-          cursor: pointer;
-      }
-      
-      
-
-
-
-
-        /* Style for the task item */
+/* Style for the task item */
 .task-item {
     position: relative;
     padding: 10px;
@@ -577,257 +639,923 @@
 
 /* Change the background to green when copied */
 .copied {
-  /*  background-color: #151616d7; issue with bacground text when client on spand text Green for 'Copied' */
     color: white;
 }
 
-        /* Edit and Remove Buttons */
-        .task-actions {
-            display: flex;
-            gap: 10px;
-        }
+/* Edit and Remove Buttons */
+.task-actions {
+    display: flex;
+    gap: 10px;
+}
 
-        .edit, .remove {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            border-radius: var(--border-radius);
-            transition: var(--transition);
-        }
+.edit, .remove {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
 
-        .edit img, .remove img {
-            width: 20px;
-            height: 20px;
-            vertical-align: middle;
-        }
+.edit img, .remove img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
 
-        /* Notification Styling */
-        #notification {
-            text-align: center;
-            color: #888;
-            font-weight: 500;
-            font-size: 1.25rem;
-            padding: 1rem;
-            display: none;
-        }
+/* Notification Styling */
+#notification {
+    text-align: center;
+    color: #888;
+    font-weight: 500;
+    font-size: 1.25rem;
+    padding: 1rem;
+    display: none;
+}
 
-
-
-
-
-
-
-
-
-       /* Feedback Form Container - Enhanced Dark Theme with Hover Updates */
-
+/* Feedback Form Container - Enhanced Dark Theme with Hover Updates */
 .feedback h1 {
-  font-size: 1.4em;
-  color: #ffffff; /* White text for headings */
-  font-weight: 500;
-  margin-bottom: 15px;
+    font-size: 1.4em;
+    color: #ffffff; /* White text for headings */
+    font-weight: 500;
+    margin-bottom: 15px;
 }
 
 .feedback p {
-  font-size: 0.9em;
-  margin-bottom: 10px;
-  color: #cccccc; /* Light gray for paragraphs */
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    color: #cccccc; /* Light gray for paragraphs */
 }
 
 .feedback ul.type li {
-  display: inline-block;
-  margin-right: 5px;
+    display: inline-block;
+    margin-right: 5px;
 }
 
 .feedback ul.type li:last-child {
-  margin-right: 0;
+    margin-right: 0;
 }
 
 .feedback ul.type li.active a {
-  background: #1e88e5; /* Blue highlight */
-  color: #ffffff; /* White text on highlight */
-  position: relative;
-  border-radius: 4px;
+    background: #1e88e5; /* Blue highlight */
+    color: #ffffff; /* White text on highlight */
+    position: relative;
+    border-radius: 4px;
 }
 
 .feedback ul.type li a {
-  background: #2b2b2b; /* Dark gray background */
-  padding: 8px; /* Smaller padding for cleaner look */
-  border-radius: 4px;
-  font-size: 0.9em;
-  color: #ffffff; /* White text */
-  text-decoration: none;
-  transition: background 0.3s, color 0.3s, transform 0.3s;
+    background: #2b2b2b; /* Dark gray background */
+    padding: 8px; /* Smaller padding for cleaner look */
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: #ffffff; /* White text */
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s, transform 0.3s;
 }
 
 .feedback ul.type li a:hover {
-  background: #1e88e5; /* Blue on hover */
-  color: #ffffff;
-  transform: scale(1.05); /* Slight zoom effect */
+    background: #1e88e5; /* Blue on hover */
+    color: #ffffff;
+    transform: scale(1.05); /* Slight zoom effect */
 }
 
 .feedback .form {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .feedback textarea, 
 .feedback input[type="email"] {
-  width: 95%; /* Slightly wider input fields */
-  padding: 14px; /* Comfortable padding */
-  border-radius: 6px;
-  box-shadow: none;
-  border: 1px solid #444444; /* Medium gray border */
-  background: #1c1c1c; /* Darker background */
-  color: #ffffff; /* White text */
-  font-family: 'Roboto', sans-serif;
-  margin-bottom: 15px; /* Spacing between fields */
+    width: 95%; /* Slightly wider input fields */
+    padding: 14px; /* Comfortable padding */
+    border-radius: 6px;
+    box-shadow: none;
+    border: 1px solid #444444; /* Medium gray border */
+    background: #1c1c1c; /* Darker background */
+    color: #ffffff; /* White text */
+    font-family: 'Lora', serif;
+    margin-bottom: 15px; /* Spacing between fields */
 }
 
 .feedback textarea {
-  min-height: 180px; /* Slightly taller text area */
-  resize: vertical; /* Allow resizing only vertically */
+    min-height: 180px; /* Slightly taller text area */
+    resize: vertical; /* Allow resizing only vertically */
 }
 
 .feedback button {
-  padding: 10px; /* Smaller padding for buttons */
-  background: #1e88e5; /* Blue button */
-  margin-top: 15px;
-  color: #ffffff;
-  border: none;
-  border-radius: 6px; /* Softer corners */
-  cursor: pointer;
-  font-size: 0.95em; /* Slightly smaller font */
-  width: auto; /* Button adapts to content width */
-  min-width: 120px; /* Minimum width for consistency */
-  transition: background 0.3s, transform 0.3s;
+    padding: 10px; /* Smaller padding for buttons */
+    background: #1e88e5; /* Blue button */
+    margin-top: 15px;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px; /* Softer corners */
+    cursor: pointer;
+    font-size: 0.95em; /* Slightly smaller font */
+    width: auto; /* Button adapts to content width */
+    min-width: 120px; /* Minimum width for consistency */
+    transition: background 0.3s, transform 0.3s;
 }
 
 .feedback button:hover {
-  background: #1565c0; /* Darker blue on hover */
-  transform: translateY(-2px); /* Button lifts slightly on hover */
+    background: #1565c0; /* Darker blue on hover */
+    transform: translateY(-2px); /* Button lifts slightly on hover */
 }
 
 /* Live Site Example */
 .live-site {
-  text-align: center;
-  color: #ffffff; /* White text */
-  font-size: 14px;
-  margin: 20px 0;
+    text-align: center;
+    color: #ffffff; /* White text */
+    font-size: 14px;
+    margin: 20px 0;
 }
 
 .live-site a {
-  color: #1e88e5; /* Blue link */
-  border: 1px solid #1e88e5;
-  background: transparent;
-  display: inline-block;
-  padding: 8px; /* Reduced padding for links */
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background 0.3s, color 0.3s, transform 0.3s;
+    color: #1e88e5; /* Blue link */
+    border: 1px solid #1e88e5;
+    background: transparent;
+    display: inline-block;
+    padding: 8px; /* Reduced padding for links */
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s, color 0.3s, transform 0.3s;
 }
 
 .live-site a:hover {
-  background: #1e88e5;
-  color: #ffffff;
-  transform: scale(1.05); /* Slight zoom effect */
+    background: #1e88e5;
+    color: #ffffff;
+    transform: scale(1.05); /* Slight zoom effect */
 }
 
 /* Responsive Design */
 @media (max-width: 600px) {
-  .feedback {
-    width: 100%;
-    margin: 10px;
-  }
+    .feedback {
+        width: 100%;
+        margin: 10px;
+    }
 }
 
+/* Styling input fields */
+.calc-input-unique {
+    padding: 10px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid var(--hover-bg-color);
+    border-radius: 8px;
+    background-color: var(--form-bg-color);
+    color: var(--text-color);
+    font-size: 0.95em;
+    transition: border-color 0.3s;
+}
 
+.calc-input-unique::placeholder {
+    color: #aaa;
+}
 
+.calc-input-unique:focus {
+    border-color: var(--hover-bg-color);
+    outline: none;
+}
 
+/* Styling result display */
+.calc-result-unique {
+    margin-top: 20px;
+    font-weight: bold;
+    color: var(--success-color);
+    transition: color 0.3s;
+}
 
-  
+.calc-error-unique {
+    color: var(--error-color);
+}
 
+input::placeholder {
+    font-family: 'Lora', serif; /* Apply custom font */
+    font-weight: normal; /* Ensure the text is not bold */
+}
 
+/* card for my worldlink */
+.card {
+    background-color: var(--card-bg-color);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px var(--card-bg-color);
+    max-width: 600px;
+    width: 90%;
+    border: 1.5px solid var(--card-bg-color);
+    text-align: left;
+}
 
-        
-     
-        /* Styling input fields */
-        .calc-input-unique {
-            padding: 10px;
-            width: 100%;
-            margin-top: 10px;
-            margin-bottom: 15px;
-            box-sizing: border-box;
-            border: 1px solid var(--hover-bg-color);
-            border-radius: 8px;
-            background-color: var(--form-bg-color);
-            color: var(--text-color);
-            font-size: 0.95em;
-            transition: border-color 0.3s;
-        }
+h1 {
+    font-size: small;
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 5px;
+}
 
-        .calc-input-unique::placeholder {
-            color: #aaa;
-        }
+p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-color);
+    font-family: 'Lora', serif; /* Consistent font for paragraphs */
+    line-height: 1.5; /* Comfortable line spacing */
+}
 
-        .calc-input-unique:focus {
-            border-color: var(--hover-bg-color);
-            outline: none;
-        }
+ol {
+    padding-left: 25px;
+    font-size: small;
+}
 
-        /* Styling result display */
-        .calc-result-unique {
-            margin-top: 20px;
-            font-weight: bold;
-            color: var(--success-color);
-            transition: color 0.3s;
-        }
+ol li {
+    margin-bottom: 12px;
+}
 
-        .calc-error-unique {
-            color: var(--error-color);
-        }
+/* Unique Wrapper Styles */
+.unique-wrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        input::placeholder {
-      font-family: 'Roboto', sans-serif; /* Apply custom font */
-      font-weight: normal; /* Ensure the text is not bold */
+.unique-box {
+    width: 250px;
+    height: 250px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.unique-header {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 50px;
+}
+
+.unique-header-bar {
+    width: 0%;
+    height: inherit;
+    background: #ffb510;
+    position: absolute;
+    animation: headerAnimation 2s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
+    display: flex;
+}
+
+.unique-header-text {
+    font-family: "Poppins";
+    color: #fff;
+    font-size: 32px;
+    animation: fadeInHeaderText 2s forwards;
+    animation-delay: 1.6s;
+    opacity: 0;
+    display: flex;
+    align-items: baseline;
+    position: relative;
+}
+
+.unique-dot {
+    width: 0px;
+    height: 0px;
+    border-radius: 50%;
+    background: #ffb510;
+    animation: dotEffect 0.8s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
+    animation-delay: 2s;
+    margin-left: 5px;
+    margin-top: -10px;
+    position: absolute;
+    bottom: 13px;
+    right: -12px;
+}
+
+.unique-subtext-wrapper {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    margin-top: -10px;
+}
+
+.unique-subtext-bar {
+    width: 0%;
+    height: inherit;
+    background: #e91e63;
+    position: absolute;
+    animation: subtextAnimation 2s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
+    animation-delay: 2s;
+    display: flex;
+}
+
+.unique-subtext {
+    animation: fadeInSubtext 2s forwards;
+    animation-delay: 3.2s;
+    opacity: 0;
+    font-weight: 400;
+    font-family: "Lato";
+    color: #ffffff;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+@keyframes headerAnimation {
+    0% {
+        width: 0%;
+        left: 0;
     }
+    50% {
+        width: 100%;
+        left: 0;
+    }
+    100% {
+        width: 0;
+        left: 100%;
+    }
+}
 
+@keyframes subtextAnimation {
+    0% {
+        width: 0%;
+        left: 0;
+    }
+    50% {
+        width: 100%;
+        left: 0;
+    }
+    100% {
+        width: 0;
+        left: 100%;
+    }
+}
 
+@keyframes fadeInHeaderText {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 
+@keyframes dotEffect {
+    0% {
+        width: 0px;
+        height: 0px;
+        background: #e9d856;
+        opacity: 0;
+    }
+    50% {
+        width: 10px;
+        height: 10px;
+        opacity: 1;
+        bottom: 45px;
+    }
+    65% {
+        width: 7px;
+        height: 7px;
+        bottom: 0px;
+        width: 15px;
+    }
+    80% {
+        width: 10px;
+        height: 10px;
+        bottom: 20px;
+    }
+    100% {
+        width: 7px;
+        height: 7px;
+        background: #e9d856;
+        bottom: 13px;
+    }
+}
 
+@keyframes fadeInSubtext {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
 
-    /* card for my worldlink */
-    .card {
-            background-color: var(--card-bg-color);
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 6px 15px var(--card-bg-color);
-            max-width: 600px;
-            width: 90%;
-            border: 1.5px solid var(--card-bg-color);
-            text-align: left;
-        }
+#main-content {
+    display: none;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+}
 
-        h1 {
-            font-size: small;
-            color: var(--text-color);
-            text-align: center;
-            margin-bottom: 5px;
-        }
+input::placeholder {
+    color: var(--text-color); /* Use root variable for placeholder color */
+}
 
-        p {
-            font-size:small;
-            line-height: 1;
-            margin-bottom: 10px;
-        }
+textarea::placeholder {
+    color: var(--text-color); /* Use root variable for textarea placeholder color */
+}
 
-        ol {
-            padding-left: 25px;
-            font-size: small;
-        }
+/* Ensure consistency for text in textareas */
+textarea {
+    color: var(--text-color); /* Use root variable for text color */
+}
 
-        ol li {
-            margin-bottom: 12px;
-        }
+/* Ensure consistency for input text */
+input {
+    color: var(--text-color); /* Use root variable for input text color */
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: var(--container-bg-color);
+    border: 1px solid var(--hover-bg-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    z-index: 1000;
+}
+
+.theme-toggle:hover {
+    background-color: var(--hover-bg-color);
+}
+
+.theme-toggle svg {
+    width: 24px;
+    height: 24px;
+    color: var(--text-color);
+    transition: color 0.3s;
+}
+
+/* Light mode styles */
+:root.light-mode {
+    --bg-color: #93d1ff; /* Light blue background */
+    --text-color: #4d4d4d; /* Slightly gray text color */
+    --container-bg-color: #cce4ff; /* Slightly lighter container background */
+    --hover-bg-color: #b3daff; /* Subtle hover effect */
+    --success-color: #28a745; /* Green for success */
+    --highlight-color: #0056b3; /* Darker blue for highlights */
+    --form--bg--color: #ffffff; /* Form background */
+}
+
+/* Light mode adjustments for text */
+:root.light-mode p, 
+:root.light-mode h1, 
+:root.light-mode h2, 
+:root.light-mode h3, 
+:root.light-mode h4, 
+:root.light-mode h5, 
+:root.light-mode h6 {
+    color: var(--text-color); /* Ensure text is visible */
+}
+
+/* Light mode adjustments for input fields */
+:root.light-mode input, 
+:root.light-mode textarea {
+    background-color: var(--form--bg--color); /* White background */
+    color: var(--text-color); /* Dark text */
+    border: 1px solid #99c9ff; /* Light border */
+}
+
+:root.light-mode input::placeholder, 
+:root.light-mode textarea::placeholder {
+    color: #666666; /* Darker placeholder text */
+}
+
+/* Light mode adjustments for cards and containers */
+:root.light-mode .card, 
+:root.light-mode .container, 
+:root.light-mode .wifi-section, 
+:root.light-mode .credential, 
+:root.light-mode .status {
+    background-color: var(--container-bg-color); /* Light blue container background */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow */
+}
+
+/* Light mode adjustments for menu */
+:root.light-mode .menu {
+    background-color: var(--container-bg-color); /* Light blue menu background */
+}
+
+:root.light-mode .menu a {
+    color: var(--text-color); /* Dark text for menu items */
+}
+
+:root.light-mode .menu a:hover {
+    color: var(--highlight-color); /* Highlight on hover */
+}
+
+/* Light mode adjustments for buttons */
+:root.light-mode button, 
+:root.light-mode .copy-button {
+    background-color: var(--container-bg-color); /* Light blue background */
+    color: var(--text-color); /* Dark text */
+    border: 1px solid var(--hover-bg-color); /* Subtle border */
+}
+
+:root.light-mode button:hover, 
+:root.light-mode .copy-button:hover {
+    background-color: var(--hover-bg-color); /* Slightly darker hover effect */
+    color: var(--highlight-color); /* Highlight text */
+}
+
+.credential {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: var(--container-bg-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Subtle shadow for modern look */
+    text-align: left;
+    white-space: nowrap;
+}
+
+.credential h3 {
+    font-size: 18px;
+    color: var(--text-color);
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.credential .copy-button {
+    font-size: 12px;
+    color: var (--highlight-color);
+    text-decoration: none;
+    margin-right: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid var(--highlight-color);
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.credential .copy-button:hover {
+    background-color: var(--highlight-color);
+    color: var(--bg-color);
+}
+
+/* Light mode adjustments for text visibility */
+:root.light-mode .credential h3,
+:root.light-mode .credential .copy-button {
+    color: #000; /* Black text for visibility in light mode */
+}
+
+input, textarea {
+    background-color: var(--container-bg-color); /* Background color for input fields */
+    color: var(--text-color); /* Text color for input fields */
+    border: 1px solid var(--hover-bg-color); /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding inside input fields */
+    font-size: 14px; /* Font size */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transitions */
+}
+
+input:focus, textarea:focus {
+    border-color: var(--highlight-color); /* Highlight border on focus */
+    box-shadow: 0 0 5px var(--highlight-color); /* Add shadow on focus */
+    outline: none; /* Remove default outline */
+}
+
+input::placeholder, textarea::placeholder {
+    color: #888; /* Placeholder text color */
+}
+
+/* Light mode adjustments for input fields */
+:root.light-mode input, 
+:root.light-mode textarea {
+    background-color: #ffffff; /* Light background for input fields */
+    color: #000000; /* Dark text for input fields */
+    border: 1px solid #cccccc; /* Light border color */
+}
+
+:root.light-mode input::placeholder, 
+:root.light-mode textarea::placeholder {
+    color: #666; /* Darker placeholder text for light mode */
+}
+
+/* Wi-Fi section styles */
+.wifi-section {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: var(--container-bg-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Subtle shadow for modern look */
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.wifi-section h4 {
+    margin: 0;
+    font-size: 16px;
+    color: var(--text-color);
+    font-family: 'Lora', serif; /* Consistent font for headings */
+    font-weight: 500; /* Medium weight for better readability */
+    line-height: 1.5; /* Comfortable line spacing */
+}
+
+.wifi-section p {
+    font-size: 14px;
+    color: var(--text-color);
+    line-height: 1.5;
+}
+
+.wifi-section input, .wifi-section select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid var(--hover-bg-color);
+    border-radius: 5px;
+    background-color: var(--form--bg--color);
+    color: var(--text-color);
+    font-size: 14px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.wifi-section input:focus, .wifi-section select:focus {
+    border-color: var(--highlight-color);
+    box-shadow: 0 0 5px var(--highlight-color);
+    outline: none;
+}
+
+/* Light mode adjustments for Wi-Fi section */
+:root.light-mode .wifi-section {
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow for light mode */
+}
+
+:root.light-mode .wifi-section h4,
+:root.light-mode .wifi-section p {
+    color: #333333ab;
+}
+
+:root.light-mode .wifi-section input,
+:root.light-mode .wifi-section select {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #cccccc;
+}
+
+:root.light-mode .wifi-section input::placeholder,
+:root.light-mode .wifi-section select::placeholder {
+    color: #666;
+}
+
+select, option {
+    background-color: var(--container-bg-color); /* Background color for select and option fields */
+    color: var(--text-color); /* Text color */
+    border: 1px solid var(--hover-bg-color); /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding inside fields */
+    font-size: 14px; /* Font size */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transitions */
+}
+
+select:focus {
+    border-color: var(--highlight-color); /* Highlight border on focus */
+    box-shadow: 0 0 5px var(--highlight-color); /* Add shadow on focus */
+    outline: none; /* Remove default outline */
+}
+
+/* Light mode adjustments for select and option fields */
+:root.light-mode select, 
+:root.light-mode option {
+    background-color: #ffffff; /* Light background */
+    color: #000000af; /* Dark text */
+    border: 1px solid #cccccc; /* Light border color */
+}
+
+/* Enhance all card containers with a consistent shadow for a modern look */
+.card, 
+.container, 
+.wifi-section, 
+.credential, 
+.status {
+    box-shadow: 0 4px 10px var(--shadow-color); /* Dynamic shadow based on mode */
+}
+
+/* Light mode adjustments for shadow */
+:root.light-mode .card, 
+:root.light-mode .container, 
+:root.light-mode .wifi-section, 
+:root.light-mode .credential, 
+:root.light-mode .status {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow for light mode */
+}
+
+/* Placeholder text color adjustments */
+input::placeholder, textarea::placeholder {
+    color: var(--text-color); /* Use text color variable for better visibility */
+    opacity: 0.7; /* Slight transparency for placeholders */
+}
+
+/* Ensure consistency for text in textareas */
+textarea {
+    color: var(--text-color); /* Use root variable for text color */
+    background-color: var(--container-bg-color); /* Background color for textarea */
+}
+
+/* Ensure consistency for input text */
+input {
+    color: var(--text-color); /* Use root variable for input text color */
+    background-color: var(--container-bg-color); /* Background color for input fields */
+}
+
+/* Light mode adjustments for placeholders */
+:root.light-mode input::placeholder, 
+:root.light-mode textarea::placeholder {
+    color: #666; /* Darker placeholder text for light mode */
+    opacity: 0.8; /* Slightly more visible in light mode */
+}
+
+/* Light mode adjustments for input fields */
+:root.light-mode input, 
+:root.light-mode textarea {
+    background-color: #ffffff; /* Light background for input fields */
+    color: #000000; /* Dark text for input fields */
+    border: 1px solid #cccccc; /* Light border color */
+}
+
+/* Font adjustments for better readability */
+body {
+    font-family: 'Lora', serif; /* Modern and clean font */
+    font-size: 16px; /* Slightly larger base font size */
+    line-height: 1.6; /* Improved line spacing */
+    color: var(--text-color); /* Dynamic text color */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif; /* Stylish font for headings */
+    font-weight: 600; /* Bold for emphasis */
+    color: var(--text-color); /* Dynamic text color */
+}
+
+p, label, input, textarea {
+    font-family: 'Lora', serif; /* Consistent font for body text */
+    font-size: 14px; /* Standard font size for body text */
+    line-height: 1.5; /* Comfortable line spacing */
+    color: var (--text-color); /* Dynamic text color */
+}
+
+/* Placeholder text adjustments */
+input::placeholder, textarea::placeholder {
+    font-family:'Lora', serif; /* Match input font */
+    font-size: 14px; /* Consistent size */
+    color: #888; /* Neutral placeholder color */
+    opacity: 0.8; /* Slight transparency */
+}
+
+/* Light mode font adjustments */
+:root.light-mode {
+    --text-color: #2E2E2E; /* Dark gray with a sleek modern feel */
+}
+
+:root.light-mode input::placeholder, 
+:root.light-mode textarea::placeholder {
+    color: #666; /* Darker placeholder text for light mode */
+}
+
+/* Light mode adjustments for task actions */
+:root.light-mode .task-actions button.edit svg path,
+:root.light-mode .task-actions button.remove svg path {
+    fill: #333333; /* Dark fill for visibility in light mode */
+}
+
+/* Light mode adjustments for social icons */
+:root.light-mode .social-item .social-link svg path {
+    fill: #333333; /* Dark fill for visibility in light mode */
+}
+
+:root.light-mode .social-item .social-link:hover svg path {
+    fill: var(--highlight-color); /* Highlight color on hover */
+}
+
+/* Light mode adjustments for type speed icons */
+:root.light-mode .type.speed li a {
+    color: var(--text-color); /* Use dynamic text color for better visibility */
+    transition: color 0.3s ease; /* Smooth transition for color changes */
+}
+
+:root.light-mode .type.speed li a:hover {
+    color: var(--highlight-color); /* Highlight color on hover */
+    text-decoration: underline; /* Add underline for better emphasis */
+}
+
+/* Input field styles */
+input, textarea, select {
+    background-color: var(--container-bg-color); /* Background color for input fields */
+    color: var(--text-color); /* Text color for input fields */
+    border: 1px solid var(--hover-bg-color); /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding inside input fields */
+    font-size: 14px; /* Font size */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s, opacity 0.3s; /* Smooth transitions */
+    opacity: 0.92; /* Slight transparency */
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: var(--highlight-color); /* Highlight border on focus */
+    box-shadow: 0 0 5px var(--highlight-color); /* Add shadow on focus */
+    outline: none; /* Remove default outline */
+    opacity: 1; /* Fully opaque on focus */
+}
+
+input::placeholder, textarea::placeholder {
+    color: #888; /* Placeholder text color */
+    opacity: 0.8; /* Slight transparency */
+}
+
+/* Light mode adjustments for input fields */
+:root.light-mode input, 
+:root.light-mode textarea, 
+:root.light-mode select {
+    background-color: rgba(255, 255, 255, 0.534); /* Slightly transparent white background */
+    color: #333333; /* Softer dark text for better readability */
+    border: 1px solid #cccccc8e; /* Light border color */
+}
+
+:root.light-mode input::placeholder, 
+:root.light-mode textarea::placeholder {
+    color: #666666; /* Darker placeholder text for light mode */
+    opacity: 0.8; /* Slightly more visible in light mode */
+}
+
+/* Apply Roboto font to all text elements */
+body, h1, h2, h3, h4, h5, h6, p, label, input, textarea, select, button, .text-block, .menu a, .credential, .status, .live-site a {
+    font-family: 'Lora', serif; /* Use only 'Lora', serif */
+}
+
+/* Placeholder text styling */
+input::placeholder, textarea::placeholder, select::placeholder {
+    font-family: 'Lora', serif; /* Use only 'Lora', serif */
+}
+
+h4 {
+    margin: 0;
+    font-size: 16px;
+    color: var(--text-color);
+    font-family: 'Lora', serif; /* Consistent font for headings */
+    font-weight: 500; /* Medium weight for better readability */
+    line-height: 1.5; /* Comfortable line spacing */
+}
+
+p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-color);
+    font-family: 'Lora', serif; /* Consistent font for paragraphs */
+    line-height: 1.5; /* Comfortable line spacing */
+}
+
+#result {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--success-color);
+    display: none; /* Initially hidden */
+}
+
+/* General text styling for all elements */
+h1, h2, h3, h4, h5, h6, p, li, span {
+    margin: 0;
+    font-size: 14px; /* Standard font size */
+    color: var(--text-color); /* Dynamic text color */
+    font-family: 'Lora', serif; /* Consistent font for all text */
+    font-weight: 500; /* Medium weight for better readability */
+    line-height: 1.5; /* Comfortable line spacing */
+}
+
+/* Specific adjustments for headings */
+h1, h2, h3, h4, h5, h6 {
+    font-size: 16px; /* Slightly larger font size for headings */
+    font-weight: 600; /* Bold for emphasis */
+}
+
+/* Specific adjustments for list items */
+li {
+    list-style: none; /* Remove default list styling */
+    margin-bottom: 10px; /* Add spacing between list items */
+}
+
+/* Specific adjustments for spans */
+span {
+    display: inline-block; /* Ensure spans behave consistently */
+    font-size: 14px; /* Match paragraph font size */
+    font-weight: 500; /* Medium weight */
+}
+
+/* Placeholder text adjustments */
+input::placeholder, textarea::placeholder, select::placeholder {
+    font-family: 'Lora', serif; /* Match input font */
+    font-size: 14px; /* Consistent size */
+    color: #888; /* Neutral placeholder color */
+    opacity: 0.8; /* Slight transparency */
+}
 
 
