@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beacon Troubleshooting</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #1a2980, #26d0ce);
+            color: #2d3748;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+        .header {
+            background: #2b6cb0;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+        .header p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+        .flow-container {
+            padding: 20px;
+        }
+        .step {
+            margin-bottom: 25px;
+        }
+        .step-title {
+            color: #2b6cb0;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .option-btn {
+            background: #edf2f7;
+            border: none;
+            border-radius: 8px;
+            padding: 14px 20px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .option-btn:hover {
+            background: #e2e8f0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .option-btn.selected {
+            background: #2b6cb0;
+            color: white;
+            box-shadow: 0 4px 10px rgba(43, 108, 176, 0.3);
+        }
+        .result-panel {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid #2b6cb0;
+            display: none;
+        }
+        .result-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2d3748;
+            font-size: 1.2rem;
+        }
+        .action-items {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        .action-items li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        .ticket-header {
+            background: #fed7d7;
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-weight: 600;
+            color: #c53030;
+            font-size: 0.95rem;
+        }
+        .note-box {
+            background: #fffaf0;
+            border-left: 4px solid #dd6b20;
+            padding: 15px;
+            margin-top: 25px;
+            border-radius: 0 6px 6px 0;
+        }
+        .note-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #dd6b20;
+        }
+        .note-content {
+            margin-left: 10px;
+            font-size: 0.95rem;
+        }
+        .note-content div {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+        }
+        .ticket-pill {
+            display: inline-block;
+            background: #c53030;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-left: 8px;
+            font-weight: 500;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+        .action-btn {
+            background: #2b6cb0;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .action-btn:hover {
+            background: #1a5189;
+        }
+        .action-btn.secondary {
+            background: #e2e8f0;
+            color: #4a5568;
+        }
+        .action-btn.secondary:hover {
+            background: #cbd5e0;
+        }
+        
+        @media (max-width: 600px) {
+            .options {
+                flex-direction: column;
+            }
+            .option-btn {
+                min-width: 100%;
+            }
+            .header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Beacon Troubleshooting</h1>
+            <p>Quick diagnostic tool for Beacon connectivity issues</p>
+        </div>
+        
+        <div class="flow-container">
+            <!-- Step 1: Connection Type -->
+            <div class="step" id="step1">
+                <div class="step-title">1. Select Connection Type</div>
+                <div class="options">
+                    <button class="option-btn" data-type="wired">Wired (Ethernet)</button>
+                    <button class="option-btn" data-type="wireless">Wireless (Wi-Fi)</button>
+                </div>
+            </div>
+            
+            <!-- Step 2: Wired Options -->
+            <div class="step" id="wired-step" style="display:none;">
+                <div class="step-title">2. Wired Connection Status</div>
+                <div class="options">
+                    <button class="option-btn" data-status="disconnected">Disconnected</button>
+                    <button class="option-btn" data-status="connected">Connected</button>
+                </div>
+                <div class="actions">
+                    <button class="action-btn secondary" id="back-to-step1">Back</button>
+                </div>
+            </div>
+            
+            <!-- Step 2: Wireless Options -->
+            <div class="step" id="wireless-step" style="display:none;">
+                <div class="step-title">2. Wireless Signal Quality</div>
+                <div class="options">
+                    <button class="option-btn" data-quality="good">Good</button>
+                    <button class="option-btn" data-quality="poor">Poor/Average</button>
+                </div>
+                <div class="actions">
+                    <button class="action-btn secondary" id="back-to-step1-wireless">Back</button>
+                </div>
+            </div>
+            
+            <!-- Results -->
+            <div class="result-panel" id="wired-disconnected-result">
+                <div class="result-title">Disconnected Beacon</div>
+                <ul class="action-items">
+                    <li>SUGGEST TO REPLUG LAN CABLE</li>
+                    <li>SUGGEST TO CHANGE LAN PORT</li>
+                </ul>
+                <div class="ticket-header">
+                    ASSIGN/CLOSE UNDER "CORTECA REPORTED UNSTABLE BACKHAULING" HEADER
+                </div>
+                <div class="ticket-header">
+                    ASSIGN/CLOSE UNDER "RESPECTIVE SLOW RELATED" HEADER
+                </div>
+                <div class="actions">
+                    <button class="action-btn secondary" id="back-from-disconnected">Back</button>
+                    <button class="action-btn" id="restart">Restart</button>
+                </div>
+            </div>
+            
+            <div class="result-panel" id="wired-connected-result">
+                <div class="result-title">Connected - Check Max Bit Rate</div>
+                <div>IF 1000</div>
+                <ul class="action-items">
+                    <li>Proceed for slow Troubleshoot</li>
+                    <li>Proceed for slow Troubleshoot</li>
+                    <li>Suggest CAT g/CAT 5e wire</li>
+                </ul>
+                <div class="ticket-header">
+                    ASSIGN/CLOSE UNDER "CORTECA REPORTED LOW WIFI COVERAGE" HEADER
+                </div>
+                <div class="actions">
+                    <button class="action-btn secondary" id="back-from-connected">Back</button>
+                    <button class="action-btn" id="restart2">Restart</button>
+                </div>
+            </div>
+            
+            <div class="result-panel" id="wireless-good-result">
+                <div class="result-title">Good Wireless Connection</div>
+                <ul class="action-items">
+                    <li>Proceed for slow Troubleshoot</li>
+                    <li>SUGGEST TO CONNECT WITH LAN CABLE</li>
+                </ul>
+                <div class="ticket-header">
+                    ASSIGN/CLOSE UNDER "RESPECTIVE SLOW RELATED" HEADER
+                </div>
+                <div class="ticket-header">
+                    ASSIGN/CLOSE UNDER "CORTECA REPORTED LOW WIFI COVERAGE" HEADER
+                </div>
+                <div class="actions">
+                    <button class="action-btn secondary" id="back-from-good">Back</button>
+                    <button class="action-btn" id="restart3">Restart</button>
+                </div>
+            </div>
+            
+            <div class="result-panel" id="wireless-poor-result">
+                <div class="result-title">Poor/Average Wireless Connection</div>
+                <ul class="action-items">
+                    <li>SUGGEST TO REBOOT BEACON PLACING NEAR ONU...</li>
+                    <li>SUGGEST TO CONNECT WITH LAN CABLE</li>
+                </ul>
+                <div class="ticket-header">
+                    ASSIGN/CLOSE UNDER "CORTECA REPORTED LOW WIFI COVERAGE" HEADER
+                </div>
+                <div class="actions">
+                    <button class="action-btn secondary" id="back-from-poor">Back</button>
+                    <button class="action-btn" id="restart4">Restart</button>
+                </div>
+            </div>
+            
+            <!-- Notes Section -->
+            <div class="note-box">
+                <div class="note-title">Note:</div>
+                <div class="note-content">
+                    <div>
+                        - If Switching issue (Beacon to Beacon/ONU) observed from beacon: 
+                        <span class="ticket-pill">AUTO SWATCHING ISSUES FROM 5ghz TO 2.4ghz OR VICE-VERSA</span>
+                    </div>
+                    <div>
+                        - If disconnection observed in Beacon (on/off): 
+                        <span class="ticket-pill">CORTECA REPORTED UNSTABLE BACKHAULING</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Step 1: Wired/Wireless selection
+            const wiredBtn = document.querySelector('[data-type="wired"]');
+            const wirelessBtn = document.querySelector('[data-type="wireless"]');
+            
+            wiredBtn.addEventListener('click', function() {
+                document.getElementById('step1').style.display = 'none';
+                document.getElementById('wired-step').style.display = 'block';
+            });
+            
+            wirelessBtn.addEventListener('click', function() {
+                document.getElementById('step1').style.display = 'none';
+                document.getElementById('wireless-step').style.display = 'block';
+            });
+            
+            // Wired step options
+            const disconnectedBtn = document.querySelector('[data-status="disconnected"]');
+            const connectedBtn = document.querySelector('[data-status="connected"]');
+            
+            disconnectedBtn.addEventListener('click', function() {
+                document.getElementById('wired-step').style.display = 'none';
+                document.getElementById('wired-disconnected-result').style.display = 'block';
+            });
+            
+            connectedBtn.addEventListener('click', function() {
+                document.getElementById('wired-step').style.display = 'none';
+                document.getElementById('wired-connected-result').style.display = 'block';
+            });
+            
+            // Wireless step options
+            const goodBtn = document.querySelector('[data-quality="good"]');
+            const poorBtn = document.querySelector('[data-quality="poor"]');
+            
+            goodBtn.addEventListener('click', function() {
+                document.getElementById('wireless-step').style.display = 'none';
+                document.getElementById('wireless-good-result').style.display = 'block';
+            });
+            
+            poorBtn.addEventListener('click', function() {
+                document.getElementById('wireless-step').style.display = 'none';
+                document.getElementById('wireless-poor-result').style.display = 'block';
+            });
+            
+            // Back buttons
+            document.getElementById('back-to-step1').addEventListener('click', function() {
+                document.getElementById('wired-step').style.display = 'none';
+                document.getElementById('step1').style.display = 'block';
+            });
+            
+            document.getElementById('back-to-step1-wireless').addEventListener('click', function() {
+                document.getElementById('wireless-step').style.display = 'none';
+                document.getElementById('step1').style.display = 'block';
+            });
+            
+            document.getElementById('back-from-disconnected').addEventListener('click', function() {
+                document.getElementById('wired-disconnected-result').style.display = 'none';
+                document.getElementById('wired-step').style.display = 'block';
+            });
+            
+            document.getElementById('back-from-connected').addEventListener('click', function() {
+                document.getElementById('wired-connected-result').style.display = 'none';
+                document.getElementById('wired-step').style.display = 'block';
+            });
+            
+            document.getElementById('back-from-good').addEventListener('click', function() {
+                document.getElementById('wireless-good-result').style.display = 'none';
+                document.getElementById('wireless-step').style.display = 'block';
+            });
+            
+            document.getElementById('back-from-poor').addEventListener('click', function() {
+                document.getElementById('wireless-poor-result').style.display = 'none';
+                document.getElementById('wireless-step').style.display = 'block';
+            });
+            
+            // Restart buttons
+            const restartButtons = document.querySelectorAll('.action-btn:not(.secondary)');
+            restartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Hide all result panels
+                    document.querySelectorAll('.result-panel').forEach(panel => {
+                        panel.style.display = 'none';
+                    });
+                    // Hide step panels
+                    document.getElementById('wired-step').style.display = 'none';
+                    document.getElementById('wireless-step').style.display = 'none';
+                    // Show step 1
+                    document.getElementById('step1').style.display = 'block';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

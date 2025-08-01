@@ -151,11 +151,18 @@
 
 
   <div id="net-tv-cases" class="container">
-      <h3>Net TV Cases <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="15" height="15" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
-          <g>
-            <path d="m16.298 8.288 1.404 1.425-5.793 5.707a2.001 2.001 0 0 1-2.823-.005l-2.782-2.696 1.393-1.437 2.793 2.707 5.809-5.701ZM24 12c0 6.617-5.383 12-12 12S0 18.617 0 12 5.383 0 12 0s12 5.383 12 12Zm-2 0c0-5.514-4.486-10-10-10S2 6.486 2 12s4.486 10 10 10 10-4.486 10-10Z" fill="#f6efef" opacity="1" data-original="#000000" class=""></path>
-          </g>
-        </svg> </h3>
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <h3>Net TV Cases 
+          <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="15" height="15" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
+            <g>
+              <path d="m16.298 8.288 1.404 1.425-5.793 5.707a2.001 2.001 0 0 1-2.823-.005l-2.782-2.696 1.393-1.437 2.793 2.707 5.809-5.701ZM24 12c0 6.617-5.383 12-12 12S0 18.617 0 12 5.383 0 12 0s12 5.383 12 12Zm-2 0c0-5.514-4.486-10-10-10S2 6.486 2 12s4.486 10 10 10 10-4.486 10-10Z" fill="#f6efef" opacity="1" data-original="#000000" class=""></path>
+            </g>
+          </svg>
+        </h3>
+        <button id="nettv-guide-btn" style="padding:6px 16px; background:#7e57c2; color:#fff; border:none; border-radius:6px; font-weight:600; font-size:14px; cursor:pointer; margin-left:16px;">
+          Net TV Guide
+        </button>
+      </div>
       <hr>
       <h4>Authentication Issue</h4>
       <div class="text-block" onclick="copyText('remark1', this)">
@@ -429,36 +436,36 @@ class="input-field"></textarea>
       <hr>
       <h4>Speed test fine</h4>
       <div class="text-block" onclick="copyText('text14', this)">
-          <p id="text14">Bandwidth verified, R.X. power checked, device verified, ping test fine, speed test done, domain ping fine, issue resolved.</p>
+          <p id="text14">Bandwidth verified → R.X. power fine → device verified → ping test fine → speed test done → domain ping fine → issue resolved.</p>
       </div>
 
       <h4>High Latency in a single device with good RSSI</h4>
       
       <div class="text-block" onclick="copyText('text15', this)">
-      <p id="text15">Bandwidth verified, R.X. power checked, OLT RX difference <5 verified, device checked, initial ping not fine, range fine (<= -65dBm), another device ping fine, reconnected WiFi on first device, issue solved. </p>
+      <p id="text15">Bandwidth verified → R.X. power fine → OLT RX difference <5 verified → device verified → initial ping not fine → range fine (<= -65dBm) → another device ping fine → reconnected WiFi on first device → issue solved.</p>
       </div>
       
       <div class="text-block" onclick="copyText('text16', this)">
       <h3>Interference not seen</h3>
-      <p id="text16">Bandwidth verified, R.X. power checked, OLT RX difference <5, device checked, initial ping not fine, range fine (<= -65dBm),another device ping not fine, channel interference not seen, reconnected WiFi, issue solved.</p>
+      <p id="text16"> Bandwidth verified → R.X. power fine → OLT RX difference <5 → device verified → initial ping not fine → range fine (<= -65dBm) → another device ping not fine → channel interference not seen → reconnected WiFi → issue solved.</p>
       </div>  
       
       <h4>Channel Interference</h4>
       
       <div class="text-block" onclick="copyText('text24', this)">
       <h5>For Single Band ONU</h5>
-      <p id="text24">Bandwidth verified, R.X. power checked, OLT RX difference <5, device checked, initial ping not fine, range fine (<= -65dBm), another device ping not fine, channel interference seen, suggested solutions for interference (suggested dual band ONU), refreshed channel and verified, issue solved.</p>
+      <p id="text24">Bandwidth verified → R.X. power fine → OLT RX difference <5 → device verified → initial ping not fine → range fine (<= -65dBm) → another device ping not fine → channel interference seen → suggested solutions for interference (suggested dual band ONU) → refreshed channel and verified → issue solved.</p>
       </div>
       
       <div class="text-block" onclick="copyText('text30', this)">
       <h5>For Dual Band ONU</h5>
-      <p id="text30">Bandwidth verified, R.X. power checked, OLT RX difference <5, device checked, initial ping not fine, range fine (<= -65dBm), another device ping not fine, channel interference seen,refreshed channel and verified, issue solved.</p>
+      <p id="text30">Bandwidth verified → R.X. power fine → OLT RX difference <5 → device verified → initial ping not fine → range fine (<= -65dBm) → another device ping not fine → channel interference seen → refreshed channel and verified → issue solved.</p>
       </div>
       
       <h4>RANGE ISSUES</h4>
       
       <div class="text-block" onclick="copyText('text31', this)">
-      <p id="text31">Bandwidth verified, R.X. power checked, OLT RX difference <5, device verified, initial ping not fine, range not fine (<= -65dBm), suggest secondary ONU/beacon placement and also suggest reposition </p>
+      <p id="text31">Bandwidth verified → R.X. power fine → OLT RX difference <5 → device verified → initial ping not fine → range not fine (<= -65dBm) → suggest secondary ONU/beacon placement </p>
       </div>
 
 
@@ -594,7 +601,13 @@ method="POST"
 
 
       <div id="light-index" class="container hidden">
-          <h1>Beacon Router LED Status</h1>
+          <h1 style="display: flex; align-items: center; justify-content: space-between;">
+            Beacon Router LED Status
+            <!-- Beacon Guide Button (top right corner) -->
+            <button id="beacon-guide-btn" style="padding:6px 16px; background:#3a6ea5; color:#fff; border:none; border-radius:6px; font-weight:600; font-size:14px; cursor:pointer; margin-left:auto;">
+              Beacon Guide
+            </button>
+          </h1>
       
           <div class="section">
             <h4>Extender LED Status</h4>
@@ -799,8 +812,337 @@ method="POST"
 
 
 
+<!-- Net TV Guide Modal (merged, no iframe, professional layout) -->
+<div id="nettv-guide-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:rgba(20,30,40,0.97);align-items:center;justify-content:center;">
+  <div id="nettv-guide-content" style="background:#fff;max-width:700px;width:96vw;max-height:92vh;overflow:auto;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.25);position:relative;padding:0;">
+    <button id="nettv-guide-close" style="position:absolute;top:18px;right:28px;background:#7e57c2;color:#fff;border:none;border-radius:50%;width:38px;height:38px;font-size:1.6rem;cursor:pointer;z-index:10;">&times;</button>
+    <div style="padding:28px 22px 18px 22px;">
+      <h1 style="font-size:1.5rem;color:#7e57c2;text-align:center;display:flex;align-items:center;gap:10px;justify-content:center;">
+        <i class="fas fa-tv"></i> Net TV Error Guide
+      </h1>
+      <div style="color:#4a6c8a;font-size:1rem;text-align:center;margin-bottom:18px;">
+        Find solutions for common Net TV error codes and issues.
+      </div>
+      <div class="tabs" style="display:flex;gap:10px;margin-bottom:18px;justify-content:center;">
+        <button class="tab-btn active" data-tab="new" style="background:#7e57c2;color:#fff;border:none;border-radius:8px 8px 0 0;padding:10px 24px;font-weight:600;cursor:pointer;font-size:1rem;">New System STB</button>
+        <button class="tab-btn" data-tab="old" style="background:#ede7f6;color:#7e57c2;border:none;border-radius:8px 8px 0 0;padding:10px 24px;font-weight:600;cursor:pointer;font-size:1rem;">Old System STB</button>
+      </div>
+      <div class="search-bar" style="display:flex;align-items:center;margin-bottom:18px;max-width:400px;margin-left:auto;margin-right:auto;background:#f4f0ff;border-radius:8px;padding:4px 10px;">
+        <i class="fas fa-search" style="color:#7e57c2;margin-right:8px;"></i>
+        <input type="text" id="nettv-errorSearch" placeholder="Search error codes, messages, or solutions..." style="border:none;background:transparent;outline:none;font-size:1rem;flex:1;padding:8px 8px 8px 0;color:#7e57c2;">
+      </div>
+      <ul class="error-list" id="nettv-error-list" style="margin:0;padding:0;list-style:none;"></ul>
+    </div>
+  </div>
+</div>
+<!-- Font Awesome for icons (for modal) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-            
+<script>
+// Net TV Guide popup logic (merged, no iframe, professional modal)
+(function() {
+  var btn = document.getElementById('nettv-guide-btn');
+  var modal = document.getElementById('nettv-guide-modal');
+  var closeBtn = document.getElementById('nettv-guide-close');
+  var iframe = document.getElementById('beacon-guide-iframe');
+  if (btn && modal && closeBtn && iframe) {
+    btn.addEventListener('click', function() {
+      iframe.src = 'becon.html';
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    });
+    closeBtn.addEventListener('click', function() {
+      modal.style.display = 'none';
+      iframe.src = '';
+      document.body.style.overflow = '';
+    });
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        closeBtn.click();
+      }
+    });
+  }
+
+  // Net TV Guide Data and Logic
+  const errorData = {
+    new: [
+      { code: '1400', message: 'Unable to connect to internet / Something went wrong, please try again', cause: 'Network connection or streaming server issue', solution: 'Check Network status → Clear cache → Restart device → Factory Reset' },
+      { code: '1503', message: 'No Internet connection. Please restart Set Top Box', cause: 'Network connectivity issue between device and NetTV service', solution: 'Check network status → verify STB IP → restart STB → launcher refresh → factory reset' },
+      { code: '1525', message: 'SSL Error / Stuck on Live TV splash screen', cause: 'Date and Time outdated / HostiProvider issue', solution: 'Verify date & time settings → Check network → Restart STB' },
+      { code: '1598', message: 'No internet connection', cause: 'Network issue (LAN down/MAC Filter/Poor WiFi)', solution: 'Verify LAN connection → Check Router and STB network status' },
+      { code: '1599', message: 'Could not connect to server / Date and Time not synced', cause: 'Network issue or Time sync problem', solution: 'Sync date & time → Check network → Restart STB → Factory reset if needed' },
+      { code: '2004', message: 'Unable to play from source', cause: 'Provider/streamer side issue or channel specific problem', solution: 'Escalate to NetTV team or I2 team' },
+      { code: 'N/A', message: 'Red light in STB, bytes/packets received are 0', cause: 'STB version compatibility issue', solution: 'Submit ticket as "Hardware related issue - STB needs hard reset"' },
+      { code: 'N/A', message: 'Live TV has stopped/not working', cause: 'Service interruption or STB issue', solution: 'Launcher refresh → Mode change → Factory Reset → Escalate to L2' },
+      { code: 'N/A', message: 'Not Programmed', cause: 'Incorrect input source selection', solution: 'Select correct source (HDMI 1/2, AVTV, or VGA)' }
+    ],
+    old: [
+      { code: '100', message: 'ISP error / Network not Allowed / Package expired', cause: 'Network issue or package expiration', solution: 'Verify network → Check package status → Update mapping' },
+      { code: '400', message: 'No Internet / MAC disable', cause: 'Network connectivity or MAC authentication issue', solution: 'Verify network → Check netty log' },
+      { code: '401', message: 'Invalid username and password', cause: 'Credentials mismatch or MAC conflict', solution: 'Verify online service credentials' },
+      { code: '402', message: 'STB MAC disabled', cause: 'Payment issue or package expiration', solution: 'Verify package status and payment' },
+      { code: '422', message: 'Password Empty / Authentication Required', cause: 'Authentication token expired', solution: 'Update online service password' },
+      { code: '700', message: 'DateTime outdated', cause: 'System time synchronization issue', solution: 'Sync date/time → Check network connectivity' },
+      { code: '25', message: 'No internet connection or server issue', cause: 'Network connectivity problem', solution: 'Check LAN → Verify ethernet → Update date/time' },
+      { code: '1417', message: 'Could not Fetch NETTV data', cause: 'Service connectivity issue', solution: 'Check network → Update firmware/app if needed' }
+    ]
+  };
+
+  let currentTab = 'new';
+
+  function renderNetTVGuide(tab, filter) {
+    tab = tab || currentTab;
+    filter = filter || '';
+    // Set active tab
+    var tabBtns = document.querySelectorAll('#nettv-guide-modal .tab-btn');
+    tabBtns.forEach(function(btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-tab') === tab);
+      btn.style.background = btn.classList.contains('active') ? '#7e57c2' : '#ede7f6';
+      btn.style.color = btn.classList.contains('active') ? '#fff' : '#7e57c2';
+    });
+    currentTab = tab;
+
+    // Render error list
+    var list = document.getElementById('nettv-error-list');
+    var data = errorData[tab].filter(function(e) {
+      return (
+        e.code.toLowerCase().includes(filter) ||
+        e.message.toLowerCase().includes(filter) ||
+        e.cause.toLowerCase().includes(filter) ||
+        e.solution.toLowerCase().includes(filter)
+      );
+    });
+    list.innerHTML = data.length
+      ? data.map(function(error) {
+          return `<li class="error-card" style="background:#f8fafc;border-radius:10px;padding:1.2rem 1rem;margin-bottom:1rem;display:flex;gap:1.2rem;align-items:flex-start;box-shadow:0 1px 4px rgba(126,87,194,0.04);">
+            <div class="error-code" style="font-size:1.1rem;font-weight:600;color:#ef4444;background:#fee2e2;border-radius:8px;padding:0.5rem 1rem;min-width:70px;text-align:center;">${error.code}</div>
+            <div class="error-details" style="flex:1;">
+              <h3 style="font-size:1.05rem;color:#1e293b;margin:0 0 0.5rem 0;">${error.message}</h3>
+              <div class="cause" style="color:#64748b;font-size:0.97rem;margin-bottom:0.3rem;"><b>Cause:</b> ${error.cause}</div>
+              <div class="solution" style="color:#059669;font-size:0.97rem;"><b>Solution:</b> ${error.solution}</div>
+            </div>
+          </li>`;
+        }).join('')
+      : `<li style="color:#7e57c2;text-align:center;padding:1.5rem;">No results found.</li>`;
+  }
+
+  // Event listeners for tabs and search
+  document.addEventListener('DOMContentLoaded', function() {
+    // Tab switching
+    document.querySelectorAll('#nettv-guide-modal .tab-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        renderNetTVGuide(btn.getAttribute('data-tab'), document.getElementById('nettv-errorSearch').value.trim().toLowerCase());
+      });
+    });
+    // Search
+    var searchInput = document.getElementById('nettv-errorSearch');
+    if (searchInput) {
+      searchInput.addEventListener('input', function() {
+        renderNetTVGuide(currentTab, searchInput.value.trim().toLowerCase());
+      });
+    }
+    // Initial render (in case modal is opened by default)
+    renderNetTVGuide();
+  });
+
+  // If modal is opened, render content
+  window.renderNetTVGuide = renderNetTVGuide;
+})();
+</script>
+
+<!-- Add this popup modal just before </body> -->
+<div id="beacon-guide-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:rgba(20,30,40,0.97);align-items:center;justify-content:center;">
+  <button id="beacon-guide-close" style="position:absolute;top:18px;right:28px;background:#e63946;color:#fff;border:none;border-radius:50%;width:38px;height:38px;font-size:1.6rem;cursor:pointer;z-index:10;">&times;</button>
+  <iframe id="beacon-guide-iframe" src="" style="width:96vw;height:92vh;border:none;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.25);background:#fff;"></iframe>
+</div>
+
+<script>
+// Beacon Guide popup logic (fix: ensure DOMContentLoaded and correct file path)
+document.addEventListener('DOMContentLoaded', function() {
+  var btn = document.getElementById('beacon-guide-btn');
+  var modal = document.getElementById('beacon-guide-modal');
+  var closeBtn = document.getElementById('beacon-guide-close');
+  var iframe = document.getElementById('beacon-guide-iframe');
+  if (btn && modal && closeBtn && iframe) {
+    btn.addEventListener('click', function() {
+      iframe.src = 'becon.html';
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    });
+    closeBtn.addEventListener('click', function() {
+      modal.style.display = 'none';
+      iframe.src = '';
+      document.body.style.overflow = '';
+    });
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        closeBtn.click();
+      }
+    });
+  }
+});
+</script>
+
+</body>
+</html>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const root = document.documentElement;
+
+    themeToggle.addEventListener('click', () => {
+        if (root.classList.contains('light-mode')) {
+            root.classList.remove('light-mode'); // Switch to dark mode
+            themeIcon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
+        } else {
+            root.classList.add('light-mode'); // Switch to light mode
+            themeIcon.innerHTML = '<path d="M21.64 13A9 9 0 1 1 11 2.36 7 7 0 0 0 21.64 13z"></path>';
+        }
+    });
+</script>
+
+<!-- Net TV Guide Modal (merged, no iframe, professional layout) -->
+<div id="nettv-guide-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:rgba(20,30,40,0.97);align-items:center;justify-content:center;">
+  <div id="nettv-guide-content" style="background:#fff;max-width:700px;width:96vw;max-height:92vh;overflow:auto;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.25);position:relative;padding:0;">
+    <button id="nettv-guide-close" style="position:absolute;top:18px;right:28px;background:#7e57c2;color:#fff;border:none;border-radius:50%;width:38px;height:38px;font-size:1.6rem;cursor:pointer;z-index:10;">&times;</button>
+    <div style="padding:28px 22px 18px 22px;">
+      <h1 style="font-size:1.5rem;color:#7e57c2;text-align:center;display:flex;align-items:center;gap:10px;justify-content:center;">
+        <i class="fas fa-tv"></i> Net TV Error Guide
+      </h1>
+      <div style="color:#4a6c8a;font-size:1rem;text-align:center;margin-bottom:18px;">
+        Find solutions for common Net TV error codes and issues.
+      </div>
+      <div class="tabs" style="display:flex;gap:10px;margin-bottom:18px;justify-content:center;">
+        <button class="tab-btn active" data-tab="new" style="background:#7e57c2;color:#fff;border:none;border-radius:8px 8px 0 0;padding:10px 24px;font-weight:600;cursor:pointer;font-size:1rem;">New System STB</button>
+        <button class="tab-btn" data-tab="old" style="background:#ede7f6;color:#7e57c2;border:none;border-radius:8px 8px 0 0;padding:10px 24px;font-weight:600;cursor:pointer;font-size:1rem;">Old System STB</button>
+      </div>
+      <div class="search-bar" style="display:flex;align-items:center;margin-bottom:18px;max-width:400px;margin-left:auto;margin-right:auto;background:#f4f0ff;border-radius:8px;padding:4px 10px;">
+        <i class="fas fa-search" style="color:#7e57c2;margin-right:8px;"></i>
+        <input type="text" id="nettv-errorSearch" placeholder="Search error codes, messages, or solutions..." style="border:none;background:transparent;outline:none;font-size:1rem;flex:1;padding:8px 8px 8px 0;color:#7e57c2;">
+      </div>
+      <ul class="error-list" id="nettv-error-list" style="margin:0;padding:0;list-style:none;"></ul>
+    </div>
+  </div>
+</div>
+<!-- Font Awesome for icons (for modal) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<script>
+// Net TV Guide popup logic (merged, no iframe, professional modal)
+(function() {
+  var btn = document.getElementById('nettv-guide-btn');
+  var modal = document.getElementById('nettv-guide-modal');
+  var closeBtn = document.getElementById('nettv-guide-close');
+  if (btn && modal && closeBtn) {
+    btn.addEventListener('click', function() {
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      // Render Net TV Guide content
+      renderNetTVGuide();
+    });
+    closeBtn.addEventListener('click', function() {
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+      // Clear search
+      document.getElementById('nettv-errorSearch').value = '';
+      renderNetTVGuide('new', '');
+    });
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        closeBtn.click();
+      }
+    });
+  }
+
+  // Net TV Guide Data and Logic
+  const errorData = {
+    new: [
+      { code: '1400', message: 'Unable to connect to internet / Something went wrong, please try again', cause: 'Network connection or streaming server issue', solution: 'Check Network status → Clear cache → Restart device → Factory Reset' },
+      { code: '1503', message: 'No Internet connection. Please restart Set Top Box', cause: 'Network connectivity issue between device and NetTV service', solution: 'Check network status → verify STB IP → restart STB → launcher refresh → factory reset' },
+      { code: '1525', message: 'SSL Error / Stuck on Live TV splash screen', cause: 'Date and Time outdated / HostiProvider issue', solution: 'Verify date & time settings → Check network → Restart STB' },
+      { code: '1598', message: 'No internet connection', cause: 'Network issue (LAN down/MAC Filter/Poor WiFi)', solution: 'Verify LAN connection → Check Router and STB network status' },
+      { code: '1599', message: 'Could not connect to server / Date and Time not synced', cause: 'Network issue or Time sync problem', solution: 'Sync date & time → Check network → Restart STB → Factory reset if needed' },
+      { code: '2004', message: 'Unable to play from source', cause: 'Provider/streamer side issue or channel specific problem', solution: 'Escalate to NetTV team or I2 team' },
+      { code: 'N/A', message: 'Red light in STB, bytes/packets received are 0', cause: 'STB version compatibility issue', solution: 'Submit ticket as "Hardware related issue - STB needs hard reset"' },
+      { code: 'N/A', message: 'Live TV has stopped/not working', cause: 'Service interruption or STB issue', solution: 'Launcher refresh → Mode change → Factory Reset → Escalate to L2' },
+      { code: 'N/A', message: 'Not Programmed', cause: 'Incorrect input source selection', solution: 'Select correct source (HDMI 1/2, AVTV, or VGA)' }
+    ],
+    old: [
+      { code: '100', message: 'ISP error / Network not Allowed / Package expired', cause: 'Network issue or package expiration', solution: 'Verify network → Check package status → Update mapping' },
+      { code: '400', message: 'No Internet / MAC disable', cause: 'Network connectivity or MAC authentication issue', solution: 'Verify network → Check netty log' },
+      { code: '401', message: 'Invalid username and password', cause: 'Credentials mismatch or MAC conflict', solution: 'Verify online service credentials' },
+      { code: '402', message: 'STB MAC disabled', cause: 'Payment issue or package expiration', solution: 'Verify package status and payment' },
+      { code: '422', message: 'Password Empty / Authentication Required', cause: 'Authentication token expired', solution: 'Update online service password' },
+      { code: '700', message: 'DateTime outdated', cause: 'System time synchronization issue', solution: 'Sync date/time → Check network connectivity' },
+      { code: '25', message: 'No internet connection or server issue', cause: 'Network connectivity problem', solution: 'Check LAN → Verify ethernet → Update date/time' },
+      { code: '1417', message: 'Could not Fetch NETTV data', cause: 'Service connectivity issue', solution: 'Check network → Update firmware/app if needed' }
+    ]
+  };
+
+  let currentTab = 'new';
+
+  function renderNetTVGuide(tab, filter) {
+    tab = tab || currentTab;
+    filter = filter || '';
+    // Set active tab
+    var tabBtns = document.querySelectorAll('#nettv-guide-modal .tab-btn');
+    tabBtns.forEach(function(btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-tab') === tab);
+      btn.style.background = btn.classList.contains('active') ? '#7e57c2' : '#ede7f6';
+      btn.style.color = btn.classList.contains('active') ? '#fff' : '#7e57c2';
+    });
+    currentTab = tab;
+
+    // Render error list
+    var list = document.getElementById('nettv-error-list');
+    var data = errorData[tab].filter(function(e) {
+      return (
+        e.code.toLowerCase().includes(filter) ||
+        e.message.toLowerCase().includes(filter) ||
+        e.cause.toLowerCase().includes(filter) ||
+        e.solution.toLowerCase().includes(filter)
+      );
+    });
+    list.innerHTML = data.length
+      ? data.map(function(error) {
+          return `<li class="error-card" style="background:#f8fafc;border-radius:10px;padding:1.2rem 1rem;margin-bottom:1rem;display:flex;gap:1.2rem;align-items:flex-start;box-shadow:0 1px 4px rgba(126,87,194,0.04);">
+            <div class="error-code" style="font-size:1.1rem;font-weight:600;color:#ef4444;background:#fee2e2;border-radius:8px;padding:0.5rem 1rem;min-width:70px;text-align:center;">${error.code}</div>
+            <div class="error-details" style="flex:1;">
+              <h3 style="font-size:1.05rem;color:#1e293b;margin:0 0 0.5rem 0;">${error.message}</h3>
+              <div class="cause" style="color:#64748b;font-size:0.97rem;margin-bottom:0.3rem;"><b>Cause:</b> ${error.cause}</div>
+              <div class="solution" style="color:#059669;font-size:0.97rem;"><b>Solution:</b> ${error.solution}</div>
+            </div>
+          </li>`;
+        }).join('')
+      : `<li style="color:#7e57c2;text-align:center;padding:1.5rem;">No results found.</li>`;
+  }
+
+  // Event listeners for tabs and search
+  document.addEventListener('DOMContentLoaded', function() {
+    // Tab switching
+    document.querySelectorAll('#nettv-guide-modal .tab-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        renderNetTVGuide(btn.getAttribute('data-tab'), document.getElementById('nettv-errorSearch').value.trim().toLowerCase());
+      });
+    });
+    // Search
+    var searchInput = document.getElementById('nettv-errorSearch');
+    if (searchInput) {
+      searchInput.addEventListener('input', function() {
+        renderNetTVGuide(currentTab, searchInput.value.trim().toLowerCase());
+      });
+    }
+    // Initial render (in case modal is opened by default)
+    renderNetTVGuide();
+  });
+
+  // If modal is opened, render content
+  window.renderNetTVGuide = renderNetTVGuide;
+})();
+</script>
+
+
+           
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(function () {
@@ -985,6 +1327,11 @@ displayNotification();
         }
     });
 </script>
+
+
+
+
+
 
 </body>
 </html>
