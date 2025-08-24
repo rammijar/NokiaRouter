@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remarks</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23000' fill-rule='evenodd' d='M18 2C9.163 2 2 9.163 2 18v28c0 8.837 7.163 16 16 16h28c8.837 0 16-7.163 16-16V18c0-8.837-7.163-16-16-16zm10 30a2 2 0 0 1-.662 1.487l-10 9a2 2 0 1 1-2.676-2.974L23.01 32l-8.348-7.513a2 2 0 0 1 2.676-2.974l10 9A2 2 0 0 1 28 32zm20 11a2 2 0 1 0 0-4H32a2 2 0 1 0 0 4z' clip-rule='evenodd'/%3E%3C/svg%3E">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Source Code Pro', monospace;
+            background-color: #0a0a0a;
+            color: #00ff00;
+            overflow-x: hidden;
+        }
+        
+        .terminal {
+            background-color: rgba(0, 0, 0, 0.85);
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+        }
+        
+        .terminal-header {
+            border-bottom: 1px solid #00ff00;
+        }
+        
+        .terminal-body {
+            height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+        
+        .blink {
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        .menu-item {
+            transition: all 0.3s;
+        }
+        
+        .menu-item:hover {
+            background-color: rgba(0, 255, 0, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .menu-item.active {
+            background-color: rgba(0, 255, 0, 0.3);
+            border-bottom: 2px solid #00ff00;
+        }
+        
+        .remark-item {
+            border-left: 3px solid #00ff00;
+            transition: all 0.3s;
+            margin-bottom: 0.5rem;
+        }
+        
+        .remark-item:hover {
+            background-color: rgba(0, 255, 0, 0.1);
+        }
+        
+        .copy-notification {
+            animation: fadeOut 2s forwards;
+            animation-delay: 1s;
+        }
+        
+        @keyframes fadeOut {
+            to { opacity: 0; }
+        }
+        
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #00ff00;
+            border-radius: 4px;
+        }
+        
+        /* Matrix rain effect */
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        /* Beacon LED and Troubleshooter styles */
+        .status {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #111;
+            box-shadow: 0 4px 10px rgba(0,255,0,0.1);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .status:hover {
+            background-color: #222;
+            box-shadow: 0 4px 10px rgba(0,255,0,0.3);
+        }
+        .status .light {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        .status p {
+            margin: 0;
+            font-size: 14px;
+            color: #00ff00;
+        }
+        .light {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+        }
+        .blue-green {
+            background: linear-gradient(45deg, #00ffea, #008cff);
+        }
+        .yellow {
+            background: #ffcc00;
+        }
+        .red {
+            background: #ff4d4d;
+        }
+        .white {
+            background: #f5f5f5;
+        }
+        .yellow-pulse {
+            background: #ffcc00;
+            animation: pulse 1.2s infinite ease-in-out;
+        }
+        .white-pulse {
+            background: #f5f5f5;
+            animation: pulse 1.2s infinite ease-in-out;
+        }
+        .red-blink {
+            background: #ff4d4d;
+            animation: blink 0.8s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.6; }
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        /* Month-Day Calculator styles */
+        .calc-card-unique {
+            background: rgba(0,0,0,0.85);
+            border: 1px solid #00ff00;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 0 8px rgba(0,255,0,0.1);
+        }
+        .calc-input-unique {
+            margin-bottom: 0.5rem;
+            color: #00ff00;
+            background: #111;
+        }
+        .calc-result-unique {
+            margin-top: 0.5rem;
+            font-size: 1rem;
+        }
+        .calc-error-unique {
+            color: #ff4d4d !important;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Matrix rain background -->
+    <canvas id="matrix" class="matrix-bg"></canvas>
+
+    <div class="container mx-auto px-4 py-8">
+        <!-- Terminal Window -->
+        <div class="terminal mx-auto max-w-6xl">
+            <!-- Terminal Header -->
+            <div class="terminal-header flex items-center justify-between p-3 bg-black">
+                <div class="flex items-center space-x-2">
+                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                </div>
+                <div class="text-sm">Remark Terminal v1.0</div>
+                <div class="text-sm">user@worldlink:~</div>
+            </div>
+            
+            <!-- Terminal Body -->
+            <div class="terminal-body p-4">
+                <!-- Menu Navigation -->
+                <div class="flex flex-wrap gap-2 mb-6 border-b border-green-800 pb-4">
+                    <button class="menu-item active px-4 py-2 rounded-t flex items-center" data-tab="remarks">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        Remarks
+                    </button>
+                    <button class="menu-item px-4 py-2 rounded-t flex items-center" data-tab="net-tv">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                        Net TV Case
+                    </button>
+                    <button class="menu-item px-4 py-2 rounded-t flex items-center" data-tab="nokia-router">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        Nokia Router
+                    </button>
+                   
+                    <button class="menu-item px-4 py-2 rounded-t flex items-center" data-tab="slow-case">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Slow Case
+                    </button>
+                    <button class="menu-item px-4 py-2 rounded-t flex items-center" data-tab="new-connection">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                        New Connection
+                    </button>
+                    <button class="menu-item px-4 py-2 rounded-t flex items-center" data-tab="feedback">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+                        </svg>
+                        Feedback
+                    </button>
+                    <button class="menu-item px-4 py-2 rounded-t flex items-center" data-tab="connection-guide">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                        Connection Guide
+                    </button>
+                    <button class="menu-item px-4 py-2 rounded-t flex items-center" data-tab="slow-troubleshoot">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        How many days ?
+                    </button>
+                    <button class="menu-item px-4 py-2 rounded-t flex items-center" data-tab="becon-router">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
+                        </svg>
+                        Becon Router
+                    </button>
+                </div>
+                
+                <!-- Active Tab Content -->
+                <div id="tab-content">
+                    <!-- Remarks Tab (Default) -->
+                    <div id="remarks-tab" class="tab-pane active">
+                        <div class="mb-6">
+                            <h2 class="text-xl mb-4 flex items-center">
+                                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                                Quick Remarks (Click to Copy)
+                            </h2>
+                            
+                            <!-- Quick Action Buttons -->
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
+                                <button class="quick-remark-btn px-2 py-1 bg-green-800 hover:bg-green-700 rounded text-xs" data-title="offline" data-content="No light on auth and link. Please do the needful.">offline</button>
+                                <button class="quick-remark-btn px-2 py-1 bg-green-800 hover:bg-green-700 rounded text-xs" data-title="Light Issue" data-content="Light not verified. Please do the needful.">Light not verified</button>
+                                <button class="quick-remark-btn px-2 py-1 bg-green-800 hover:bg-green-700 rounded text-xs" data-title="Urgent" data-content="Urgent. Please do the needful.">Urgent</button>
+                                <button class="quick-remark-btn px-2 py-1 bg-green-800 hover:bg-green-700 rounded text-xs" data-title="Fiber Damage" data-content="As per client, fiber cable has been damaged. Please do the needful.">Fiber Damage</button>
+                                <button class="quick-remark-btn px-2 py-1 bg-green-800 hover:bg-green-700 rounded text-xs" data-title="Cable Management" data-content="Client requests cable management. Please proceed accordingly.">Cable Management</button>
+                                <button class="quick-remark-btn px-2 py-1 bg-green-800 hover:bg-green-700 rounded text-xs" data-title="Info" data-content="provided a required information">info</button>
+                                <button class="quick-remark-btn px-2 py-1 bg-green-800 hover:bg-green-700 rounded text-xs" data-title="Disconnection" data-content="Disconnection Problem seen please do need full">Disconnection</button>
+                                <button class="quick-remark-btn px-2 py-1 bg-green-800 hover:bg-green-700 rounded text-xs" data-title="Account Extended" data-content="Account extended for 3 days. Suggested to use My WorldLink app. Suggested payment.">Account Extended</button>
+                            </div>
+                            
+                            <!-- Add New Remark Form -->
+                            <div class="mb-6 p-4 border border-green-800 rounded">
+                                <div class="flex mb-2">
+                                    <input type="text" id="remark-title" placeholder="Remark title (e.g., offline)" class="flex-grow px-3 py-2 bg-black border border-green-800 rounded-l focus:outline-none focus:ring-1 focus:ring-green-500 text-sm">
+                                    <button id="add-remark" class="px-4 py-2 bg-green-800 hover:bg-green-700 rounded-r text-sm flex items-center">
+                                        <i class="fas fa-plus mr-1"></i> Add
+                                    </button>
+                                </div>
+                                <textarea id="remark-content" placeholder="Remark content (keep it brief)... Press Enter to add" class="w-full px-3 py-2 bg-black border border-green-800 rounded focus:outline-none focus:ring-1 focus:ring-green-500 text-sm" rows="2"></textarea>
+                            </div>
+                            
+                            <!-- Remarks List -->
+                            <div id="remarks-list" class="space-y-2">
+                                <!-- Sample remarks will be added here by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Other Tabs (initially hidden) -->
+                    <div id="net-tv-tab" class="tab-pane hidden">
+                        <h2 class="text-xl mb-4">Net TV Case</h2>
+                        <!-- Net TV Guide Section -->
+                        <div class="mb-6 p-4 border border-green-800 rounded bg-black">
+                            <div class="flex items-center mb-2 gap-2">
+                                <i class="fas fa-book text-green-400"></i>
+                                <h3 class="font-bold text-green-400 text-lg">Net TV Error Code Guide</h3>
+                                <div class="ml-auto flex gap-2">
+                                    <button id="ntvGuideNewBtn" class="px-2 py-1 bg-green-800 hover:bg-green-700 rounded text-xs font-bold text-white">New system stb</button>
+                                    <button id="ntvGuideOldBtn" class="px-2 py-1 bg-green-800 hover:bg-green-700 rounded text-xs font-bold text-white">Old System stb</button>
+                                </div>
+                            </div>
+                            <div id="ntvGuideList" class="space-y-2"></div>
+                        </div>
+                        <!-- Quick Net TV Remarks Section -->
+                        <div class="mb-6">
+                          
+                              
+                            <!-- Net TV Remarks List -->
+                            <div id="nettv-remarks-list" class="space-y-2"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="nokia-router-tab" class="tab-pane hidden">
+                        <h2 class="text-xl mb-4">Nokia Router Configuration</h2>
+                        <div class="mb-4 flex flex-col md:flex-row gap-2">
+                            <input type="text" id="ttNumber" placeholder="Enter Ticket ID for Location Shifting..." onkeypress="if(event.key === 'Enter' && this.value.trim() !== '') { window.open('https://tt.wlink.com.np/log_data/showLogDetails/' + this.value, '_blank'); }" class="px-3 py-2 bg-black border border-green-800 rounded text-xs focus:outline-none focus:ring-1 focus:ring-green-500 mb-2 md:mb-0">
+                            <input type="text" id="searchInput" placeholder="Search by Serial Number (e.g., ALCLB4FCEC55D)" class="px-3 py-2 bg-black border border-green-800 rounded text-xs focus:outline-none focus:ring-1 focus:ring-green-500">
+                        </div>
+                       <div class="mb-6">
+  <div class="p-4 border border-green-800 rounded bg-black mb-4 text-green-400 text-xs">
+    <h3 class="font-bold mb-2">Nokia ONU</h3>
+    <div class="flex flex-wrap gap-2 mb-2">
+      <button class="px-2 py-1 bg-green-800 hover:bg-green-700 rounded" data-copy="wlinkuser" onclick="navigator.clipboard.writeText(this.dataset.copy)">Username</button>
+      <button class="px-2 py-1 bg-green-700 hover:bg-green-600 rounded" data-copy="35wl%Login465" onclick="navigator.clipboard.writeText(this.dataset.copy)">Password</button>
+      <button class="px-2 py-1 bg-green-800 hover:bg-green-700 rounded" data-copy="AdminGPON" onclick="navigator.clipboard.writeText(this.dataset.copy)">Username</button>
+      <button class="px-2 py-1 bg-green-700 hover:bg-green-600 rounded" data-copy="ALC#FGU" onclick="navigator.clipboard.writeText(this.dataset.copy)">Password</button>
+    </div>
+    <h3 class="font-bold mb-2">Huawei ONU</h3>
+    <div class="flex flex-wrap gap-2">
+      <button class="px-2 py-1 bg-green-800 hover:bg-green-700 rounded" data-copy="wlinkuser" onclick="navigator.clipboard.writeText(this.dataset.copy)">Username</button>
+      <button class="px-2 py-1 bg-green-700 hover:bg-green-600 rounded" data-copy="35wl%Login465" onclick="navigator.clipboard.writeText(this.dataset.copy)">Password</button>
+    </div>
+ 
+
+                            </div>
+                        </div>
+                
+                        </div>
+                    </div>
+                    
+                   
+                    
+                    <!-- Other tabs would follow the same pattern -->
+                    <div id="slow-case-tab" class="tab-pane hidden">
+                        <h2 class="text-xl mb-4">Slow Connection Case</h2>
+                        <!-- Quick Slow Case Remarks Section -->
+                        <div class="mb-6">
+                            <h3 class="text-lg mb-2 flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                                Quick Slow Case Remarks (Click to Copy)
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-4">
+                                <button class="slow-remark-btn px-2 py-1 bg-green-800 hover:bg-green-700 rounded text-xs" data-title="Speed test fine" data-content="Bandwidth verified → R.X. power fine → device verified → ping test fine → speed test done → domain ping fine → issue resolved.">Speed test fine</button>
+                                <button class="slow-remark-btn px-2 py-1 bg-green-800 hover:bg-green-700 rounded text-xs" data-title="High Latency in a single device with good RSSI" data-content="Bandwidth verified → R.X. power fine → OLT RX difference <5 verified → device verified → initial ping not fine → range fine (<= -65dBm) → another device ping fine → reconnected WiFi on first device → issue solved.">High Latency in a single device with good RSSI</button>
+                                <button class="slow-remark-btn px-2 py-1 bg-green-800 hover:bg-green-700 rounded text-xs" data-title="Interference not seen" data-content="Bandwidth verified → R.X. power fine → OLT RX difference <5 → device verified → initial ping not fine → range fine (<= -65dBm) → another device ping not fine → channel interference not seen → reconnected WiFi → issue solved.">High Latency interference not seen</button>
+                                <button class="slow-remark-btn px-2 py-1 bg-green-800 hover:bg-green-700 rounded text-xs" data-title="Channel Interference (Single Band ONU)" data-content="Bandwidth verified → R.X. power fine → OLT RX difference <5 → device verified → initial ping not fine → range fine (<= -65dBm) → another device ping not fine → channel interference seen → suggested solutions for interference (suggested dual band ONU) → refreshed channel and verified → issue solved.">Channel Interference (Single Band ONU)</button>
+                                <button class="slow-remark-btn px-2 py-1 bg-green-800 hover:bg-green-700 rounded text-xs" data-title="Channel Interference (Dual Band ONU)" data-content="Bandwidth verified → R.X. power fine → OLT RX difference <5 → device verified → initial ping not fine → range fine (<= -65dBm) → another device ping not fine → channel interference seen → refreshed channel and verified → issue solved.">Channel Interference (Dual Band ONU)</button>
+                                <button class="slow-remark-btn px-2 py-1 bg-green-800 hover:bg-green-700 rounded text-xs" data-title="RANGE ISSUES" data-content="Bandwidth verified → R.X. power fine → OLT RX difference <5 → device verified → initial ping not fine → range not fine (<= -65dBm) → suggest secondary ONU/beacon placement">RANGE ISSUES</button>
+                            </div>
+                            <!-- Add New Slow Case Remark Form -->
+                            <div class="mb-6 p-4 border border-green-800 rounded">
+                                <div class="flex mb-2">
+                                    <input type="text" id="slow-remark-title" placeholder="Remark title (e.g., Speed test fine)" class="flex-grow px-3 py-2 bg-black border border-green-800 rounded-l focus:outline-none focus:ring-1 focus:ring-green-500 text-sm">
+                                    <button id="add-slow-remark" class="px-4 py-2 bg-green-800 hover:bg-green-700 rounded-r text-sm flex items-center">
+                                        <i class="fas fa-plus mr-1"></i> Add
+                                    </button>
+                                </div>
+                                <textarea id="slow-remark-content" placeholder="Remark content (keep it brief)... Press Enter to add" class="w-full px-3 py-2 bg-black border border-green-800 rounded focus:outline-none focus:ring-1 focus:ring-green-500 text-sm" rows="2"></textarea>
+                            </div>
+                            <!-- Slow Case Remarks List -->
+                            <div id="slow-remarks-list" class="space-y-2"></div>
+                        </div>
+                       <div class="mb-6 p-4 border border-green-800 rounded bg-black text-xs text-green-400">
+  <h3 class="font-bold mb-2 flex items-center"><i class="fas fa-gamepad mr-2"></i> Gaming Servers IP</h3>
+  <div class="flex flex-wrap gap-2">
+    <button class="px-2 py-1 bg-green-800 hover:bg-green-700 rounded" data-ip="129.226.2.89" onclick="navigator.clipboard.writeText(this.dataset.ip)">Pubg Mobile</button>
+    <button class="px-2 py-1 bg-green-800 hover:bg-green-700 rounded" data-ip="155.133.232.98" onclick="navigator.clipboard.writeText(this.dataset.ip)">CSGO</button>
+    <button class="px-2 py-1 bg-green-800 hover:bg-green-700 rounded" data-ip="164.52.120.98" onclick="navigator.clipboard.writeText(this.dataset.ip)">Mobile Legends</button>
+    <button class="px-2 py-1 bg-green-800 hover:bg-green-700 rounded" data-ip="169.38.139.244" onclick="navigator.clipboard.writeText(this.dataset.ip)">Free Fire</button>
+    <button class="px-2 py-1 bg-green-800 hover:bg-green-700 rounded" data-ip="75.2.66.166" onclick="navigator.clipboard.writeText(this.dataset.ip)">Valorant</button>
+    <button class="px-2 py-1 bg-green-800 hover:bg-green-700 rounded" data-ip="157.175.7.148" onclick="navigator.clipboard.writeText(this.dataset.ip)">Fortnite</button>
+  </div>
+  <br>
+  <h3 class="font-bold mb-2 flex items-center"><i class="fas fa-gamepad mr-2"></i> Slow Net Guide</h3>
+  <div style="position:relative; overflow:hidden; border-radius:12px; border:1px solid #065f46; background:#000;">
+  <!-- Hacker Effect Overlay -->
+  <canvas id="hacker-effect" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:2; pointer-events:none;"></canvas>
+
+  <!-- Embedded Site -->
+  <iframe src="https://slownetguide.kalashservices.com.np/" style="width:100%; height:600px; border:none; border-radius:8px; position:relative; z-index:1;"></iframe>
+</div>
+
+  </div>
+  </div>
+  
+
+
+
+                    <div id="new-connection-tab" class="tab-pane hidden">
+                        <h2 class="text-xl mb-4">Standard Package Pricing</h2>
+                        <p class="text-xs text-gray-400 font-bold text-center mb-4">
+                            Kindly double-check the price list, as it may contain errors or be subject to updates at any time.
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                            <!-- 200Mbps Plans -->
+                            <div class="p-4 border border-green-800 rounded bg-black">
+                                <h3 class="font-bold mb-2 text-green-400">200Mbps / 1 Month</h3>
+                                <p class="text-green-300 font-bold mb-1">Rs. 5,294</p>
+                                <ul class="text-xs text-gray-300 mb-2">
+                                    <li>Usage: Rs. 1,469</li>
+                                    <li>Dual Band: Rs. 1,695</li>
+                                    <li>Deposit: Rs. 1,000</li>
+                                    <li>Drop Wire: Rs. 1,130</li>
+                                </ul>
+                                <span class="text-green-500 text-xs">Up to 10 devices</span>
+                            </div>
+                            <div class="p-4 border border-green-800 rounded bg-black">
+                                <h3 class="font-bold mb-2 text-green-400">200Mbps / 3 Months</h3>
+                                <p class="text-green-300 font-bold mb-1">Rs. 4,729</p>
+                                <ul class="text-xs text-gray-300 mb-2">
+                                    <li>Usage: Rs. 3,729</li>
+                                    <li>Dual Band: Rs. 0</li>
+                                    <li>Deposit: Rs. 1,000</li>
+                                    <li>Drop Wire: Rs. 0</li>
+                                </ul>
+                                <span class="text-green-500 text-xs">Up to 10 devices</span>
+                            </div>
+                            <div class="p-4 border border-green-800 rounded bg-black">
+                                <h3 class="font-bold mb-2 text-green-400">200Mbps / 12 Months</h3>
+                                <p class="text-green-300 font-bold mb-1">Rs. 15,238</p>
+                                <ul class="text-xs text-gray-300 mb-2">
+                                    <li>Usage: Rs. 14,238</li>
+                                    <li>Dual Band: Rs. 0</li>
+                                    <li>Deposit: Rs. 1,000</li>
+                                    <li>Drop Wire: Rs. 0</li>
+                                </ul>
+                                <span class="text-green-500 text-xs">Up to 10 devices</span>
+                            </div>
+                            <!-- 250Mbps Plans -->
+                            <div class="p-4 border border-green-800 rounded bg-black">
+                                <h3 class="font-bold mb-2 text-green-400">250Mbps / 1 Month</h3>
+                                <p class="text-green-300 font-bold mb-1">Rs. 5,464</p>
+                                <ul class="text-xs text-gray-300 mb-2">
+                                    <li>Usage: Rs. 1,639</li>
+                                    <li>Dual Band: Rs. 1,695</li>
+                                    <li>Deposit: Rs. 1,000</li>
+                                    <li>Drop Wire: Rs. 1,130</li>
+                                </ul>
+                                <span class="text-green-500 text-xs">Up to 15 devices</span>
+                            </div>
+                            <div class="p-4 border border-green-800 rounded bg-black">
+                                <h3 class="font-bold mb-2 text-green-400">250Mbps / 3 Months</h3>
+                                <p class="text-green-300 font-bold mb-1">Rs. 5,068</p>
+                                <ul class="text-xs text-gray-300 mb-2">
+                                    <li>Usage: Rs. 4,068</li>
+                                    <li>Dual Band: Rs. 0</li>
+                                    <li>Deposit: Rs. 1,000</li>
+                                    <li>Drop Wire: Rs. 0</li>
+                                </ul>
+                                <span class="text-green-500 text-xs">Up to 15 devices</span>
+                            </div>
+                            <div class="p-4 border border-green-800 rounded bg-black">
+                                <h3 class="font-bold mb-2 text-green-400">250Mbps / 12 Months</h3>
+                                <p class="text-green-300 font-bold mb-1">Rs. 16,594</p>
+                                <ul class="text-xs text-gray-300 mb-2">
+                                    <li>Usage: Rs. 15,594</li>
+                                    <li>Dual Band: Rs. 0</li>
+                                    <li>Deposit: Rs. 1,000</li>
+                                    <li>Drop Wire: Rs. 0</li>
+                                </ul>
+                                <span class="text-green-500 text-xs">Up to 15 devices</span>
+                            </div>
+                            <!-- 300Mbps Plans -->
+                            <div class="p-4 border border-green-800 rounded bg-black">
+                                <h3 class="font-bold mb-2 text-green-400">300Mbps / 1 Month</h3>
+                                <p class="text-green-300 font-bold mb-1">Rs. 5,577</p>
+                                <ul class="text-xs text-gray-300 mb-2">
+                                    <li>Usage: Rs. 1,752</li>
+                                    <li>Dual Band: Rs. 1,695</li>
+                                    <li>Deposit: Rs. 1,000</li>
+                                    <li>Drop Wire: Rs. 1,130</li>
+                                </ul>
+                                <span class="text-green-500 text-xs">Up to 20 devices</span>
+                            </div>
+                            <div class="p-4 border border-green-800 rounded bg-black">
+                                <h3 class="font-bold mb-2 text-green-400">300Mbps / 3 Months</h3>
+                                <p class="text-green-300 font-bold mb-1">Rs. 5,577</p>
+                                <ul class="text-xs text-gray-300 mb-2">
+                                    <li>Usage: Rs. 4,577</li>
+                                    <li>Dual Band: Rs. 0</li>
+                                    <li>Deposit: Rs. 1,000</li>
+                                    <li>Drop Wire: Rs. 0</li>
+                                </ul>
+                                <span class="text-green-500 text-xs">Up to 20 devices</span>
+                            </div>
+                            <div class="p-4 border border-green-800 rounded bg-black">
+                                <h3 class="font-bold mb-2 text-green-400">300Mbps / 12 Months</h3>
+                                <p class="text-green-300 font-bold mb-1">Rs. 18,628</p>
+                                <ul class="text-xs text-gray-300 mb-2">
+                                    <li>Usage: Rs. 17,628</li>
+                                    <li>Dual Band: Rs. 0</li>
+                                    <li>Deposit: Rs. 1,000</li>
+                                    <li>Drop Wire: Rs. 0</li>
+                                </ul>
+                                <span class="text-green-500 text-xs">Up to 20 devices</span>
+                            </div>
+                        </div>
+                        <div class="mt-2 p-2 text-xs text-gray-400 text-center">
+                            Installation Deposit Rs.1,000 
+                        </div>
+                    </div>
+                    
+                    <div id="feedback-tab" class="tab-pane hidden">
+                        <h2 class="text-xl mb-4">Customer Feedback</h2>
+                        <div class="mb-4">
+                            <label for="feedback-type" class="block mb-2">Feedback Type</label>
+                            <select id="feedback-type" class="w-full px-3 py-2 bg-black border border-green-800 rounded focus:outline-none focus:ring-1 focus:ring-green-500">
+                                <option value="complaint">Complaint</option>
+                                <option value="suggestion">Suggestion</option>
+                                <option value="praise">Praise</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label for="feedback-message" class="block mb-2">Message</label>
+                            <textarea id="feedback-message" rows="4" class="w-full px-3 py-2 bg-black border border-green-800 rounded focus:outline-none focus:ring-1 focus:ring-green-500"></textarea>
+                        </div>
+                        <button id="submit-feedback" class="px-4 py-2 bg-green-800 hover:bg-green-700 rounded">
+                            Submit Feedback
+                        </button>
+                        <div id="feedback-success" class="mt-4 p-4 bg-green-900 rounded hidden">
+                            Feedback submitted successfully! Thank you.
+                        </div>
+                    </div>
+                    
+                    <div id="connection-guide-tab" class="tab-pane hidden">
+                        <h2 class="text-xl mb-4">myWorldLink Connection Guide</h2>
+                        <div class="space-y-4">
+                            <div class="p-4 border border-green-800 rounded bg-black">
+                                <h3 class="font-bold mb-2 text-green-400">For Android Users</h3>
+                                <ul class="list-decimal pl-5 text-xs text-gray-300 space-y-1">
+                                    <li>Go to Wi-Fi Settings and select the SSID "myWorldLink".</li>
+                                    <li>If available, click on "Advanced Options".</li>
+                                    <li>Select "PEAP" in the EAP method.</li>
+                                    <li>Select "MSCHAPV2" in Phase 2 authentication.</li>
+                                    <li>Choose "Do not validate" or "Unspecified" in the CA certificate field.</li>
+                                    <li>Type your WorldLink account username in the Identity field.</li>
+                                    <li>In the Password section, enter your WorldLink Online Service password.</li>
+                                    <li>Click "CONNECT".</li>
+                                </ul>
+                            </div>
+                            <div class="p-4 border border-green-800 rounded bg-black">
+                                <h3 class="font-bold mb-2 text-green-400">For iPhone/Windows/PC Users</h3>
+                                <ul class="list-decimal pl-5 text-xs text-gray-300 space-y-1">
+                                    <li>Go to Settings and select Wi-Fi.</li>
+                                    <li>Select the SSID "myWorldLink" from the list.</li>
+                                    <li>Enter your WorldLink account Username & Password.</li>
+                                    <li>Click "CONNECT".</li>
+                                </ul>
+                            </div>
+                            <div class="p-4 border border-green-800 rounded bg-black">
+                                <h3 class="font-bold mb-2 text-green-400">For Non-WorldLink Customers</h3>
+                                <ul class="list-decimal pl-5 text-xs text-gray-300 space-y-1">
+                                    <li>Select the SSID "Free_WorldLink_Wi-Fi".</li>
+                                    <li>Click on "Get Online".</li>
+                                    <li>Click on "Connect on Free Wi-Fi".</li>
+                                    <li>Click on "Are you a new user?".</li>
+                                    <li>Insert your mobile number and click "Next".</li>
+                                    <li>Confirm your mobile number and click "Continue".</li>
+                                    <li>Enter the OTP received via SMS and click "Login".</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="slow-troubleshoot-tab" class="tab-pane hidden">
+                        <h2 class="text-xl mb-4">how many days ?</h2>
+                        <!-- Month and Day Calculator Section -->
+                        <div id="month-day-calculator" class="container calc-card-unique mb-6">
+                            <h4 class="flex items-center gap-2 font-bold text-green-400 mb-2">
+                                How Many Days?
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
+                                    <g>
+                                        <path d="m16.298 8.288 1.404 1.425-5.793 5.707a2.001 2.001 0 0 1-2.823-.005l-2.782-2.696 1.393-1.437 2.793 2.707 5.809-5.701ZM24 12c0 6.617-5.383 12-12 12S0 18.617 0 12 5.383 0 12 0s12 5.383 12 12Zm-2 0c0-5.514-4.486-10-10-10S2 6.486 2 12s4.486 10 10 10 10-4.486 10-10Z" fill="#f6efef"></path>
+                                    </g>
+                                </svg>
+                            </h4>
+                            <input type="text" id="calc-date1" class="calc-input-unique input-field mb-2 w-full px-3 py-2 bg-black border border-green-800 rounded focus:outline-none focus:ring-1 focus:ring-green-500 text-sm" placeholder="Start Date (e.g., 18-Oct-2023 16:56:21)">
+                            <input type="text" id="calc-date2" class="calc-input-unique input-field mb-2 w-full px-3 py-2 bg-black border border-green-800 rounded focus:outline-none focus:ring-1 focus:ring-green-500 text-sm" placeholder="End Date (e.g., 12-Oct-2024 00:03:32)">
+                            <div id="calc-result" class="calc-result-unique text-green-400 font-bold mt-2"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="becon-router-tab" class="tab-pane hidden p-4">
+                        <!-- Beacon LED Status Section -->
+                        <div id="light-index" class="mb-8">
+                            <h1 class="flex items-center justify-between text-lg font-bold mb-4">
+                                Beacon Router LED Status
+                                 </h1>
+                            <div class="mb-4">
+                                <h4 class="font-bold text-green-400 mb-2">Extender LED Status</h4>
+                                <div class="status flex items-center mb-2 p-2 rounded bg-black border border-green-800">
+                                    <div class="light blue-green mr-3"></div>
+                                    <p class="text-xs text-gray-300 m-0">Good/Normal Backhaul Status</p>
+                                </div>
+                                <div class="status flex items-center mb-2 p-2 rounded bg-black border border-green-800">
+                                    <div class="light yellow mr-3"></div>
+                                    <p class="text-xs text-gray-300 m-0">Poor Backhaul Quality</p>
+                                </div>
+                                <div class="status flex items-center mb-2 p-2 rounded bg-black border border-green-800">
+                                    <div class="light red mr-3"></div>
+                                    <p class="text-xs text-gray-300 m-0">Disconnected Backhaul</p>
+                                </div>
+                                <div class="status flex items-center mb-2 p-2 rounded bg-black border border-green-800">
+                                    <div class="light white mr-3"></div>
+                                    <p class="text-xs text-gray-300 m-0">Boot Up in Progress</p>
+                                </div>
+                                <div class="status flex items-center mb-2 p-2 rounded bg-black border border-green-800">
+                                    <div class="light yellow-pulse mr-3"></div>
+                                    <p class="text-xs text-gray-300 m-0">Configured Mode, Waiting to be Configured</p>
+                                </div>
+                                <div class="status flex items-center mb-2 p-2 rounded bg-black border border-green-800">
+                                    <div class="light white-pulse mr-3"></div>
+                                    <p class="text-xs text-gray-300 m-0">Onboarding (Establishing Backhaul)</p>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-green-400 mb-2">Root LED Status</h4>
+                                <div class="status flex items-center mb-2 p-2 rounded bg-black border border-green-800">
+                                    <div class="light blue-green mr-3"></div>
+                                    <p class="text-xs text-gray-300 m-0">WAN Port Up & Obtained IP</p>
+                                </div>
+                                <div class="status flex items-center mb-2 p-2 rounded bg-black border border-green-800">
+                                    <div class="light red mr-3"></div>
+                                    <p class="text-xs text-gray-300 m-0">WAN Port Down</p>
+                                </div>
+                                <div class="status flex items-center mb-2 p-2 rounded bg-black border border-green-800">
+                                    <div class="light red-blink mr-3"></div>
+                                    <p class="text-xs text-gray-300 m-0">WAN Port Up & Obtaining IP in Progress</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Beacon Troubleshooting Assistant -->
+                        <div class="mb-8 p-4 border border-green-800 rounded bg-black">
+                            <header class="flex items-center justify-between mb-4">
+                                <div class="flex items-center gap-2">
+                                    <i class="fas fa-broadcast-tower text-green-400 text-xl"></i>
+                                    <div>
+                                        <h1 class="font-bold text-lg">Beacon Troubleshooting Assistant</h1>
+                                        <p class="text-xs text-gray-400">Professional tool for connectivity issues</p>
+                                    </div>
+                                </div>
+                                <i class="fas fa-headset text-green-400 text-xl"></i>
+                            </header>
+                            <div class="flex flex-col md:flex-row gap-6">
+                                <div class="troubleshooter-panel flex-1">
+                                    <div class="panel-title flex items-center gap-2 mb-2">
+                                        <i class="fas fa-network-wired text-green-400"></i>
+                                        <h2 class="font-bold text-green-400 text-base">Troubleshooting Steps</h2>
+                                    </div>
+                                    <div class="step mb-2">
+                                        <div class="step-title flex items-center gap-2 mb-2">
+                                            <span class="number bg-green-800 text-white rounded px-2">1</span>
+                                            <span>Connection Type</span>
+                                        </div>
+                                        <div class="options flex gap-2">
+                                            <button class="btn wired px-3 py-1 bg-green-800 hover:bg-green-700 rounded text-xs font-bold text-white" id="wiredBtn">
+                                                <i class="fas fa-plug"></i> WIRED
+                                            </button>
+                                            <button class="btn wireless px-3 py-1 bg-green-800 hover:bg-green-700 rounded text-xs font-bold text-white" id="wirelessBtn">
+                                                <i class="fas fa-wifi"></i> WIRELESS
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="step mb-2" id="wiredStep" style="display:none;">
+                                        <div class="step-title flex items-center gap-2 mb-2">
+                                            <span class="number bg-green-800 text-white rounded px-2">2</span>
+                                            <span>Connection Status</span>
+                                        </div>
+                                        <div class="options flex gap-2">
+                                            <button class="btn disconnected px-3 py-1 bg-red-800 hover:bg-red-700 rounded text-xs font-bold text-white" id="disconnectedBtn">
+                                                <i class="fas fa-unlink"></i> DISCONNECTED
+                                                <span class="status-tag status-disconnected bg-red-700 text-white px-2 py-0.5 rounded ml-2">Unstable</span>
+                                            </button>
+                                            <button class="btn connected px-3 py-1 bg-green-800 hover:bg-green-700 rounded text-xs font-bold text-white" id="goodWiredBtn">
+                                                <i class="fas fa-link"></i> GOOD
+                                                <span class="status-tag status-good bg-green-700 text-white px-2 py-0.5 rounded ml-2">Stable</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="step mb-2" id="bitrateStep" style="display:none;">
+                                        <div class="step-title flex items-center gap-2 mb-2">
+                                            <span class="number bg-green-800 text-white rounded px-2">3</span>
+                                            <span>Max Bit Rate</span>
+                                        </div>
+                                        <div class="options flex gap-2">
+                                            <button class="btn bitrate px-3 py-1 bg-green-800 hover:bg-green-700 rounded text-xs font-bold text-white" id="bitrate100Btn">
+                                                <i class="fas fa-tachometer-alt"></i> 100 Mbps
+                                            </button>
+                                            <button class="btn bitrate px-3 py-1 bg-green-800 hover:bg-green-700 rounded text-xs font-bold text-white" id="bitrate1000Btn">
+                                                <i class="fas fa-tachometer-alt"></i> 1000 Mbps
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="step mb-2" id="wirelessStep" style="display:none;">
+                                        <div class="step-title flex items-center gap-2 mb-2">
+                                            <span class="number bg-green-800 text-white rounded px-2">2</span>
+                                            <span>Signal Quality</span>
+                                        </div>
+                                        <div class="options flex gap-2">
+                                            <button class="btn good px-3 py-1 bg-green-800 hover:bg-green-700 rounded text-xs font-bold text-white" id="goodWirelessBtn">
+                                                <i class="fas fa-signal"></i> GOOD
+                                                <span class="status-tag status-good bg-green-700 text-white px-2 py-0.5 rounded ml-2">Strong</span>
+                                            </button>
+                                            <button class="btn poor px-3 py-1 bg-yellow-700 hover:bg-yellow-600 rounded text-xs font-bold text-white" id="badBtn">
+                                                <i class="fas fa-signal"></i> BAD/POOR/AVERAGE
+                                                <span class="status-tag status-poor bg-yellow-600 text-white px-2 py-0.5 rounded ml-2">LOW WIFI COVERAGE</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="solution-panel flex-1">
+                                    <div class="solution-header flex items-center gap-2 mb-2">
+                                        <i class="fas fa-lightbulb text-yellow-400"></i>
+                                        <h2 class="solution-title font-bold text-green-400 text-base">Solution Details</h2>
+                                    </div>
+                                    <div class="solution-content">
+                                        <div id="defaultSolution">
+                                            <div class="text-center py-4">
+                                                <i class="fas fa-arrow-left fa-2x text-blue-800 mb-2"></i>
+                                                <h3 class="font-bold text-green-400">Select troubleshooting options</h3>
+                                                <p class="text-xs text-gray-400">Follow the steps on the left to see the solution</p>
+                                            </div>
+                                        </div>
+                                        <div id="disconnectedSolution" style="display:none;">
+                                            <div class="card action-card mb-2 p-2 rounded bg-black border border-green-800">
+                                                <h3 class="font-bold text-green-400 mb-1"><i class="fas fa-tools"></i> Recommended Actions</h3>
+                                                <ul class="list-disc pl-5 text-xs text-gray-300">
+                                                    <li>SUGGEST TO REPLUG LAN CABLE</li>
+                                                    <li>SUGGEST TO CHANGE LAN PORT</li>
+                                                </ul>
+                                            </div>
+                                            <div class="card ticket-card p-2 rounded bg-black border border-green-800">
+                                                <h3 class="font-bold text-green-400 mb-1"><i class="fas fa-ticket-alt"></i> Ticket Assignment</h3>
+                                                <ul class="list-disc pl-5 text-xs text-gray-300">
+                                                    <li>ASSIGN/CLOSE UNDER "CORTECA REPORTED UNSTABLE BACKHAULING" HEADER</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div id="bitrate100Solution" style="display:none;">
+                                            <div class="card action-card mb-2 p-2 rounded bg-black border border-green-800">
+                                                <h3 class="font-bold text-green-400 mb-1"><i class="fas fa-tools"></i> Recommended Actions</h3>
+                                                <ul class="list-disc pl-5 text-xs text-gray-300">
+                                                    <li>Proceed for slow Troubleshoot</li>
+                                                    <li>Suggest CAT6/CAT5e wire</li>
+                                                </ul>
+                                            </div>
+                                            <div class="card ticket-card p-2 rounded bg-black border border-green-800">
+                                                <h3 class="font-bold text-green-400 mb-1"><i class="fas fa-ticket-alt"></i> Ticket Assignment</h3>
+                                                <ul class="list-disc pl-5 text-xs text-gray-300">
+                                                    <li>ASSIGN/CLOSE UNDER "CORTECA REPORTED LOW WIFI COVERAGE" HEADER</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div id="bitrate1000Solution" style="display:none;">
+                                            <div class="card action-card mb-2 p-2 rounded bg-black border border-green-800">
+                                                <h3 class="font-bold text-green-400 mb-1"><i class="fas fa-tools"></i> Recommended Actions</h3>
+                                                <ul class="list-disc pl-5 text-xs text-gray-300">
+                                                    <li>Proceed for slow Troubleshoot</li>
+                                                </ul>
+                                            </div>
+                                            <div class="card ticket-card p-2 rounded bg-black border border-green-800">
+                                                <h3 class="font-bold text-green-400 mb-1"><i class="fas fa-ticket-alt"></i> Ticket Assignment</h3>
+                                                <ul class="list-disc pl-5 text-xs text-gray-300">
+                                                    <li>ASSIGN/CLOSE UNDER "RESPECTIVE SLOW RELATED" HEADER</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div id="goodWirelessSolution" style="display:none;">
+                                            <div class="card action-card mb-2 p-2 rounded bg-black border border-green-800">
+                                                <h3 class="font-bold text-green-400 mb-1"><i class="fas fa-tools"></i> Recommended Actions</h3>
+                                                <ul class="list-disc pl-5 text-xs text-gray-300">
+                                                    <li>Proceed for slow Troubleshoot</li>
+                                                    <li>SUGGEST TO CONNECT WITH LAN CABLE</li>
+                                                </ul>
+                                            </div>
+                                            <div class="card ticket-card p-2 rounded bg-black border border-green-800">
+                                                <h3 class="font-bold text-green-400 mb-1"><i class="fas fa-ticket-alt"></i> Ticket Assignment</h3>
+                                                <ul class="list-disc pl-5 text-xs text-gray-300">
+                                                    <li>ASSIGN/CLOSE UNDER "RESPECTIVE SLOW RELATED" HEADER</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div id="badSolution" style="display:none;">
+                                            <div class="card action-card mb-2 p-2 rounded bg-black border border-green-800">
+                                                <h3 class="font-bold text-green-400 mb-1"><i class="fas fa-tools"></i> Recommended Actions</h3>
+                                                <ul class="list-disc pl-5 text-xs text-gray-300">
+                                                    <li>SUGGEST TO REBOOT BEACON PLACING NEAR ONU</li>
+                                                    <li>SUGGEST TO CONNECT WITH LAN CABLE</li>
+                                                </ul>
+                                            </div>
+                                            <div class="card ticket-card p-2 rounded bg-black border border-green-800">
+                                                <h3 class="font-bold text-green-400 mb-1"><i class="fas fa-ticket-alt"></i> Ticket Assignment</h3>
+                                                <ul class="list-disc pl-5 text-xs text-gray-300">
+                                                    <li>ASSIGN/CLOSE UNDER "CORTECA REPORTED LOW WIFI COVERAGE" HEADER</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="reset-btn mt-4 px-4 py-2 bg-blue-700 text-white rounded font-bold text-xs" id="resetBtn">
+                                        <i class="fas fa-redo"></i> Reset Troubleshooter
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="notes-panel mt-6 p-4 border border-green-800 rounded bg-black">
+                                <div class="notes-title flex items-center gap-2 mb-2">
+                                    <i class="fas fa-exclamation-circle text-yellow-400"></i>
+                                    <h2 class="font-bold text-green-400 text-base">Important Notes</h2>
+                                </div>
+                                <div class="notes-content text-xs text-gray-300">
+                                    <ul class="mb-2">
+                                        <li>If Switching issue (Beacon to Beacon/ONU) observed from beacon: Use ticket “AUTO SWITCHING ISSUES FROM 5ghz TO 2.4ghz OR VICE-VERSA” Header</li>
+                                        <li>If disconnection observed in Beacon (on/off): Use ticket “CORTECA REPORTED UNSTABLE BACKHAULING” Header.</li>
+                                    </ul>
+                                    <ul>
+                                        <li>MAX BIT RATE refers to Ethernet cable capability</li>
+                                        <li>For slow troubleshoots, suggest wired connection</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                   
+            <!-- Terminal Footer -->
+            <div class="terminal-footer flex items-center justify-between p-3 bg-black border-t border-green-800 text-sm">
+                <div>Status: <span class="text-green-400">Connected</span></div>
+                <div>Last update: <span id="current-time" class="text-green-400"></span></div>
+                <div class="flex items-center">
+                    <a href="https://www.rammijar.com.np/" target="_blank">
+  <span class="mr-2">@rammijar:~</span>
+</a>
+
+                    <span class="blink">_</span>
+                </div>
+            </div>
+        </div>
+    </div>
+            </div>
+         
+
+
+    <!-- Copy Notification -->
+    <div id="copy-notification" class="fixed bottom-4 right-4 px-4 py-2 bg-green-800 text-white rounded shadow-lg hidden copy-notification">
+        Copied to clipboard!
+    </div>
+
+    <script>
+        // Matrix rain effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+        const symbols = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
+        
+        const alphabet = katakana + latin + nums + symbols;
+        
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        
+        const rainDrops = [];
+        
+        for (let x = 0; x < columns; x++) {
+            rainDrops[x] = 1;
+        }
+        
+        const draw = () => {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#00ff00';
+            ctx.font = fontSize + 'px monospace';
+            
+            for (let i = 0; i < rainDrops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+                
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+                rainDrops[i]++;
+            }
+        };
+        
+        setInterval(draw, 30);
+        
+        // Update time
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            document.getElementById('current-time').textContent = timeString;
+        }
+        
+        setInterval(updateTime, 1000);
+        updateTime();
+        
+        // Tab switching
+        const menuItems = document.querySelectorAll('.menu-item');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+        
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Remove active class from all menu items and tab panes
+                menuItems.forEach(i => i.classList.remove('active'));
+                tabPanes.forEach(pane => pane.classList.add('hidden'));
+                
+                // Add active class to clicked menu item
+                item.classList.add('active');
+                
+                // Show corresponding tab pane
+                const tabId = item.getAttribute('data-tab') + '-tab';
+                document.getElementById(tabId).classList.remove('hidden');
+            });
+        });
+        
+        // Remarks functionality
+        const remarksList = document.getElementById('remarks-list');
+        const addRemarkBtn = document.getElementById('add-remark');
+        const remarkTitle = document.getElementById('remark-title');
+        const remarkContent = document.getElementById('remark-content');
+
+        // Sample remarks data
+        let remarks = [
+            { id: 1, title: 'offline', content: 'No light on auth and link. Please do the needful.' },
+            { id: 2, title: 'Light Issue', content: 'Light not verified. Please do the needful.' },
+            { id: 3, title: 'Urgent', content: 'Urgent. Please do the needful.' },
+            { id: 4, title: 'Fiber Damage', content: 'As per client, fiber cable has been damaged. Please do the needful.' },
+            { id: 5, title: 'Cable Management', content: 'Client requests cable management. Please proceed accordingly.' },
+            { id: 6, title: 'Verified WAN', content: 'Verified WAN, checked ping, reconnected; now working.' },
+            { id: 7, title: 'Disconnection', content: 'Disconnection Problem seen please do need full' },
+            { id: 8, title: 'Account Extended', content: 'Account extended for  3 days. Suggested to use My WorldLink app. Suggested payment.' }
+        ];
+
+        // Render remarks
+        function renderRemarks() {
+            remarksList.innerHTML = '';
+
+            if (remarks.length === 0) {
+                remarksList.innerHTML = '<p class="text-gray-500">No remarks yet. Add your first remark above.</p>';
+                return;
+            }
+
+            remarks.forEach(remark => {
+                const remarkElement = document.createElement('div');
+                remarkElement.className = 'remark-item p-2 rounded cursor-pointer text-xs';
+                remarkElement.setAttribute('data-id', remark.id);
+                remarkElement.setAttribute('data-content', remark.content);
+
+                remarkElement.innerHTML = `
+                    <div class="flex justify-between items-start mb-1">
+                        <h3 class="font-bold">${remark.title}</h3>
+                        <button class="delete-btn px-1 py-0.5 bg-red-800 hover:bg-red-700 rounded text-xs">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="text-gray-300 whitespace-pre-wrap">${remark.content}</div>`;
+
+                remarksList.appendChild(remarkElement);
+
+                // Add event listener for delete button
+                const deleteBtn = remarkElement.querySelector('.delete-btn');
+
+                deleteBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const id = parseInt(remarkElement.getAttribute('data-id'));
+                    remarks = remarks.filter(r => r.id !== id);
+                    renderRemarks();
+                });
+
+                // Click on card to copy content
+                remarkElement.addEventListener('click', () => {
+                    const content = remarkElement.getAttribute('data-content');
+                    navigator.clipboard.writeText(content);
+
+                    // Show copy notification
+                    const notification = document.getElementById('copy-notification');
+                    notification.textContent = 'Content copied to clipboard!';
+                    notification.classList.remove('hidden');
+                    setTimeout(() => {
+                        notification.classList.add('hidden');
+                    }, 2000);
+                });
+            });
+        }
+
+        // Ensure Remarks list shows on load
+        renderRemarks();
+
+        // Quick remark buttons
+        const quickRemarkBtns = document.querySelectorAll('.quick-remark-btn');
+
+        quickRemarkBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const title = btn.getAttribute('data-title');
+                const content = btn.getAttribute('data-content');
+
+                // Fill the form
+                remarkTitle.value = title;
+                remarkContent.value = content;
+
+                // Auto-copy to clipboard (CONTENT ONLY)
+                navigator.clipboard.writeText(content);
+
+                // Show copy notification
+                const notification = document.getElementById('copy-notification');
+                notification.textContent = 'Content copied to clipboard!';
+                notification.classList.remove('hidden');
+                setTimeout(() => {
+                    notification.classList.add('hidden');
+                }, 2000);
+            });
+        });
+
+        // Add new remark
+        function addNewRemark() {
+            const title = remarkTitle.value.trim();
+            const content = remarkContent.value.trim();
+
+            if (title && content) {
+                const newRemark = {
+                    id: Date.now(),
+                    title,
+                    content
+                };
+
+                remarks.unshift(newRemark);
+                renderRemarks();
+
+                // Auto-copy to clipboard (CONTENT ONLY)
+                navigator.clipboard.writeText(content);
+
+                // Show copy notification
+                const notification = document.getElementById('copy-notification');
+                notification.textContent = 'Added and content copied to clipboard!';
+                notification.classList.remove('hidden');
+                setTimeout(() => {
+                    notification.classList.add('hidden');
+                }, 2000);
+
+                // Clear inputs
+                remarkTitle.value = '';
+                remarkContent.value = '';
+            }
+        }
+
+        addRemarkBtn.addEventListener('click', addNewRemark);
+
+        // Add remark on Enter key press
+        remarkTitle.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                addNewRemark();
+            }
+        });
+
+        remarkContent.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                addNewRemark();
+            }
+        });
+
+    
+
+        // Slow Case Remarks - new implementation
+        // Elements
+        const slowRemarksList = document.getElementById('slow-remarks-list');
+        const addSlowRemarkBtn = document.getElementById('add-slow-remark');
+        const slowRemarkTitle = document.getElementById('slow-remark-title');
+        const slowRemarkContent = document.getElementById('slow-remark-content');
+
+        // Initialize with empty or you can seed with initial values
+        let slowRemarks = [];
+
+        function renderSlowRemarks() {
+            if (!slowRemarksList) return;
+            slowRemarksList.innerHTML = '';
+
+            if (slowRemarks.length === 0) {
+                slowRemarksList.innerHTML = '<p class="text-gray-500">No slow-case remarks yet. Add one above.</p>';
+                return;
+            }
+
+            slowRemarks.forEach(remark => {
+                const remarkElement = document.createElement('div');
+                remarkElement.className = 'remark-item p-2 rounded cursor-pointer text-xs';
+                remarkElement.setAttribute('data-id', remark.id);
+                remarkElement.setAttribute('data-content', remark.content);
+
+                remarkElement.innerHTML = `
+                    <div class="flex justify-between items-start mb-1">
+                        <h3 class="font-bold">${remark.title}</h3>
+                        <button class="delete-slow-btn px-1 py-0.5 bg-red-800 hover:bg-red-700 rounded text-xs">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="text-gray-300 whitespace-pre-wrap">${remark.content}</div>
+                `;
+
+                slowRemarksList.appendChild(remarkElement);
+
+                // Delete handler
+                const del = remarkElement.querySelector('.delete-slow-btn');
+                del.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const id = parseInt(remarkElement.getAttribute('data-id'));
+                    slowRemarks = slowRemarks.filter(r => r.id !== id);
+                    renderSlowRemarks();
+                });
+
+                // Click to copy
+                remarkElement.addEventListener('click', () => {
+                    const content = remarkElement.getAttribute('data-content');
+                    navigator.clipboard.writeText(content);
+                    const notification = document.getElementById('copy-notification');
+                    notification.textContent = 'Content copied to clipboard!';
+                    notification.classList.remove('hidden');
+                    setTimeout(() => {
+                        notification.classList.add('hidden');
+                    }, 2000);
+                });
+            });
+        }
+
+        // Quick Slow Remark buttons (fill and copy)
+        const slowRemarkBtns = document.querySelectorAll('.slow-remark-btn');
+        slowRemarkBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const title = btn.getAttribute('data-title') || '';
+                const content = btn.getAttribute('data-content') || '';
+                if (slowRemarkTitle) slowRemarkTitle.value = title;
+                if (slowRemarkContent) slowRemarkContent.value = content;
+
+                if (content) {
+                    navigator.clipboard.writeText(content);
+                    const notification = document.getElementById('copy-notification');
+                    notification.textContent = 'Content copied to clipboard!';
+                    notification.classList.remove('hidden');
+                    setTimeout(() => {
+                        notification.classList.add('hidden');
+                    }, 2000);
+                }
+            });
+        });
+
+        // Add new slow remark
+        function addNewSlowRemark() {
+            if (!slowRemarkTitle || !slowRemarkContent) return;
+            const title = slowRemarkTitle.value.trim();
+            const content = slowRemarkContent.value.trim();
+
+            if (title && content) {
+                const newRemark = { id: Date.now(), title, content };
+                slowRemarks.unshift(newRemark);
+                renderSlowRemarks();
+
+                navigator.clipboard.writeText(content);
+                const notification = document.getElementById('copy-notification');
+                notification.textContent = 'Added and content copied to clipboard!';
+                notification.classList.remove('hidden');
+                setTimeout(() => {
+                    notification.classList.add('hidden');
+                }, 2000);
+
+                slowRemarkTitle.value = '';
+                slowRemarkContent.value = '';
+            }
+        }
+
+        if (addSlowRemarkBtn) {
+            addSlowRemarkBtn.addEventListener('click', addNewSlowRemark);
+        }
+
+        if (slowRemarkTitle) {
+            slowRemarkTitle.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    addNewSlowRemark();
+                }
+            });
+        }
+        if (slowRemarkContent) {
+            slowRemarkContent.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    addNewSlowRemark();
+                }
+            });
+        }
+
+        // Initial render for slow remarks
+        renderSlowRemarks();
+
+        // Beacon Troubleshooter logic
+    document.addEventListener('DOMContentLoaded', function() {
+        const wiredBtn = document.getElementById('wiredBtn');
+        const wirelessBtn = document.getElementById('wirelessBtn');
+        const disconnectedBtn = document.getElementById('disconnectedBtn');
+        const goodWiredBtn = document.getElementById('goodWiredBtn');
+        const goodWirelessBtn = document.getElementById('goodWirelessBtn');
+        const badBtn = document.getElementById('badBtn');
+        const bitrate100Btn = document.getElementById('bitrate100Btn');
+        const bitrate1000Btn = document.getElementById('bitrate1000Btn');
+        const resetBtn = document.getElementById('resetBtn');
+        const wiredStep = document.getElementById('wiredStep');
+        const wirelessStep = document.getElementById('wirelessStep');
+        const bitrateStep = document.getElementById('bitrateStep');
+        const defaultSolution = document.getElementById('defaultSolution');
+        const disconnectedSolution = document.getElementById('disconnectedSolution');
+        const bitrate100Solution = document.getElementById('bitrate100Solution');
+        const bitrate1000Solution = document.getElementById('bitrate1000Solution');
+        const goodWirelessSolution = document.getElementById('goodWirelessSolution');
+        const badSolution = document.getElementById('badSolution');
+        function resetAll() {
+            wiredStep.style.display = 'none';
+            wirelessStep.style.display = 'none';
+            bitrateStep.style.display = 'none';
+            disconnectedSolution.style.display = 'none';
+            bitrate100Solution.style.display = 'none';
+            bitrate1000Solution.style.display = 'none';
+            goodWirelessSolution.style.display = 'none';
+            badSolution.style.display = 'none';
+            defaultSolution.style.display = 'block';
+        }
+        wiredBtn.addEventListener('click', function() {
+            resetAll();
+            wiredStep.style.display = 'block';
+        });
+        wirelessBtn.addEventListener('click', function() {
+            resetAll();
+            wirelessStep.style.display = 'block';
+        });
+        disconnectedBtn.addEventListener('click', function() {
+            resetAll();
+            defaultSolution.style.display = 'none';
+            disconnectedSolution.style.display = 'block';
+        });
+        goodWiredBtn.addEventListener('click', function() {
+            resetAll();
+            bitrateStep.style.display = 'block';
+        });
+        bitrate100Btn.addEventListener('click', function() {
+            resetAll();
+            defaultSolution.style.display = 'none';
+            bitrate100Solution.style.display = 'block';
+        });
+        bitrate1000Btn.addEventListener('click', function() {
+            resetAll();
+            defaultSolution.style.display = 'none';
+            bitrate1000Solution.style.display = 'block';
+        });
+        goodWirelessBtn.addEventListener('click', function() {
+            resetAll();
+            defaultSolution.style.display = 'none';
+            goodWirelessSolution.style.display = 'block';
+        });
+        badBtn.addEventListener('click', function() {
+            resetAll();
+            defaultSolution.style.display = 'none';
+            badSolution.style.display = 'block';
+        });
+        resetBtn.addEventListener('click', resetAll);
+        resetAll();
+    });
+    // Net TV Guide Data and Logic
+    const errorData = {
+        new: [
+            { code: '1400', message: 'Unable to connect to internet / Something went wrong, please try again', cause: 'Network connection or streaming server issue', solution: 'Check Network status → Clear cache → Restart device → Factory Reset' },
+            { code: '1503', message: 'No Internet connection. Please restart Set Top Box', cause: 'Network connectivity issue between device and NetTV service', solution: 'Check network status → verify STB IP → restart STB → launcher refresh → factory reset' },
+            { code: '1525', message: 'SSL Error / Stuck on Live TV splash screen', cause: 'Date and Time outdated / HostiProvider issue', solution: 'Verify date & time settings → Check network → Restart STB' },
+            { code: '1598', message: 'No internet connection', cause: 'Network issue (LAN down/MAC Filter/Poor WiFi)', solution: 'Verify LAN connection → Check Router and STB network status' },
+            { code: '1599', message: 'Could not connect to server / Date and Time not synced', cause: 'Network issue or Time sync problem', solution: 'Sync date & time → Check network → Restart STB → Factory reset if needed' },
+            { code: '2004', message: 'Unable to play from source', cause: 'Provider/streamer side issue or channel specific problem', solution: 'Escalate to NetTV team or I2 team' },
+            { code: 'N/A', message: 'Red light in STB, bytes/packets received are 0', cause: 'STB version compatibility issue', solution: 'Submit ticket as "Hardware related issue - STB needs hard reset"' },
+            { code: 'N/A', message: 'Live TV has stopped/not working', cause: 'Service interruption or STB issue', solution: 'Launcher refresh → Mode change → Factory Reset → Escalate to L2' },
+            { code: 'N/A', message: 'Not Programmed', cause: 'Incorrect input source selection', solution: 'Select correct source (HDMI 1/2, AVTV, or VGA)' }
+        ],
+        old: [
+            { code: '100', message: 'ISP error / Network not Allowed / Package expired', cause: 'Network issue or package expiration', solution: 'Verify network → Check package status → Update mapping' },
+            { code: '400', message: 'No Internet / MAC disable', cause: 'Network connectivity or MAC authentication issue', solution: 'Verify network → Check netty log' },
+            { code: '401', message: 'Invalid username and password', cause: 'Credentials mismatch or MAC conflict', solution: 'Verify online service credentials' },
+            { code: '402', message: 'STB MAC disabled', cause: 'Payment issue or package expiration', solution: 'Verify package status and payment' },
+            { code: '422', message: 'Password Empty / Authentication Required', cause: 'Authentication token expired', solution: 'Update online service password' },
+            { code: '700', message: 'DateTime outdated', cause: 'System time synchronization issue', solution: 'Sync date/time → Check network connectivity' },
+            { code: '25', message: 'No internet connection or server issue', cause: 'Network connectivity problem', solution: 'Check LAN → Verify ethernet → Update date/time' },
+            { code: '1417', message: 'Could not Fetch NETTV data', cause: 'Service connectivity issue', solution: 'Check network → Update firmware/app if needed' }
+        ]
+    };
+    function renderNetTVGuide(type = 'new') {
+        const list = document.getElementById('ntvGuideList');
+        list.innerHTML = '';
+        errorData[type].forEach(e => {
+            const card = document.createElement('div');
+            card.className = 'p-2 rounded border border-green-800 bg-black text-xs';
+            card.innerHTML = `
+                <div class="flex gap-2 items-center mb-1">
+                    <span class="font-bold text-green-400">Code:</span>
+                    <span class="font-bold">${e.code}</span>
+                    <span class="ml-2 font-bold text-green-400">Message:</span>
+                    <span>${e.message}</span>
+                </div>
+                <div class="mb-1"><span class="font-bold text-green-400">Cause:</span> <span>${e.cause}</span></div>
+                <div><span class="font-bold text-green-400">Solution:</span> <span>${e.solution}</span></div>
+            `;
+            list.appendChild(card);
+        });
+    }
+    document.getElementById('ntvGuideNewBtn').addEventListener('click', () => renderNetTVGuide('new'));
+    document.getElementById('ntvGuideOldBtn').addEventListener('click', () => renderNetTVGuide('old'));
+    // Render default (new) on load
+    document.addEventListener('DOMContentLoaded', () => {
+        renderNetTVGuide('new');
+    });
+    // Month and Day Calculator Script
+function parseDateInput(dateString) {
+    const parts = dateString.match(/(\d{2})-(\w{3})-(\d{4}) (\d{2}):(\d{2}):(\d{2})/);
+    if (!parts) return null;
+    const [_, day, month, year, hours, minutes, seconds] = parts;
+    const monthMap = {
+        Jan: 0, Feb: 1, Mar: 2, Apr: 3,
+        May: 4, Jun: 5, Jul: 6, Aug: 7,
+        Sep: 8, Oct: 9, Nov: 10, Dec: 11
+    };
+    const monthIndex = monthMap[month];
+    if (monthIndex === undefined) return null;
+    return new Date(year, monthIndex, day, hours, minutes, seconds);
+}
+function calculateDateDifference() {
+    const date1Str = document.getElementById("calc-date1").value.trim();
+    const date2Str = document.getElementById("calc-date2").value.trim();
+    const date1 = parseDateInput(date1Str);
+    const date2 = parseDateInput(date2Str);
+    const resultDiv = document.getElementById("calc-result");
+    if (!date1 || !date2) {
+        resultDiv.innerText = "Invalid date format. Please use DD-MMM-YYYY HH:MM:SS";
+        resultDiv.classList.add("calc-error-unique");
+        return;
+    }
+    if (date1 > date2) {
+        resultDiv.innerText = "Start date must be before end date.";
+        resultDiv.classList.add("calc-error-unique");
+        return;
+    }
+    let months = date2.getMonth() - date1.getMonth() + (12 * (date2.getFullYear() - date1.getFullYear()));
+    let days = date2.getDate() - date1.getDate();
+    if (days < 0) {
+        months--;
+        const lastMonthDate = new Date(date1.getFullYear(), date1.getMonth() + 1, 0);
+        days += lastMonthDate.getDate();
+    }
+    resultDiv.innerText = `Difference: ${months} months and ${days} days`;
+    resultDiv.classList.remove("calc-error-unique");
+}
+document.getElementById("calc-date1").addEventListener("input", calculateDateDifference);
+document.getElementById("calc-date2").addEventListener("input", calculateDateDifference);   
+
+
+ document.getElementById('searchInput').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            let inputText = document.getElementById('searchInput').value;
+            let resultText;
+
+            // Check and replace/append based on the input
+            if (inputText.includes('ALCL')) {
+                resultText = inputText.replace(/ALCL/g, '414C434C');
+            } else {
+                resultText = '414C434C' + inputText;
+            }
+
+            // Construct the URL with the result as a query parameter
+            const url = `https://ftth.wlink.com.np/customer/search?filter%5Bolt%5D=&filter%5Bgpon%5D=&filter%5Bponport%5D=&filter%5Bpayplan%5D=&filter%5Bsplitter%5D=&filter%5Bname%5D=&filter%5Bserial%5D=${encodeURIComponent(resultText)}`;
+            
+            // Open the URL in a new tab or window
+            window.open(url, '_blank');
+        }
+    });
+    </script>
+    <script async data-id="4455653935" id="chatling-embed-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>  
+</body>
+</html>
